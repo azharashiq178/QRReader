@@ -22,6 +22,9 @@
 		7E3D40661F56FA0000E6C478 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */; };
 		7E3D40671F56FA0000E6C478 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */; };
 		7E3D40681F56FA0000E6C478 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */; };
+		7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */; };
+		7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */; };
+		7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +70,12 @@
 		7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQRCodeDecoderViewController.m; sourceTree = "<group>"; };
 		7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_animation_scan_line.png; sourceTree = "<group>"; };
 		7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_animation_scan_pic.png; sourceTree = "<group>"; };
+		7ED8E3A71F57C45400E1A249 /* CreateQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateQRCodeViewController.h; sourceTree = "<group>"; };
+		7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateQRCodeViewController.m; sourceTree = "<group>"; };
+		7ED8E3AB1F57CF1700E1A249 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
+		7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
+		7ED8E3AE1F57D15800E1A249 /* MyTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarViewController.h; sourceTree = "<group>"; };
+		7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarViewController.m; sourceTree = "<group>"; };
 		876703757E280E7B23884455 /* Pods_QRReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9790551FC1FD8921ED9C20 /* Pods-QRReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRReader/Pods-QRReader.release.xcconfig"; sourceTree = "<group>"; };
 		9AEC381E2BDF2F8A813AB4E3 /* Pods-QRReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRReaderUITests/Pods-QRReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -137,17 +146,11 @@
 		7E1864251F56B903001A11EE /* QRReader */ = {
 			isa = PBXGroup;
 			children = (
-				7E1864291F56B903001A11EE /* AppDelegate.h */,
-				7E18642A1F56B903001A11EE /* AppDelegate.m */,
-				7E18642C1F56B903001A11EE /* ViewController.h */,
-				7E18642D1F56B903001A11EE /* ViewController.m */,
-				7E3D40621F56F9FF00E6C478 /* DYQRCodeDecoderViewController.h */,
-				7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */,
-				7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */,
-				7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */,
-				7E18642F1F56B903001A11EE /* Main.storyboard */,
-				7E1864351F56B904001A11EE /* Assets.xcassets */,
-				7E1864371F56B904001A11EE /* LaunchScreen.storyboard */,
+				7ED8E3A11F57C37B00E1A249 /* AppDelegate */,
+				7ED8E3A51F57C3E200E1A249 /* ImageSet */,
+				7ED8E39D1F57C34600E1A249 /* Models */,
+				7ED8E39E1F57C34D00E1A249 /* Views */,
+				7ED8E39F1F57C35300E1A249 /* Controllers */,
 				7E18643A1F56B904001A11EE /* Info.plist */,
 				7E1864321F56B904001A11EE /* QRReader.xcdatamodeld */,
 				7E1864261F56B903001A11EE /* Supporting Files */,
@@ -179,6 +182,114 @@
 				7E1864501F56B904001A11EE /* Info.plist */,
 			);
 			path = QRReaderUITests;
+			sourceTree = "<group>";
+		};
+		7ED8E39C1F57C32E00E1A249 /* DYQRCodeDecoderViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E3D40621F56F9FF00E6C478 /* DYQRCodeDecoderViewController.h */,
+				7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */,
+			);
+			name = DYQRCodeDecoderViewController;
+			sourceTree = "<group>";
+		};
+		7ED8E39D1F57C34600E1A249 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7ED8E39E1F57C34D00E1A249 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8E3A21F57C38C00E1A249 /* StoryBoards */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		7ED8E39F1F57C35300E1A249 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8E3AA1F57CF0300E1A249 /* HistoryViewController */,
+				7ED8E3A61F57C43A00E1A249 /* CreateQRCodeViewController */,
+				7ED8E3A01F57C36C00E1A249 /* ViewController */,
+				7ED8E39C1F57C32E00E1A249 /* DYQRCodeDecoderViewController */,
+				7ED8E3AE1F57D15800E1A249 /* MyTabBarViewController.h */,
+				7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		7ED8E3A01F57C36C00E1A249 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7E18642C1F56B903001A11EE /* ViewController.h */,
+				7E18642D1F56B903001A11EE /* ViewController.m */,
+			);
+			name = ViewController;
+			sourceTree = "<group>";
+		};
+		7ED8E3A11F57C37B00E1A249 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				7E1864291F56B903001A11EE /* AppDelegate.h */,
+				7E18642A1F56B903001A11EE /* AppDelegate.m */,
+			);
+			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		7ED8E3A21F57C38C00E1A249 /* StoryBoards */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8E3A41F57C3AB00E1A249 /* LaunchScreen */,
+				7ED8E3A31F57C39400E1A249 /* Main.StoryBoard */,
+			);
+			name = StoryBoards;
+			sourceTree = "<group>";
+		};
+		7ED8E3A31F57C39400E1A249 /* Main.StoryBoard */ = {
+			isa = PBXGroup;
+			children = (
+				7E18642F1F56B903001A11EE /* Main.storyboard */,
+			);
+			name = Main.StoryBoard;
+			sourceTree = "<group>";
+		};
+		7ED8E3A41F57C3AB00E1A249 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				7E1864371F56B904001A11EE /* LaunchScreen.storyboard */,
+			);
+			name = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		7ED8E3A51F57C3E200E1A249 /* ImageSet */ = {
+			isa = PBXGroup;
+			children = (
+				7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */,
+				7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */,
+				7E1864351F56B904001A11EE /* Assets.xcassets */,
+			);
+			name = ImageSet;
+			sourceTree = "<group>";
+		};
+		7ED8E3A61F57C43A00E1A249 /* CreateQRCodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8E3A71F57C45400E1A249 /* CreateQRCodeViewController.h */,
+				7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */,
+			);
+			name = CreateQRCodeViewController;
+			sourceTree = "<group>";
+		};
+		7ED8E3AA1F57CF0300E1A249 /* HistoryViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7ED8E3AB1F57CF1700E1A249 /* HistoryViewController.h */,
+				7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */,
+			);
+			name = HistoryViewController;
 			sourceTree = "<group>";
 		};
 		C089A2E8B9D3AF5A13F40D71 /* Pods */ = {
@@ -483,6 +594,9 @@
 				7E18642E1F56B903001A11EE /* ViewController.m in Sources */,
 				7E18642B1F56B903001A11EE /* AppDelegate.m in Sources */,
 				7E1864281F56B903001A11EE /* main.m in Sources */,
+				7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */,
+				7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */,
+				7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */,
 				7E1864341F56B904001A11EE /* QRReader.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

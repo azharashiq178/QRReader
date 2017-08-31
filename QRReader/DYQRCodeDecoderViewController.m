@@ -9,7 +9,7 @@
 
 #import "DYQRCodeDecoderViewController.h"
 #import <AVFoundation/AVFoundation.h>
-
+#import "MyTabBarViewController.h"
 
 #define SCREEN_WIDTH  [[UIScreen mainScreen] bounds].size.width
 #define SCREEN_HEIGHT [[UIScreen mainScreen] bounds].size.height
@@ -160,9 +160,11 @@ UIImagePickerControllerDelegate> {
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.tabBarController.delegate = self;
     [self setupNotifications];
     [self setNavigationBarButton];
     [self initWithCompletion:nil];
+    
     
     _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
@@ -342,9 +344,12 @@ UIImagePickerControllerDelegate> {
 - (void)dealWithResult:(NSString *)result {
     
     self.myResult = result;
-    [self performSegueWithIdentifier:@"showResult" sender:self];
+//    [self performSegueWithIdentifier:@"showResult" sender:self];
     self.myResult = result;
     NSLog(@"My Result is %@",result);
+    [(MyTabBarViewController *)self.tabBarController setMyResultString:result];
+    
+    [self.tabBarController setSelectedIndex:1];
 }
 
 #pragma mark - Private method implementation
@@ -467,4 +472,7 @@ UIImagePickerControllerDelegate> {
 //        [self presentViewController:destinationController animated:YES completion:nil];
     }
 }
+//-(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
+//    NSLog(@"Selected Tab bar controller");
+//}
 @end

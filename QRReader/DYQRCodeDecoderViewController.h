@@ -10,7 +10,7 @@
 #import "ViewController.h"
 
 
-@interface DYQRCodeDecoderViewController : UIViewController
+@interface DYQRCodeDecoderViewController : UIViewController <UITabBarControllerDelegate>
 
 @property (nonatomic, strong, readonly) UIBarButtonItem * leftBarButtonItem;
 @property (nonatomic, strong, readonly) UIBarButtonItem * rightBarButtonItem;

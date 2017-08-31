@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item 2-->
+        <!--History-->
         <scene sceneID="9SC-Si-O8Z">
             <objects>
-                <viewController id="eti-nY-Qsj" sceneMemberID="viewController">
+                <viewController id="eti-nY-Qsj" customClass="HistoryViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Yp5-yb-2ph"/>
                         <viewControllerLayoutGuide type="bottom" id="1le-MT-y0z"/>
@@ -20,13 +20,26 @@
                     <view key="view" contentMode="scaleToFill" id="4Cv-50-M8P">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="SkF-AN-T83">
+                                <rect key="frame" x="38" y="72" width="303" height="498"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES" shipmentTrackingNumber="YES" flightNumber="YES" lookupSuggestion="YES"/>
+                            </textView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item 2" id="gVg-l2-ixx"/>
+                    <navigationItem key="navigationItem" title="History" id="cnx-45-I7L"/>
+                    <connections>
+                        <outlet property="tmpTextField" destination="SkF-AN-T83" id="sgN-vq-Xo0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZgH-64-b3U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="223" y="195"/>
+            <point key="canvasLocation" x="1160.8" y="194.75262368815595"/>
         </scene>
         <!--Item-->
         <scene sceneID="t1P-7D-ZJk">
@@ -47,10 +60,10 @@
             </objects>
             <point key="canvasLocation" x="-567" y="875"/>
         </scene>
-        <!--Item-->
+        <!--CreateQR Code View Controller-->
         <scene sceneID="IPW-pw-VFW">
             <objects>
-                <viewController id="k3d-7s-r5G" sceneMemberID="viewController">
+                <viewController id="k3d-7s-r5G" customClass="CreateQRCodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="DOG-EU-Evy"/>
                         <viewControllerLayoutGuide type="bottom" id="QcA-Nq-spP"/>
@@ -58,13 +71,29 @@
                     <view key="view" contentMode="scaleToFill" id="eEz-vR-OxI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6KS-av-AwZ">
+                                <rect key="frame" x="67" y="213.5" width="240" height="240"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="240" id="8CZ-04-CeW"/>
+                                    <constraint firstAttribute="width" constant="240" id="Xgr-72-shd"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6KS-av-AwZ" firstAttribute="centerY" secondItem="eEz-vR-OxI" secondAttribute="centerY" id="bgJ-xv-uHD"/>
+                            <constraint firstItem="6KS-av-AwZ" firstAttribute="centerX" secondItem="eEz-vR-OxI" secondAttribute="centerX" id="f3Y-MD-NDP"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" id="BN4-ZD-AHO"/>
+                    <navigationItem key="navigationItem" id="Ag0-rU-7Io"/>
+                    <connections>
+                        <outlet property="qrImageView" destination="6KS-av-AwZ" id="HIK-Xc-sDT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EHO-hG-eAh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="222" y="855"/>
+            <point key="canvasLocation" x="1160.8" y="854.1229385307347"/>
         </scene>
         <!--Code Decoder View Controller-->
         <scene sceneID="oV5-uf-3Sd">
@@ -123,10 +152,10 @@
             </objects>
             <point key="canvasLocation" x="1909.5999999999999" y="-460.11994002998506"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--My Tab Bar View Controller-->
         <scene sceneID="2zX-zG-0oY">
             <objects>
-                <tabBarController id="ndv-kU-nSZ" sceneMemberID="viewController">
+                <tabBarController id="ndv-kU-nSZ" customClass="MyTabBarViewController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="suz-sJ-m3v">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -134,8 +163,8 @@
                     </tabBar>
                     <connections>
                         <segue destination="nIZ-FO-cai" kind="relationship" relationship="viewControllers" id="jeh-kv-jCs"/>
-                        <segue destination="eti-nY-Qsj" kind="relationship" relationship="viewControllers" id="76P-bV-izX"/>
-                        <segue destination="k3d-7s-r5G" kind="relationship" relationship="viewControllers" id="ban-MV-G6B"/>
+                        <segue destination="nh5-IF-Z4k" kind="relationship" relationship="viewControllers" id="76P-bV-izX"/>
+                        <segue destination="xTc-mc-ZEn" kind="relationship" relationship="viewControllers" id="ban-MV-G6B"/>
                         <segue destination="udU-BD-ZDV" kind="relationship" relationship="viewControllers" id="0Tx-jV-45C"/>
                     </connections>
                 </tabBarController>
@@ -161,6 +190,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zxq-8u-H3H" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="221.59999999999999" y="-460.11994002998506"/>
+        </scene>
+        <!--Create-->
+        <scene sceneID="fsS-my-T79">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xTc-mc-ZEn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Create" id="BN4-ZD-AHO"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="KZe-Pj-buZ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="k3d-7s-r5G" kind="relationship" relationship="rootViewController" id="eQD-yj-b9X"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hyk-N0-SdV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="221.59999999999999" y="854.1229385307347"/>
+        </scene>
+        <!--Item 2-->
+        <scene sceneID="Iyu-98-CyG">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nh5-IF-Z4k" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item 2" id="gVg-l2-ixx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zoM-eC-ajc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eti-nY-Qsj" kind="relationship" relationship="rootViewController" id="E5S-bx-Nsg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SSr-LC-QtT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="221.59999999999999" y="194.75262368815595"/>
         </scene>
     </scenes>
 </document>

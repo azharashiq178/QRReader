@@ -7,22 +7,39 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0936713EB013DE76E9F539E360AA0382 /* Pods-QRReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A7D6FB2F690C70C3C8C195BE8F885 /* Pods-QRReader-dummy.m */; };
 		22EF6F1437B0F3E00DC535FF2B72E80C /* Pods-QRReaderTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C723283E2392590D2492D154B157D2C /* Pods-QRReaderTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3D1CA6A71C8630D7B1D60CAC88F28963 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		4F50EA0B4DAADC923AE13BF10C1AE368 /* Pods-QRReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 44F06A0382764DB826D401AEBB5EBA63 /* Pods-QRReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		57140E793413F94743EA1D1F86DA3182 /* RegexKitLite-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A060334ADAFE7F04B6F9B22DCB54CA9D /* RegexKitLite-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5A59A244359235C309494D6E77BEB80A /* Pods-QRReaderTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DA97123F832D59078FFDAD233852F43 /* Pods-QRReaderTests-dummy.m */; };
 		941A5FCF4D87D7ED610816ABC60A7AC6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		989D8B8050C56E4684E72CF0FDD46EB0 /* Pods-QRReader-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 44F06A0382764DB826D401AEBB5EBA63 /* Pods-QRReader-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9AA2C52C29A94F532DE8F25D02FB8105 /* Pods-QRReaderUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 00741F891D56A59A40CAD1BF7783C11B /* Pods-QRReaderUITests-dummy.m */; };
-		B958C8705B6C0FD3A79DA2ADDFD34BFA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
-		C284B6C2526ECE0368D59B889E5945D1 /* Pods-QRReader-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E5A7D6FB2F690C70C3C8C195BE8F885 /* Pods-QRReader-dummy.m */; };
+		A1DFC37D4828179F43B9C6BD59715011 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
+		B1AD0575F1F60DAFCE5D2A5CB8647E7A /* RegexKitLite-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = ACB60EA76F30110E2D7D248DBCECA179 /* RegexKitLite-dummy.m */; };
 		C33154BE126D3274B3EE6FD59E208392 /* Pods-QRReaderUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3154BB3C4ADAAB6D99E219D2CEED567D /* Pods-QRReaderUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D88B0C35C24EF141CA30E1006B92C264 /* RegexKitLite.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B62BDF9ACF685F4701DA1A42CC34E22 /* RegexKitLite.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		E107753967C19ED5E7AEC1308C10B284 /* RegexKitLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 6817C501FC5AB28AE43879216473E3E2 /* RegexKitLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		EFA494328A7E46D5854899CB6364D239 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		58C2CEA19B0DF25A1AFD869B0BA94EAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02FD993917AAFFD45D4DA0F2597FE647;
+			remoteInfo = RegexKitLite;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		00741F891D56A59A40CAD1BF7783C11B /* Pods-QRReaderUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-QRReaderUITests-dummy.m"; sourceTree = "<group>"; };
 		13F9C922FFECC25F2CB827039EF5A5BC /* Pods-QRReaderUITests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReaderUITests-resources.sh"; sourceTree = "<group>"; };
+		19CB33E5BF0C9E0C1BC698AF5EAD33C0 /* RegexKitLite.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = RegexKitLite.modulemap; sourceTree = "<group>"; };
 		1E5A7D6FB2F690C70C3C8C195BE8F885 /* Pods-QRReader-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-QRReader-dummy.m"; sourceTree = "<group>"; };
 		2DA97123F832D59078FFDAD233852F43 /* Pods-QRReaderTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-QRReaderTests-dummy.m"; sourceTree = "<group>"; };
+		2EFC445E9B4253EE8E2E6D9870FACB61 /* Pods_QRReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReaderUITests.framework; path = "Pods-QRReaderUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3154BB3C4ADAAB6D99E219D2CEED567D /* Pods-QRReaderUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-QRReaderUITests-umbrella.h"; sourceTree = "<group>"; };
 		344E5F8D7CBA8B2FD1F0E7685C14C761 /* Pods-QRReaderTests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReaderTests-resources.sh"; sourceTree = "<group>"; };
 		3838115D72DAD605A06D0F3FE5E9E4BB /* Pods-QRReaderTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-QRReaderTests.modulemap"; sourceTree = "<group>"; };
@@ -31,45 +48,52 @@
 		590544E6F6885BFB2DE2064BEAB2E695 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		598BAAB592B0C4801E19E6D3B301100C /* Pods-QRReader.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-QRReader.modulemap"; sourceTree = "<group>"; };
 		5A9B87042B490900FCC956D96DE87E86 /* Pods-QRReaderUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-QRReaderUITests.modulemap"; sourceTree = "<group>"; };
+		5B62BDF9ACF685F4701DA1A42CC34E22 /* RegexKitLite.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RegexKitLite.m; sourceTree = "<group>"; };
 		60A1564D8CDAC1E52E65F16ADA0A4050 /* Pods-QRReaderUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-QRReaderUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		61E252C4FA8CF387C614D9890BCD7510 /* Pods-QRReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QRReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		6604A7D69453B4569E4E4827FB9155A9 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		6D87ABDC566D92C4B964C175F0252E21 /* Pods_QRReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReaderUITests.framework; path = "Pods-QRReaderUITests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		71A58BD40CB32509DACFBB2BC4A36CDB /* Pods_QRReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReaderTests.framework; path = "Pods-QRReaderTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6817C501FC5AB28AE43879216473E3E2 /* RegexKitLite.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RegexKitLite.h; sourceTree = "<group>"; };
 		7559BEBD0C368714CB4DF8C08D58EA07 /* Pods-QRReaderUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReaderUITests-frameworks.sh"; sourceTree = "<group>"; };
 		82A40BC29F9FF9802997C62A851E3A57 /* Pods-QRReader-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-QRReader-acknowledgements.markdown"; sourceTree = "<group>"; };
 		864FE37B8C89582ED5504BDD24AA8AAB /* Pods-QRReaderTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-QRReaderTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		87CF8E1C3058156B9EE2CF2FF822BF64 /* Pods-QRReaderUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-QRReaderUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		97DED6A7558136D462CACC9076000923 /* Pods_QRReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReaderTests.framework; path = "Pods-QRReaderTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C723283E2392590D2492D154B157D2C /* Pods-QRReaderTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-QRReaderTests-umbrella.h"; sourceTree = "<group>"; };
-		9CBD417557352582E1FF76C687F7BDB5 /* Pods_QRReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReader.framework; path = "Pods-QRReader.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F61F269666835CBEB3DFA1F20FC968F /* RegexKitLite-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RegexKitLite-prefix.pch"; sourceTree = "<group>"; };
+		A060334ADAFE7F04B6F9B22DCB54CA9D /* RegexKitLite-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RegexKitLite-umbrella.h"; sourceTree = "<group>"; };
 		A51979FE0654CC90F316DC1256D29C09 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A77BE91C197232B07F33A9CE2B9D6EDE /* Pods-QRReaderTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QRReaderTests.release.xcconfig"; sourceTree = "<group>"; };
+		ABCD52528A3FFED0722A9727C9CFC4CB /* RegexKitLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = RegexKitLite.framework; path = RegexKitLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB60EA76F30110E2D7D248DBCECA179 /* RegexKitLite-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RegexKitLite-dummy.m"; sourceTree = "<group>"; };
+		AD1B66466B15F47A3FDEF61DFD57772C /* Pods_QRReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_QRReader.framework; path = "Pods-QRReader.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD417EDF4A58BD83F4D407EACA34CBA5 /* Pods-QRReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QRReader.debug.xcconfig"; sourceTree = "<group>"; };
 		BC9AFC3C5E7C39EEEF662E830084F3B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3D394991646B0EC5EACD31662C92E9F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D30AD1D942B33992E65D88202948C6B0 /* Pods-QRReader-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReader-frameworks.sh"; sourceTree = "<group>"; };
 		DD9D4FB962C8EB15C1E2F68B2F16BE0C /* Pods-QRReader-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReader-resources.sh"; sourceTree = "<group>"; };
 		E0C30934B9178E3CBDB771303139F698 /* Pods-QRReaderTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-QRReaderTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E0EEB27C032C0849577F812B926FB05B /* Pods-QRReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QRReader.release.xcconfig"; sourceTree = "<group>"; };
+		E3892A18C07252B240788DC9C143BCD6 /* RegexKitLite.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RegexKitLite.xcconfig; sourceTree = "<group>"; };
 		E9E2D20075A16521F6354906A05FF151 /* Pods-QRReaderTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-QRReaderTests-frameworks.sh"; sourceTree = "<group>"; };
 		EF25AFECDFFE8C9BAA599FBB44A2CD6E /* Pods-QRReaderUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-QRReaderUITests.release.xcconfig"; sourceTree = "<group>"; };
 		FFCCE1364655D96D8829454EA8E1E717 /* Pods-QRReader-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-QRReader-acknowledgements.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		279DC6A512F6D3EE2CB56E1D99075F73 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B958C8705B6C0FD3A79DA2ADDFD34BFA /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3832CF7A69C081FE42BDE85254652747 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				941A5FCF4D87D7ED610816ABC60A7AC6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5125D6F2815368379E1E0E11C5C51271 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EFA494328A7E46D5854899CB6364D239 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,9 +105,36 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F94C08E1DFC0F4BD0A24B47D3B6F47C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1DFC37D4828179F43B9C6BD59715011 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1ADC155637A28436C2473ACB278D9C58 /* RegexKitLite */ = {
+			isa = PBXGroup;
+			children = (
+				6817C501FC5AB28AE43879216473E3E2 /* RegexKitLite.h */,
+				5B62BDF9ACF685F4701DA1A42CC34E22 /* RegexKitLite.m */,
+				54362BCD72DF8FB306D31FA1FDD01DBA /* Support Files */,
+			);
+			name = RegexKitLite;
+			path = RegexKitLite;
+			sourceTree = "<group>";
+		};
+		3FEBAAEA82AA474F6A66A9B5B1FDE884 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1ADC155637A28436C2473ACB278D9C58 /* RegexKitLite */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		5281F637682BBB54800ADD8C9F1895F1 /* Pods-QRReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -102,12 +153,38 @@
 			path = "Target Support Files/Pods-QRReader";
 			sourceTree = "<group>";
 		};
+		54362BCD72DF8FB306D31FA1FDD01DBA /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				C3D394991646B0EC5EACD31662C92E9F /* Info.plist */,
+				19CB33E5BF0C9E0C1BC698AF5EAD33C0 /* RegexKitLite.modulemap */,
+				E3892A18C07252B240788DC9C143BCD6 /* RegexKitLite.xcconfig */,
+				ACB60EA76F30110E2D7D248DBCECA179 /* RegexKitLite-dummy.m */,
+				9F61F269666835CBEB3DFA1F20FC968F /* RegexKitLite-prefix.pch */,
+				A060334ADAFE7F04B6F9B22DCB54CA9D /* RegexKitLite-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/RegexKitLite";
+			sourceTree = "<group>";
+		};
+		6571555A8FB1877BCA04550C9710E960 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AD1B66466B15F47A3FDEF61DFD57772C /* Pods_QRReader.framework */,
+				97DED6A7558136D462CACC9076000923 /* Pods_QRReaderTests.framework */,
+				2EFC445E9B4253EE8E2E6D9870FACB61 /* Pods_QRReaderUITests.framework */,
+				ABCD52528A3FFED0722A9727C9CFC4CB /* RegexKitLite.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7DB346D0F39D3F0E887471402A8071AB = {
 			isa = PBXGroup;
 			children = (
 				93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */,
 				BC3CA7F9E30CC8F7E2DD044DD34432FC /* Frameworks */,
-				E74D38D46AE3E045A2997603DF545ECB /* Products */,
+				3FEBAAEA82AA474F6A66A9B5B1FDE884 /* Pods */,
+				6571555A8FB1877BCA04550C9710E960 /* Products */,
 				E0004B214FB60AD655CCAC74874E2157 /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
@@ -174,32 +251,22 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		E74D38D46AE3E045A2997603DF545ECB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				9CBD417557352582E1FF76C687F7BDB5 /* Pods_QRReader.framework */,
-				71A58BD40CB32509DACFBB2BC4A36CDB /* Pods_QRReaderTests.framework */,
-				6D87ABDC566D92C4B964C175F0252E21 /* Pods_QRReaderUITests.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		23DFD304A095506E52DD4CCDB9584B3D /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F50EA0B4DAADC923AE13BF10C1AE368 /* Pods-QRReader-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		42FF76FFAE7877EABBD2ECC27421D580 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				22EF6F1437B0F3E00DC535FF2B72E80C /* Pods-QRReaderTests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4BBBBA6ED5870A46917A5D9CEEF3BAE2 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				989D8B8050C56E4684E72CF0FDD46EB0 /* Pods-QRReader-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -211,9 +278,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		73F59A304020010B5C3AC8AAEDDFB90C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				57140E793413F94743EA1D1F86DA3182 /* RegexKitLite-umbrella.h in Headers */,
+				E107753967C19ED5E7AEC1308C10B284 /* RegexKitLite.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		02FD993917AAFFD45D4DA0F2597FE647 /* RegexKitLite */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 40EEFC85399BAF5CB23572A0557BBA75 /* Build configuration list for PBXNativeTarget "RegexKitLite" */;
+			buildPhases = (
+				AA15A81610FE0C4DE27B68CEEFC99F92 /* Sources */,
+				F94C08E1DFC0F4BD0A24B47D3B6F47C7 /* Frameworks */,
+				73F59A304020010B5C3AC8AAEDDFB90C /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RegexKitLite;
+			productName = RegexKitLite;
+			productReference = ABCD52528A3FFED0722A9727C9CFC4CB /* RegexKitLite.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		212C0A23E2AEFAE22FBB6AD6ABE33159 /* Pods-QRReaderTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48D22C5B2FE5B84CB36949AE8266EF4B /* Build configuration list for PBXNativeTarget "Pods-QRReaderTests" */;
@@ -228,7 +321,25 @@
 			);
 			name = "Pods-QRReaderTests";
 			productName = "Pods-QRReaderTests";
-			productReference = 71A58BD40CB32509DACFBB2BC4A36CDB /* Pods_QRReaderTests.framework */;
+			productReference = 97DED6A7558136D462CACC9076000923 /* Pods_QRReaderTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		72383A1799F47FB53FD45B50D1C75281 /* Pods-QRReader */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 54C063019AE6E098C8B4455A2B1DA3E8 /* Build configuration list for PBXNativeTarget "Pods-QRReader" */;
+			buildPhases = (
+				1E22A117F57B7D385209D1AE645B00D2 /* Sources */,
+				5125D6F2815368379E1E0E11C5C51271 /* Frameworks */,
+				23DFD304A095506E52DD4CCDB9584B3D /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38618D6E551B1B2681F6E72BAC1738CD /* PBXTargetDependency */,
+			);
+			name = "Pods-QRReader";
+			productName = "Pods-QRReader";
+			productReference = AD1B66466B15F47A3FDEF61DFD57772C /* Pods_QRReader.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		D37DCB28CAA8D96F0CBA8F1DC52AB05A /* Pods-QRReaderUITests */ = {
@@ -245,24 +356,7 @@
 			);
 			name = "Pods-QRReaderUITests";
 			productName = "Pods-QRReaderUITests";
-			productReference = 6D87ABDC566D92C4B964C175F0252E21 /* Pods_QRReaderUITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		D553DF752D2A87578083FD835C1E858B /* Pods-QRReader */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A3CC2DCF62361E1D8C8546D02A056962 /* Build configuration list for PBXNativeTarget "Pods-QRReader" */;
-			buildPhases = (
-				E760B87C3DBF566ED165D78915DD092D /* Sources */,
-				279DC6A512F6D3EE2CB56E1D99075F73 /* Frameworks */,
-				4BBBBA6ED5870A46917A5D9CEEF3BAE2 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Pods-QRReader";
-			productName = "Pods-QRReader";
-			productReference = 9CBD417557352582E1FF76C687F7BDB5 /* Pods_QRReader.framework */;
+			productReference = 2EFC445E9B4253EE8E2E6D9870FACB61 /* Pods_QRReaderUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -282,13 +376,14 @@
 				en,
 			);
 			mainGroup = 7DB346D0F39D3F0E887471402A8071AB;
-			productRefGroup = E74D38D46AE3E045A2997603DF545ECB /* Products */;
+			productRefGroup = 6571555A8FB1877BCA04550C9710E960 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D553DF752D2A87578083FD835C1E858B /* Pods-QRReader */,
+				72383A1799F47FB53FD45B50D1C75281 /* Pods-QRReader */,
 				212C0A23E2AEFAE22FBB6AD6ABE33159 /* Pods-QRReaderTests */,
 				D37DCB28CAA8D96F0CBA8F1DC52AB05A /* Pods-QRReaderUITests */,
+				02FD993917AAFFD45D4DA0F2597FE647 /* RegexKitLite */,
 			);
 		};
 /* End PBXProject section */
@@ -302,11 +397,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E760B87C3DBF566ED165D78915DD092D /* Sources */ = {
+		1E22A117F57B7D385209D1AE645B00D2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C284B6C2526ECE0368D59B889E5945D1 /* Pods-QRReader-dummy.m in Sources */,
+				0936713EB013DE76E9F539E360AA0382 /* Pods-QRReader-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AA15A81610FE0C4DE27B68CEEFC99F92 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1AD0575F1F60DAFCE5D2A5CB8647E7A /* RegexKitLite-dummy.m in Sources */,
+				D88B0C35C24EF141CA30E1006B92C264 /* RegexKitLite.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -320,7 +424,52 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		38618D6E551B1B2681F6E72BAC1738CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RegexKitLite;
+			target = 02FD993917AAFFD45D4DA0F2597FE647 /* RegexKitLite */;
+			targetProxy = 58C2CEA19B0DF25A1AFD869B0BA94EAE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		0B71A24F1BF21A5BD37B2B6D1A33110A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E0EEB27C032C0849577F812B926FB05B /* Pods-QRReader.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-QRReader/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-QRReader/Pods-QRReader.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = Pods_QRReader;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		0E7019A59CA97634EAC22986C2CC315A /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EF25AFECDFFE8C9BAA599FBB44A2CD6E /* Pods-QRReaderUITests.release.xcconfig */;
@@ -349,42 +498,6 @@
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Pods_QRReaderUITests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		117AC67276D08656468E405B40C29D0D /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E0EEB27C032C0849577F812B926FB05B /* Pods-QRReader.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-QRReader/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-QRReader/Pods-QRReader.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = Pods_QRReader;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -549,6 +662,70 @@
 			};
 			name = Release;
 		};
+		95FED52BF60A918B5744FB9E4FC605C9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3892A18C07252B240788DC9C143BCD6 /* RegexKitLite.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RegexKitLite/RegexKitLite-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RegexKitLite/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RegexKitLite/RegexKitLite.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = RegexKitLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		B291CF874C379003FF200C1F38684863 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E3892A18C07252B240788DC9C143BCD6 /* RegexKitLite.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/RegexKitLite/RegexKitLite-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/RegexKitLite/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/RegexKitLite/RegexKitLite.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = RegexKitLite;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		BDD0139D6EB93FA375F887ABD62DAB2E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -593,7 +770,7 @@
 			};
 			name = Release;
 		};
-		C1404CCB4F8B8C9A692982CE0CF35CD5 /* Debug */ = {
+		D142990528AEFB74F025911E0D24ED50 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AD417EDF4A58BD83F4D407EACA34CBA5 /* Pods-QRReader.debug.xcconfig */;
 			buildSettings = {
@@ -641,6 +818,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		40EEFC85399BAF5CB23572A0557BBA75 /* Build configuration list for PBXNativeTarget "RegexKitLite" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				95FED52BF60A918B5744FB9E4FC605C9 /* Debug */,
+				B291CF874C379003FF200C1F38684863 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		48D22C5B2FE5B84CB36949AE8266EF4B /* Build configuration list for PBXNativeTarget "Pods-QRReaderTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -650,11 +836,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A3CC2DCF62361E1D8C8546D02A056962 /* Build configuration list for PBXNativeTarget "Pods-QRReader" */ = {
+		54C063019AE6E098C8B4455A2B1DA3E8 /* Build configuration list for PBXNativeTarget "Pods-QRReader" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C1404CCB4F8B8C9A692982CE0CF35CD5 /* Debug */,
-				117AC67276D08656468E405B40C29D0D /* Release */,
+				D142990528AEFB74F025911E0D24ED50 /* Debug */,
+				0B71A24F1BF21A5BD37B2B6D1A33110A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
