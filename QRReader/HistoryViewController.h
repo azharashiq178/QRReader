@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <Messages/Messages.h>
 
-@interface HistoryViewController : UIViewController
+@interface HistoryViewController : UIViewController <MFMessageComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *tmpTextField;
 
 @end

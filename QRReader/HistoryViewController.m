@@ -11,11 +11,13 @@
 #import <Contacts/Contacts.h>
 #import <Foundation/Foundation.h>
 #import "RegexKitLite.h"
+#import <Messages/Messages.h>
+#import <MessageUI/MessageUI.h>
 
 
 
 @interface HistoryViewController ()
-
+@property (nonatomic,strong) NSMutableArray *personPhoneNumbers;
 @end
 
 @implementation HistoryViewController
@@ -25,6 +27,7 @@
     // Do any additional setup after loading the view.
 }
 -(void)viewWillAppear:(BOOL)animated{
+    self.personPhoneNumbers = [[NSMutableArray alloc] init];
     NSLog(@"My REsult is %@",[(MyTabBarViewController *)self.tabBarController myResultString]);
     self.tmpTextField.text = [(MyTabBarViewController *)self.tabBarController myResultString];
     NSString *vCardString = self.tmpTextField.text;
@@ -36,14 +39,29 @@
         NSLog(@"AllContacts: %@", allContacts);
         for (CNContact *aContact in allContacts)
         {
+            if([aContact.phoneNumbers count]!=0){
+                UITextView *tmpTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 100, 150, 100)];
+                tmpTextView.text = [NSString stringWithFormat:@"%@",[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
+                [tmpTextView setTintColor:[UIColor redColor]];
+                [tmpTextView setDataDetectorTypes:UIDataDetectorTypeAll];
+                [tmpTextView setEditable:NO];
+                
+//                [tmpLabel setBackgroundColor:[UIColor blackColor]];
+                [self.view addSubview:tmpTextView];
+                UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 100, 100, 50)];
+                [messageButton.layer setCornerRadius:25];
+                [messageButton addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchDown];
+                [messageButton setTitle:@"Message" forState:UIControlStateNormal];
+                [messageButton setTintColor:[UIColor whiteColor]];
+                [messageButton setBackgroundColor:[UIColor blackColor]];
+                [self.view addSubview:messageButton];
+                for(int i = 0 ;i < [aContact.phoneNumbers count];i++){
+                    NSString *tmp = [[[aContact.phoneNumbers objectAtIndex:i] valueForKey:@"value"] valueForKey:@"digits"];
+                    [self.personPhoneNumbers addObject:tmp];
+                }
+            }
             self.tmpTextField.text = [NSString stringWithFormat:@"%@ %@ %@",aContact.givenName,aContact.familyName,[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
-//            self.tmpTextField.text = [NSString stringWithFormat:@"%@",aContact];
-//            NSArray *phonesNumbers = [aContact phoneNumbers];
-//            for (CNLabeledValue *aValue in phonesNumbers)
-//            {
-//                CNPhoneNumber *phoneNumber = [aValue value];
-//                [results appendFormat:@"%@ %@\n", [aValue label], [phoneNumber stringValue]];
-//            }
+            
         }
         if([allContacts count] == 0){
             //For detecting URL
@@ -120,5 +138,27 @@
     // Pass the selected object to the new view controller.
 }
 */
+-(IBAction)sendMessage:(id)sender{
+    NSLog(@"Message is sending");
+    if(![MFMessageComposeViewController canSendText]) {
+        UIAlertView *warningAlert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Your device doesn't support SMS!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [warningAlert show];
+        return;
+    }
+    
+    NSArray *recipents = self.personPhoneNumbers;
+    NSString *message = [NSString stringWithFormat:@"Just sent the  file to your email. Please check!"];
+    
+    MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
+    messageController.messageComposeDelegate = self;
+    [messageController setRecipients:recipents];
+    [messageController setBody:message];
+    
+    // Present message view controller on screen
+    [self presentViewController:messageController animated:YES completion:nil];
 
+}
+-(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
+    [controller dismissViewControllerAnimated:YES completion:nil];
+}
 @end

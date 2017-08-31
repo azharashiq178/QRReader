@@ -25,6 +25,8 @@
 		7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */; };
 		7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */; };
 		7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */; };
+		7EEFCA291F57FC7F00CB64BD /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EEFCA271F57FC7F00CB64BD /* Messages.framework */; };
+		7EEFCA2A1F57FC7F00CB64BD /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7EEFCA281F57FC7F00CB64BD /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +78,8 @@
 		7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		7ED8E3AE1F57D15800E1A249 /* MyTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTabBarViewController.h; sourceTree = "<group>"; };
 		7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTabBarViewController.m; sourceTree = "<group>"; };
+		7EEFCA271F57FC7F00CB64BD /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		7EEFCA281F57FC7F00CB64BD /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		876703757E280E7B23884455 /* Pods_QRReader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRReader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C9790551FC1FD8921ED9C20 /* Pods-QRReader.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReader.release.xcconfig"; path = "Pods/Target Support Files/Pods-QRReader/Pods-QRReader.release.xcconfig"; sourceTree = "<group>"; };
 		9AEC381E2BDF2F8A813AB4E3 /* Pods-QRReaderUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReaderUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRReaderUITests/Pods-QRReaderUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +92,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EEFCA291F57FC7F00CB64BD /* Messages.framework in Frameworks */,
+				7EEFCA2A1F57FC7F00CB64BD /* MessageUI.framework in Frameworks */,
 				00C4F6DF996BBA4B191BC342 /* Pods_QRReader.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -114,6 +120,8 @@
 		0835A8DA7E7BE24C08202986 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7EEFCA271F57FC7F00CB64BD /* Messages.framework */,
+				7EEFCA281F57FC7F00CB64BD /* MessageUI.framework */,
 				876703757E280E7B23884455 /* Pods_QRReader.framework */,
 				11A275F9D1C29C2602B0BD9E /* Pods_QRReaderTests.framework */,
 				491DA88A30B1E7471BD8FC69 /* Pods_QRReaderUITests.framework */,
