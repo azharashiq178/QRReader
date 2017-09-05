@@ -30,6 +30,8 @@
     [super viewDidLoad];
     self.resultArray = [[NSMutableArray<HistoryData *> alloc] init];
     [self.searchBar setDelegate:self];
+    [self.historyTableView setDelegate:self];
+    [self.historyTableView setDataSource:self];
     // Do any additional setup after loading the view.
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -37,107 +39,114 @@
         [self performSegueWithIdentifier:@"showResult" sender:self];
     }
     [self.historyTableView reloadData];
+    if([self.resultArray count]==0){
+        [self.historyTableView setHidden:YES];
+        
+    }
+    else{
+        [self.historyTableView setHidden:NO];
+    }
 }
 -(void)viewWillAppear:(BOOL)animated{
-//    self.personPhoneNumbers = [[NSMutableArray alloc] init];
-//    NSLog(@"My REsult is %@",[(MyTabBarViewController *)self.tabBarController myResultString]);
-//    self.tmpTextField.text = [(MyTabBarViewController *)self.tabBarController myResultString];
-//    NSString *vCardString = self.tmpTextField.text;
-//    NSError *errorVCF;
-//    NSArray  *allContacts = [CNContactVCardSerialization contactsWithData:[vCardString dataUsingEncoding:NSUTF8StringEncoding] error:&errorVCF];
-//    if (!errorVCF)
-//    {
-//        NSMutableString *results = [[NSMutableString alloc] init];
-//        NSLog(@"AllContacts: %@", allContacts);
-//        for (CNContact *aContact in allContacts)
-//        {
-//            if([aContact.phoneNumbers count]!=0){
-//                UITextView *tmpTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 100, 150, 100)];
-//                tmpTextView.text = [NSString stringWithFormat:@"%@",[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
-//                [tmpTextView setTintColor:[UIColor redColor]];
-//                [tmpTextView setDataDetectorTypes:UIDataDetectorTypeAll];
-//                [tmpTextView setEditable:NO];
-//                
-////                [tmpLabel setBackgroundColor:[UIColor blackColor]];
-//                [self.view addSubview:tmpTextView];
-//                UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 100, 50, 50)];
-//                [messageButton.layer setCornerRadius:25];
-//                [messageButton addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchDown];
-////                [messageButton setTitle:@"Message" forState:UIControlStateNormal];
-//                [messageButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-//                [messageButton setTintColor:[UIColor whiteColor]];
-//                [messageButton setBackgroundColor:[UIColor clearColor]];
-//                [messageButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
-//                [messageButton.layer setBorderWidth:1];
-//                [self.view addSubview:messageButton];
-//                for(int i = 0 ;i < [aContact.phoneNumbers count];i++){
-//                    NSString *tmp = [[[aContact.phoneNumbers objectAtIndex:i] valueForKey:@"value"] valueForKey:@"digits"];
-//                    [self.personPhoneNumbers addObject:tmp];
-//                }
-//            }
-//            self.tmpTextField.text = [NSString stringWithFormat:@"%@ %@ %@",aContact.givenName,aContact.familyName,[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
-//            
-//        }
-//        if([allContacts count] == 0){
-//            //For detecting URL
-//            NSString * urlString = vCardString;
-//            NSArray *urls = [urlString componentsMatchedByRegex:@"https://[^\\s]*"];
-//            NSLog(@"urls: %@", urls);
-//            ////
-//            
-//            
-//            //For Detecting phone number
-//            NSString *myString = vCardString;
-//            NSString *myRegex = @"\\d{11}";
-//            NSRange range = [myString rangeOfString:myRegex options:NSRegularExpressionSearch];
-//            
-//            NSString *phoneNumber = nil;
-//            if (range.location != NSNotFound) {
-//                phoneNumber = [myString substringWithRange:range];
-//                NSLog(@"%@", phoneNumber);
-//            } else {
-//                NSLog(@"No phone number found");
-//            }
-//            //////
-//            
-//            
-//            ///For Detecting Email Adress
-//            NSString *regexString = @"([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)";
-//            
-//            // experimental search string containing emails
-//            NSString *searchString = vCardString;
-//            
-//            // track regex error
-//            NSError *error = NULL;
-//            
-//            // create regular expression
-//            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
-//            
-//            // make sure there is no error
-//            if (!error) {
-//                
-//                // get all matches for regex
-//                NSArray *matches = [regex matchesInString:searchString options:0 range:NSMakeRange(0, searchString.length)];
-//                
-//                // loop through regex matches
-//                for (NSTextCheckingResult *match in matches) {
-//                    
-//                    // get the current text
-//                    NSString *matchText = [searchString substringWithRange:match.range];
-//                    
-//                    NSLog(@"Extracted: %@", matchText);
-//                    
-//                }
-//                
-//            }
-//        }
-//        else
-//            NSLog(@"Final: %@", results);
-//    }
-//    else{
-//        NSDataDetector* detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-//        NSArray* matches = [detector matchesInString:vCardString options:0 range:NSMakeRange(0, [vCardString length])];
-//    }
+    //    self.personPhoneNumbers = [[NSMutableArray alloc] init];
+    //    NSLog(@"My REsult is %@",[(MyTabBarViewController *)self.tabBarController myResultString]);
+    //    self.tmpTextField.text = [(MyTabBarViewController *)self.tabBarController myResultString];
+    //    NSString *vCardString = self.tmpTextField.text;
+    //    NSError *errorVCF;
+    //    NSArray  *allContacts = [CNContactVCardSerialization contactsWithData:[vCardString dataUsingEncoding:NSUTF8StringEncoding] error:&errorVCF];
+    //    if (!errorVCF)
+    //    {
+    //        NSMutableString *results = [[NSMutableString alloc] init];
+    //        NSLog(@"AllContacts: %@", allContacts);
+    //        for (CNContact *aContact in allContacts)
+    //        {
+    //            if([aContact.phoneNumbers count]!=0){
+    //                UITextView *tmpTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 100, 150, 100)];
+    //                tmpTextView.text = [NSString stringWithFormat:@"%@",[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
+    //                [tmpTextView setTintColor:[UIColor redColor]];
+    //                [tmpTextView setDataDetectorTypes:UIDataDetectorTypeAll];
+    //                [tmpTextView setEditable:NO];
+    //
+    ////                [tmpLabel setBackgroundColor:[UIColor blackColor]];
+    //                [self.view addSubview:tmpTextView];
+    //                UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 100, 50, 50)];
+    //                [messageButton.layer setCornerRadius:25];
+    //                [messageButton addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchDown];
+    ////                [messageButton setTitle:@"Message" forState:UIControlStateNormal];
+    //                [messageButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
+    //                [messageButton setTintColor:[UIColor whiteColor]];
+    //                [messageButton setBackgroundColor:[UIColor clearColor]];
+    //                [messageButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
+    //                [messageButton.layer setBorderWidth:1];
+    //                [self.view addSubview:messageButton];
+    //                for(int i = 0 ;i < [aContact.phoneNumbers count];i++){
+    //                    NSString *tmp = [[[aContact.phoneNumbers objectAtIndex:i] valueForKey:@"value"] valueForKey:@"digits"];
+    //                    [self.personPhoneNumbers addObject:tmp];
+    //                }
+    //            }
+    //            self.tmpTextField.text = [NSString stringWithFormat:@"%@ %@ %@",aContact.givenName,aContact.familyName,[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
+    //
+    //        }
+    //        if([allContacts count] == 0){
+    //            //For detecting URL
+    //            NSString * urlString = vCardString;
+    //            NSArray *urls = [urlString componentsMatchedByRegex:@"https://[^\\s]*"];
+    //            NSLog(@"urls: %@", urls);
+    //            ////
+    //
+    //
+    //            //For Detecting phone number
+    //            NSString *myString = vCardString;
+    //            NSString *myRegex = @"\\d{11}";
+    //            NSRange range = [myString rangeOfString:myRegex options:NSRegularExpressionSearch];
+    //
+    //            NSString *phoneNumber = nil;
+    //            if (range.location != NSNotFound) {
+    //                phoneNumber = [myString substringWithRange:range];
+    //                NSLog(@"%@", phoneNumber);
+    //            } else {
+    //                NSLog(@"No phone number found");
+    //            }
+    //            //////
+    //
+    //
+    //            ///For Detecting Email Adress
+    //            NSString *regexString = @"([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)";
+    //
+    //            // experimental search string containing emails
+    //            NSString *searchString = vCardString;
+    //
+    //            // track regex error
+    //            NSError *error = NULL;
+    //
+    //            // create regular expression
+    //            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
+    //
+    //            // make sure there is no error
+    //            if (!error) {
+    //
+    //                // get all matches for regex
+    //                NSArray *matches = [regex matchesInString:searchString options:0 range:NSMakeRange(0, searchString.length)];
+    //
+    //                // loop through regex matches
+    //                for (NSTextCheckingResult *match in matches) {
+    //
+    //                    // get the current text
+    //                    NSString *matchText = [searchString substringWithRange:match.range];
+    //
+    //                    NSLog(@"Extracted: %@", matchText);
+    //
+    //                }
+    //
+    //            }
+    //        }
+    //        else
+    //            NSLog(@"Final: %@", results);
+    //    }
+    //    else{
+    //        NSDataDetector* detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
+    //        NSArray* matches = [detector matchesInString:vCardString options:0 range:NSMakeRange(0, [vCardString length])];
+    //    }
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -145,14 +154,14 @@
 }
 
 /*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+ #pragma mark - Navigation
+ 
+ // In a storyboard-based application, you will often want to do a little preparation before navigation
+ - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+ // Get the new view controller using [segue destinationViewController].
+ // Pass the selected object to the new view controller.
+ }
+ */
 -(IBAction)sendMessage:(id)sender{
     NSLog(@"Message is sending");
     if(![MFMessageComposeViewController canSendText]) {
@@ -171,7 +180,7 @@
     
     // Present message view controller on screen
     [self presentViewController:messageController animated:YES completion:nil];
-
+    
 }
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     [controller dismissViewControllerAnimated:YES completion:nil];
@@ -202,7 +211,7 @@
             [dateFormatter setDateFormat:@"dd/MM/yyyy"]; //Here we can set the format which we need
             NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
             tmpData.resultTime = convertedDateString;
-
+            
             NSError *errorVCF;
             
             NSArray  *allContacts = [CNContactVCardSerialization contactsWithData:[[(MyTabBarViewController *)self.tabBarController myResultString] dataUsingEncoding:NSUTF8StringEncoding] error:&errorVCF];
@@ -250,6 +259,7 @@
     cell.result.text = [[self.resultArray objectAtIndex:indexPath.row] resultText];
     cell.timeAndDate.text = [[self.resultArray objectAtIndex:indexPath.row] resultTime];
     cell.typeOfResult.text = [[self.resultArray objectAtIndex:indexPath.row] resultType];
+    
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -257,7 +267,7 @@
     [self performSegueWithIdentifier:@"showResult" sender:self];
 }
 -(BOOL)isTextPhoneNumber:(NSString *)vCardString{
-//    For Detecting phone number
+    //    For Detecting phone number
     
     NSString *myString = vCardString;
     
@@ -268,14 +278,14 @@
     NSString *phoneNumber = nil;
     
     if (range.location != NSNotFound) {
-    
+        
         phoneNumber = [myString substringWithRange:range];
         return YES;
         
-//        NSLog(@"%@", phoneNumber);
+        //        NSLog(@"%@", phoneNumber);
         
     } else {
-    
+        
         NSLog(@"No phone number found");
         return NO;
     }
@@ -298,34 +308,71 @@
 }
 -(BOOL)isTextEmailAddress:(NSString *)vCardString{
     ///For Detecting Email Adress
-                NSString *regexString = @"([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)";
+    NSString *regexString = @"([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)";
     
-                // experimental search string containing emails
-                NSString *searchString = vCardString;
+    // experimental search string containing emails
+    NSString *searchString = vCardString;
     
-                // track regex error
-                NSError *error = NULL;
+    // track regex error
+    NSError *error = NULL;
     
-                // create regular expression
-                NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
+    // create regular expression
+    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
     
-                // make sure there is no error
-                if (!error) {
-    
-                    // get all matches for regex
-                    NSArray *matches = [regex matchesInString:searchString options:0 range:NSMakeRange(0, searchString.length)];
-    
-                    // loop through regex matches
-                    for (NSTextCheckingResult *match in matches) {
-    
-                        // get the current text
-                        NSString *matchText = [searchString substringWithRange:match.range];
-    
-                        NSLog(@"Extracted: %@", matchText);
-                        return YES;
-                    }
-                    
-                }
+    // make sure there is no error
+    if (!error) {
+        
+        // get all matches for regex
+        NSArray *matches = [regex matchesInString:searchString options:0 range:NSMakeRange(0, searchString.length)];
+        
+        // loop through regex matches
+        for (NSTextCheckingResult *match in matches) {
+            
+            // get the current text
+            NSString *matchText = [searchString substringWithRange:match.range];
+            
+            NSLog(@"Extracted: %@", matchText);
+            return YES;
+        }
+        
+    }
     return NO;
+}
+- (IBAction)editAction:(id)sender {
+    [self.historyTableView setSeparatorColor:[UIColor clearColor]];
+    if([[(UIBarButtonItem *)sender title] isEqualToString:@"Edit"]){
+        [(UIBarButtonItem *)sender setTitle:@"Done"];
+        [self.historyTableView setAllowsMultipleSelectionDuringEditing:YES];
+        
+        [self.historyTableView setEditing:YES animated:YES];
+    }
+    else{
+        [(UIBarButtonItem *)sender setTitle:@"Edit"];
+        [self.historyTableView setEditing:NO animated:YES];
+    }
+    
+}
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[tableView cellForRowAtIndexPath:indexPath] setShowsReorderControl:YES];
+    [[self.historyTableView cellForRowAtIndexPath:indexPath ] setShowsReorderControl:YES];
+    return YES;
+}
+-(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.row == 0){
+        return NO;
+    }
+    UIButton *accessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    accessoryButton.tag = indexPath.row;
+    [accessoryButton addTarget:self action:@selector(editTitle:) forControlEvents:UIControlEventTouchDown];
+    [accessoryButton setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
+    [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:accessoryButton];
+    return YES;
+}
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
+{
+    
+}
+-(IBAction)editTitle:(id)sender{
+    NSLog(@"Editing Title");
 }
 @end

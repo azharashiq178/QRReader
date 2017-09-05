@@ -14,5 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITextView *tmpTextField;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *historyTableView;
+- (IBAction)editAction:(id)sender;
 
 @end
