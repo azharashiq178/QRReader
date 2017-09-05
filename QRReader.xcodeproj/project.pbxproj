@@ -22,6 +22,8 @@
 		7E3D40661F56FA0000E6C478 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */; };
 		7E3D40671F56FA0000E6C478 /* img_animation_scan_line.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */; };
 		7E3D40681F56FA0000E6C478 /* img_animation_scan_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */; };
+		7E71DC2B1F5E71380089E934 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */; };
+		7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2E1F5E74B70089E934 /* HistoryData.m */; };
 		7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */; };
 		7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */; };
 		7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */; };
@@ -72,6 +74,10 @@
 		7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQRCodeDecoderViewController.m; sourceTree = "<group>"; };
 		7E3D40641F56FA0000E6C478 /* img_animation_scan_line.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_animation_scan_line.png; sourceTree = "<group>"; };
 		7E3D40651F56FA0000E6C478 /* img_animation_scan_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = img_animation_scan_pic.png; sourceTree = "<group>"; };
+		7E71DC291F5E71380089E934 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
+		7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
+		7E71DC2D1F5E74B70089E934 /* HistoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryData.h; sourceTree = "<group>"; };
+		7E71DC2E1F5E74B70089E934 /* HistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryData.m; sourceTree = "<group>"; };
 		7ED8E3A71F57C45400E1A249 /* CreateQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateQRCodeViewController.h; sourceTree = "<group>"; };
 		7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateQRCodeViewController.m; sourceTree = "<group>"; };
 		7ED8E3AB1F57CF1700E1A249 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -192,6 +198,32 @@
 			path = QRReaderUITests;
 			sourceTree = "<group>";
 		};
+		7E71DC271F5E71030089E934 /* TableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7E71DC281F5E71130089E934 /* HistoryTableViewCell */,
+			);
+			name = TableViewCell;
+			sourceTree = "<group>";
+		};
+		7E71DC281F5E71130089E934 /* HistoryTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				7E71DC291F5E71380089E934 /* HistoryTableViewCell.h */,
+				7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */,
+			);
+			name = HistoryTableViewCell;
+			sourceTree = "<group>";
+		};
+		7E71DC2C1F5E74A10089E934 /* HistoryData */ = {
+			isa = PBXGroup;
+			children = (
+				7E71DC2D1F5E74B70089E934 /* HistoryData.h */,
+				7E71DC2E1F5E74B70089E934 /* HistoryData.m */,
+			);
+			name = HistoryData;
+			sourceTree = "<group>";
+		};
 		7ED8E39C1F57C32E00E1A249 /* DYQRCodeDecoderViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +236,7 @@
 		7ED8E39D1F57C34600E1A249 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7E71DC2C1F5E74A10089E934 /* HistoryData */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -211,6 +244,7 @@
 		7ED8E39E1F57C34D00E1A249 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7E71DC271F5E71030089E934 /* TableViewCell */,
 				7ED8E3A21F57C38C00E1A249 /* StoryBoards */,
 			);
 			name = Views;
@@ -598,8 +632,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */,
 				7E3D40661F56FA0000E6C478 /* DYQRCodeDecoderViewController.m in Sources */,
 				7E18642E1F56B903001A11EE /* ViewController.m in Sources */,
+				7E71DC2B1F5E71380089E934 /* HistoryTableViewCell.m in Sources */,
 				7E18642B1F56B903001A11EE /* AppDelegate.m in Sources */,
 				7E1864281F56B903001A11EE /* main.m in Sources */,
 				7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */,

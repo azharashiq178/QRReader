@@ -380,7 +380,8 @@ UIImagePickerControllerDelegate> {
             dispatch_queue_t dispatchQueue;
             dispatchQueue = dispatch_queue_create("myQueue", NULL);
             [captureMetadataOutput setMetadataObjectsDelegate:self queue:dispatchQueue];
-            [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
+//            [captureMetadataOutput setMetadataObjectTypes:[NSArray arrayWithObject:AVMetadataObjectTypeQRCode]];
+            [captureMetadataOutput setMetadataObjectTypes:[captureMetadataOutput availableMetadataObjectTypes]];
             
             // Initialize the video preview layer and add it as a sublayer to the viewPreview view's layer.
             _videoPreviewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:_captureSession];
@@ -453,6 +454,45 @@ UIImagePickerControllerDelegate> {
                 dispatch_sync(dispatch_get_main_queue(), ^{
                     block();
                 });
+            }
+        }
+        else{
+            NSLog(@"Bar code detected");
+            NSString *capturedBarcode = nil;
+            
+            // Specify the barcodes you want to read here:
+            NSArray *supportedBarcodeTypes = @[AVMetadataObjectTypeUPCECode,
+                                               AVMetadataObjectTypeCode39Code,
+                                               AVMetadataObjectTypeCode39Mod43Code,
+                                               AVMetadataObjectTypeEAN13Code,
+                                               AVMetadataObjectTypeEAN8Code,
+                                               AVMetadataObjectTypeCode93Code,
+                                               AVMetadataObjectTypeCode128Code,
+                                               AVMetadataObjectTypePDF417Code,
+                                               AVMetadataObjectTypeQRCode,
+                                               AVMetadataObjectTypeAztecCode];
+            
+            // In all scanned values..
+            for (AVMetadataObject *barcodeMetadata in metadataObjects) {
+                // ..check if it is a suported barcode
+                for (NSString *supportedBarcode in supportedBarcodeTypes) {
+                    
+                    if ([supportedBarcode isEqualToString:barcodeMetadata.type]) {
+                        // This is a supported barcode
+                        // Note barcodeMetadata is of type AVMetadataObject
+                        // AND barcodeObject is of type AVMetadataMachineReadableCodeObject
+                        AVMetadataMachineReadableCodeObject *barcodeObject = (AVMetadataMachineReadableCodeObject *)[_videoPreviewLayer transformedMetadataObjectForMetadataObject:barcodeMetadata];
+                        capturedBarcode = [barcodeObject stringValue];
+                        // Got the barcode. Set the text in the UI and break out of the loop.
+                        
+                        dispatch_sync(dispatch_get_main_queue(), ^{
+                            [self.captureSession stopRunning];
+//                            self.scannedBarcode.text = capturedBarcode;
+                            NSLog(@"Bar code is %@",capturedBarcode);
+                        });
+                        return;
+                    }
+                }
             }
         }
     }
