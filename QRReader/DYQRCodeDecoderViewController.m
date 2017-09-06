@@ -132,7 +132,7 @@ UIImagePickerControllerDelegate> {
     //    buttonContainer.backgroundColor = [UIColor clearColor];
     UIButton *button0 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button0 setFrame:CGRectMake(40, 10, 100,25)];
-    [button0 setTitle:@"OFF" forState:UIControlStateNormal];
+    [button0 setTitle:@"ON" forState:UIControlStateNormal];
     [button0.layer setCornerRadius:12.5];
     [button0 setImage:[UIImage imageNamed:@"flash"] forState:UIControlStateNormal];
     button0.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
@@ -498,6 +498,27 @@ UIImagePickerControllerDelegate> {
     }
 }
 -(IBAction)turnTorchOnOrOff:(id)sender{
+    AVCaptureDevice *device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if ([device hasTorch] && [device hasFlash]){
+        
+        [device lockForConfiguration:nil];
+        if (device.torchMode == AVCaptureTorchModeOff)
+        {
+            [device setTorchMode:AVCaptureTorchModeOn];
+            [device setFlashMode:AVCaptureFlashModeOn];
+            
+            [sender setTitle:@"OFF" forState:UIControlStateNormal];
+            //torchIsOn = YES;
+        }
+        else
+        {
+            [device setTorchMode:AVCaptureTorchModeOff];
+            [device setFlashMode:AVCaptureFlashModeOff];
+            [sender setTitle:@"ON" forState:UIControlStateNormal];
+            // torchIsOn = NO;
+        }
+        [device unlockForConfiguration];
+    }
     NSLog(@"Flash is Turning on or off");
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{

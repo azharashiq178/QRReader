@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-QRReader.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-QRReaderTests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-QRReaderUITests.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>RegexKitLite.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>02FD993917AAFFD45D4DA0F2597FE647</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>212C0A23E2AEFAE22FBB6AD6ABE33159</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>72383A1799F47FB53FD45B50D1C75281</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D37DCB28CAA8D96F0CBA8F1DC52AB05A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

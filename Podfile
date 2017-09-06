@@ -9,6 +9,7 @@ pod 'RegexKitLite'
   # Pods for QRReader
 #pod 'DYQRCodeDecoder'
 
+
   target 'QRReaderTests' do
     inherit! :search_paths
     # Pods for testing
