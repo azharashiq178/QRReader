@@ -17,35 +17,42 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if([[UIApplication sharedApplication] canOpenURL:
-        [NSURL URLWithString:@"ohttp://www.google.com"]]){
-        NSLog(@"Yup");
-    }
     
-//    NSURL *inputURL = [NSURL URLWithString:@"https://www.facebook.com"];
-//    NSString *scheme = inputURL.scheme;
-//    
-//    // Replace the URL Scheme with the Chrome equivalent.
-//    NSString *chromeScheme = nil;
-//    if ([scheme isEqualToString:@"http"]) {
-//        chromeScheme = @"googlechrome";
-//    } else if ([scheme isEqualToString:@"https"]) {
-//        chromeScheme = @"googlechromes";
-//    }
-//    
-//    // Proceed only if a valid Google Chrome URI Scheme is available.
-//    if (chromeScheme) {
-//        NSString *absoluteString = [inputURL absoluteString];
-//        NSRange rangeForScheme = [absoluteString rangeOfString:@":"];
-//        NSString *urlNoScheme =
-//        [absoluteString substringFromIndex:rangeForScheme.location];
-//        NSString *chromeURLString =
-//        [chromeScheme stringByAppendingString:urlNoScheme];
-//        NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+//*********************** Open URL in Google chrome ******************
+//
+//
+//
+//    if([[UIApplication sharedApplication] canOpenURL:
+//        [NSURL URLWithString:@"googlechrome://www.google.com"]]){
+//            NSURL *inputURL = [NSURL URLWithString:@"https://www.facebook.com"];
+//            NSString *scheme = inputURL.scheme;
 //        
-//        // Open the URL with Chrome.
-//        [[UIApplication sharedApplication] openURL:chromeURL];
+//            // Replace the URL Scheme with the Chrome equivalent.
+//            NSString *chromeScheme = nil;
+//            if ([scheme isEqualToString:@"http"]) {
+//                chromeScheme = @"googlechrome";
+//            } else if ([scheme isEqualToString:@"https"]) {
+//                chromeScheme = @"googlechromes";
+//            }
+//        
+//            // Proceed only if a valid Google Chrome URI Scheme is available.
+//            if (chromeScheme) {
+//                NSString *absoluteString = [inputURL absoluteString];
+//                NSRange rangeForScheme = [absoluteString rangeOfString:@":"];
+//                NSString *urlNoScheme =
+//                [absoluteString substringFromIndex:rangeForScheme.location];
+//                NSString *chromeURLString =
+//                [chromeScheme stringByAppendingString:urlNoScheme];
+//                NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+//                
+//                // Open the URL with Chrome.
+//                [[UIApplication sharedApplication] openURL:chromeURL];
+//            }
 //    }
+//
+//
+//
+//************************************************************************************
     
     
     NSLog(@"Your General Setting is %@",self.typeOfGeneralSetting);
@@ -89,6 +96,12 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
+    if(indexPath.row == 0){
+//        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//        [cell setSelected:YES animated:YES];
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+    }
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
@@ -100,6 +113,10 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+}
+-(NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+    return indexPath;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {

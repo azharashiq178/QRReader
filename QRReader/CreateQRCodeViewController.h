@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateQRCodeViewController : UIViewController
+@interface CreateQRCodeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
+
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

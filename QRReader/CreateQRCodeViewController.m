@@ -8,6 +8,8 @@
 
 #import "CreateQRCodeViewController.h"
 #import <Contacts/Contacts.h>
+#import "SWRevealViewController.h"
+#import "CreatedTableViewCell.h"
 
 @interface CreateQRCodeViewController ()
 
@@ -17,17 +19,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    NSString *qrString = @"Hello My Name is Muhammad Azher";
-    CNMutableContact *tmpContact = [CNMutableContact new];
-    tmpContact.familyName = @"Ashiq";
-    NSString *tmpStr = [NSString stringWithFormat:@"%@",tmpContact];
-    //    NSData *stringData = [tmpStr dataUsingEncoding: NSUTF8StringEncoding];
-    NSData *stringData = [tmpStr dataUsingEncoding: NSISOLatin1StringEncoding];
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sidebarButton setTarget: self.revealViewController];
+        [self.sidebarButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
     
-    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
-    [qrFilter setValue:stringData forKey:@"inputMessage"];
-    
-    self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+// *************************************** Creating QRCode ****************
+//    NSString *qrString = @"Hello My Name is Muhammad Azher";
+//    CNMutableContact *tmpContact = [CNMutableContact new];
+//    tmpContact.familyName = @"Ashiq";
+//    NSString *tmpStr = [NSString stringWithFormat:@"%@",tmpContact];
+//    //    NSData *stringData = [tmpStr dataUsingEncoding: NSUTF8StringEncoding];
+//    NSData *stringData = [tmpStr dataUsingEncoding: NSISOLatin1StringEncoding];
+//    
+//    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+//    [qrFilter setValue:stringData forKey:@"inputMessage"];
+//    
+//    self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+//
+//
+//    *************************************************************************
     // Do any additional setup after loading the view.
 }
 
@@ -45,5 +59,20 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CreatedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"showCreatedList"];
+    if(cell == nil){
+        cell = [[CreatedTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"showCreatedList"];
+    }
+    return cell;
+}
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 70;
+}
 @end

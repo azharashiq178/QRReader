@@ -4,7 +4,7 @@
 <dict>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
-		<string>ohttp</string>
+		<string>ohttps</string>
 		<string>googlechrome</string>
 	</array>
 	<key>NSPhotoLibraryUsageDescription</key>

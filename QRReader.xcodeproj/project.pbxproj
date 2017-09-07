@@ -11,6 +11,10 @@
 		38AB57811F5FCA0D005B78BB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57801F5FCA0D005B78BB /* SettingsViewController.m */; };
 		38AB57941F5FDF96005B78BB /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57931F5FDF96005B78BB /* SettingsTableViewController.m */; };
 		38AB57981F5FE0F8005B78BB /* GeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57971F5FE0F8005B78BB /* GeneralSettingsViewController.m */; };
+		38FB622F1F610EC20003305A /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FB622E1F610EC20003305A /* SWRevealViewController.m */; };
+		38FB62331F6120A30003305A /* CreateCodeWithTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FB62321F6120A30003305A /* CreateCodeWithTypeVC.m */; };
+		38FB62371F6122600003305A /* CreateTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FB62361F6122600003305A /* CreateTableViewController.m */; };
+		38FB623B1F612DD30003305A /* CreatedTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 38FB623A1F612DD30003305A /* CreatedTableViewCell.m */; };
 		3D233E5EE2BA8431065CA6D8 /* Pods_QRReaderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 11A275F9D1C29C2602B0BD9E /* Pods_QRReaderTests.framework */; };
 		7D9D1212C04466F7D0C98C3A /* Pods_QRReaderUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 491DA88A30B1E7471BD8FC69 /* Pods_QRReaderUITests.framework */; };
 		7E1864281F56B903001A11EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1864271F56B903001A11EE /* main.m */; };
@@ -59,6 +63,14 @@
 		38AB57931F5FDF96005B78BB /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		38AB57961F5FE0F8005B78BB /* GeneralSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralSettingsViewController.h; sourceTree = "<group>"; };
 		38AB57971F5FE0F8005B78BB /* GeneralSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralSettingsViewController.m; sourceTree = "<group>"; };
+		38FB622D1F610EC20003305A /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		38FB622E1F610EC20003305A /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		38FB62311F6120A30003305A /* CreateCodeWithTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateCodeWithTypeVC.h; sourceTree = "<group>"; };
+		38FB62321F6120A30003305A /* CreateCodeWithTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateCodeWithTypeVC.m; sourceTree = "<group>"; };
+		38FB62351F6122600003305A /* CreateTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateTableViewController.h; sourceTree = "<group>"; };
+		38FB62361F6122600003305A /* CreateTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateTableViewController.m; sourceTree = "<group>"; };
+		38FB62391F612DD30003305A /* CreatedTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreatedTableViewCell.h; sourceTree = "<group>"; };
+		38FB623A1F612DD30003305A /* CreatedTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreatedTableViewCell.m; sourceTree = "<group>"; };
 		3A986465990EDCA163D371B4 /* Pods-QRReaderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReaderTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRReaderTests/Pods-QRReaderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		3FCA2F15FE48B7CAAC0C2DD9 /* Pods-QRReader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QRReader.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QRReader/Pods-QRReader.debug.xcconfig"; sourceTree = "<group>"; };
 		491DA88A30B1E7471BD8FC69 /* Pods_QRReaderUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRReaderUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -171,6 +183,42 @@
 			name = GeneralSettingsViewController;
 			sourceTree = "<group>";
 		};
+		38FB622C1F610EAD0003305A /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				38FB622D1F610EC20003305A /* SWRevealViewController.h */,
+				38FB622E1F610EC20003305A /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
+		38FB62301F61205D0003305A /* CreateCodeWithTypeVC */ = {
+			isa = PBXGroup;
+			children = (
+				38FB62311F6120A30003305A /* CreateCodeWithTypeVC.h */,
+				38FB62321F6120A30003305A /* CreateCodeWithTypeVC.m */,
+			);
+			name = CreateCodeWithTypeVC;
+			sourceTree = "<group>";
+		};
+		38FB62341F6122380003305A /* CreateTableViewController */ = {
+			isa = PBXGroup;
+			children = (
+				38FB62351F6122600003305A /* CreateTableViewController.h */,
+				38FB62361F6122600003305A /* CreateTableViewController.m */,
+			);
+			name = CreateTableViewController;
+			sourceTree = "<group>";
+		};
+		38FB62381F612D9D0003305A /* CreatedTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				38FB62391F612DD30003305A /* CreatedTableViewCell.h */,
+				38FB623A1F612DD30003305A /* CreatedTableViewCell.m */,
+			);
+			name = CreatedTableViewCell;
+			sourceTree = "<group>";
+		};
 		7E18641A1F56B903001A11EE = {
 			isa = PBXGroup;
 			children = (
@@ -237,6 +285,7 @@
 		7E71DC271F5E71030089E934 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				38FB62381F612D9D0003305A /* CreatedTableViewCell */,
 				7E71DC281F5E71130089E934 /* HistoryTableViewCell */,
 			);
 			name = TableViewCell;
@@ -289,6 +338,9 @@
 		7ED8E39F1F57C35300E1A249 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				38FB62341F6122380003305A /* CreateTableViewController */,
+				38FB62301F61205D0003305A /* CreateCodeWithTypeVC */,
+				38FB622C1F610EAD0003305A /* SWRevealViewController */,
 				38AB57951F5FE0DE005B78BB /* GeneralSettingsViewController */,
 				38AB57911F5FDF80005B78BB /* SettingsTableViewController */,
 				38AB577E1F5FC9E1005B78BB /* SettingsViewController */,
@@ -672,14 +724,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				38AB57941F5FDF96005B78BB /* SettingsTableViewController.m in Sources */,
+				38FB62371F6122600003305A /* CreateTableViewController.m in Sources */,
+				38FB62331F6120A30003305A /* CreateCodeWithTypeVC.m in Sources */,
 				7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */,
 				38AB57981F5FE0F8005B78BB /* GeneralSettingsViewController.m in Sources */,
 				7E3D40661F56FA0000E6C478 /* DYQRCodeDecoderViewController.m in Sources */,
 				7E18642E1F56B903001A11EE /* ViewController.m in Sources */,
 				7E71DC2B1F5E71380089E934 /* HistoryTableViewCell.m in Sources */,
 				7E18642B1F56B903001A11EE /* AppDelegate.m in Sources */,
+				38FB622F1F610EC20003305A /* SWRevealViewController.m in Sources */,
 				7E1864281F56B903001A11EE /* main.m in Sources */,
 				7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */,
+				38FB623B1F612DD30003305A /* CreatedTableViewCell.m in Sources */,
 				7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */,
 				38AB57811F5FCA0D005B78BB /* SettingsViewController.m in Sources */,
 				7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */,
