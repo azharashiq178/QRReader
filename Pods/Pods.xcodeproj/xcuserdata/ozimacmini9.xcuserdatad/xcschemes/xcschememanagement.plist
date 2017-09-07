@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>IQKeyboardManager.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-QRReader.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,17 +32,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>02FD993917AAFFD45D4DA0F2597FE647</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>212C0A23E2AEFAE22FBB6AD6ABE33159</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>72383A1799F47FB53FD45B50D1C75281</key>
+		<key>279AA6726F52A334C45E85774BD21A3D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>51CA547AF31E46E31B1B4E458AA2FF9F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7D3AE53DEE4F7E6F0BB951ED6C62169F</key>
 		<dict>
 			<key>primary</key>
 			<true/>

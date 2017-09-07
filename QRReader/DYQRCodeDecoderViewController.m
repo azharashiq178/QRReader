@@ -329,9 +329,11 @@ UIImagePickerControllerDelegate> {
         _completion(result != nil, result);
     }
     [self cancel];
-    [self dealWithResult:result];
+//    if(result != nil)
+        [self dealWithResult:result];
     
 }
+
 
 - (void)start {
     [self startReading];
@@ -342,14 +344,19 @@ UIImagePickerControllerDelegate> {
 }
 
 - (void)dealWithResult:(NSString *)result {
+    if(result != nil){
+        self.myResult = result;
+        //    [self performSegueWithIdentifier:@"showResult" sender:self];
+        self.myResult = result;
+        NSLog(@"My Result is %@",result);
+        [(MyTabBarViewController *)self.tabBarController setMyResultString:result];
+        
+        [self.tabBarController setSelectedIndex:1];
+    }
+    else{
+        NSLog(@"Not Found");
+    }
     
-    self.myResult = result;
-//    [self performSegueWithIdentifier:@"showResult" sender:self];
-    self.myResult = result;
-    NSLog(@"My Result is %@",result);
-    [(MyTabBarViewController *)self.tabBarController setMyResultString:result];
-    
-    [self.tabBarController setSelectedIndex:1];
 }
 
 #pragma mark - Private method implementation
@@ -489,6 +496,7 @@ UIImagePickerControllerDelegate> {
                             [self.captureSession stopRunning];
 //                            self.scannedBarcode.text = capturedBarcode;
                             NSLog(@"Bar code is %@",capturedBarcode);
+                            [self dealWithResult:capturedBarcode];
                         });
                         return;
                     }

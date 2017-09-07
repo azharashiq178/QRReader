@@ -2408,30 +2408,60 @@
                                             <string key="title" base64-UTF8="YES">
 EENyZWF0ZQ
 </string>
+                                            <connections>
+                                                <action selector="createCodeAction:" destination="fuF-Gq-9Eh" id="URk-v5-Kh0"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bsj-XV-t4W">
-                                <rect key="frame" x="58" y="130" width="204" height="100"/>
+                                <rect key="frame" x="21" y="130" width="333" height="50"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="Yro-ro-6rJ"/>
+                                    <constraint firstAttribute="height" constant="50" id="Yro-ro-6rJ"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="27"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Click To Select Type of Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xQZ-T5-97d">
+                                <rect key="frame" x="21" y="81" width="124" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="O7e-5B-VpX"/>
+                                    <constraint firstAttribute="width" constant="124" id="rw4-qj-C1q"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4js-wY-RjY">
+                                <rect key="frame" x="31" y="531" width="323" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="323" id="LIv-Jh-KbD"/>
+                                    <constraint firstAttribute="height" constant="100" id="aUJ-fZ-Llc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="xQZ-T5-97d" firstAttribute="top" secondItem="xLh-8w-RLj" secondAttribute="bottom" constant="21" id="1wi-Ch-WP5"/>
+                            <constraint firstItem="xQZ-T5-97d" firstAttribute="leading" secondItem="OYU-VE-XKq" secondAttribute="leadingMargin" constant="5" id="6YO-IQ-g3d"/>
+                            <constraint firstItem="FdV-qh-mvc" firstAttribute="top" secondItem="4js-wY-RjY" secondAttribute="bottom" constant="36" id="Cnx-ng-ZtY"/>
                             <constraint firstAttribute="trailing" secondItem="xLh-8w-RLj" secondAttribute="trailing" id="ISg-na-TOA"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="bsj-XV-t4W" secondAttribute="trailing" constant="97" id="RR3-68-MrT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bsj-XV-t4W" secondAttribute="trailing" constant="5" id="RR3-68-MrT"/>
                             <constraint firstItem="bsj-XV-t4W" firstAttribute="top" secondItem="xLh-8w-RLj" secondAttribute="bottom" constant="70" id="WXj-e1-LPE"/>
-                            <constraint firstItem="bsj-XV-t4W" firstAttribute="leading" secondItem="OYU-VE-XKq" secondAttribute="leadingMargin" constant="42" id="dnM-M4-ewE"/>
+                            <constraint firstItem="bsj-XV-t4W" firstAttribute="leading" secondItem="OYU-VE-XKq" secondAttribute="leadingMargin" constant="5" id="dnM-M4-ewE"/>
                             <constraint firstItem="xLh-8w-RLj" firstAttribute="top" secondItem="OYU-VE-XKq" secondAttribute="top" id="f1P-bq-BdT"/>
+                            <constraint firstItem="4js-wY-RjY" firstAttribute="leading" secondItem="OYU-VE-XKq" secondAttribute="leadingMargin" constant="15" id="n3Q-oI-8FO"/>
                             <constraint firstItem="xLh-8w-RLj" firstAttribute="leading" secondItem="OYU-VE-XKq" secondAttribute="leading" id="t7n-yh-26D"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="myNavBar" destination="xLh-8w-RLj" id="2ax-zv-Q0u"/>
+                        <outlet property="qrImageView" destination="4js-wY-RjY" id="aoK-xs-lJg"/>
+                        <outlet property="textForCode" destination="bsj-XV-t4W" id="ErI-oh-YMJ"/>
+                        <outlet property="typeOfCode" destination="xQZ-T5-97d" id="MJA-t5-svQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VBq-9j-7zB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2496,7 +2526,7 @@ EENyZWF0ZQ
                                         <rect key="frame" x="0.0" y="28" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="99J-fh-2sB" id="Uot-gt-XZ4">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDY-YV-1dc">
@@ -2583,6 +2613,7 @@ EENyZWF0ZQ
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="0Kj-WS-WDU"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="mySearchBar" destination="7Fy-1B-aUf" id="gBn-bd-Rnc"/>
                         <outlet property="sidebarButton" destination="kx6-WL-2TD" id="075-VU-lTQ"/>
                     </connections>
                 </viewController>

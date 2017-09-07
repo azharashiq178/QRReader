@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "QRReader/DYQRCodeDecoderViewController.m"
-            timestampString = "526385014.779578"
+            timestampString = "526482483.822667"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "536"
-            endingLineNumber = "536"
+            startingLineNumber = "544"
+            endingLineNumber = "544"
             landmarkName = "@implementation DYQRCodeDecoderViewController"
             landmarkType = "3">
          </BreakpointContent>

@@ -1,12 +1,15 @@
 PODS:
+  - IQKeyboardManager (4.0.13)
   - RegexKitLite (4.0)
 
 DEPENDENCIES:
+  - IQKeyboardManager (~> 4.0)
   - RegexKitLite
 
 SPEC CHECKSUMS:
+  IQKeyboardManager: 8eab4d8111418414619d1df8e4779ce5d0f8d7e2
   RegexKitLite: c0e4c12e6e7de0769f3a3ed679f0f61604170661
 
-PODFILE CHECKSUM: 1fda5bf60da85a08fc6cd06374708b26c069d3e0
+PODFILE CHECKSUM: 09211f791bdd95c0a1424baa089e6a2bc7cf8f9a
 
 COCOAPODS: 1.2.1

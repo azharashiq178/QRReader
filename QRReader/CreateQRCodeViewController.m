@@ -10,6 +10,7 @@
 #import <Contacts/Contacts.h>
 #import "SWRevealViewController.h"
 #import "CreatedTableViewCell.h"
+@import IQKeyboardManager;
 
 @interface CreateQRCodeViewController ()
 
@@ -26,6 +27,7 @@
         [self.sidebarButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+    [self.mySearchBar setDelegate:self];
     
 // *************************************** Creating QRCode ****************
 //    NSString *qrString = @"Hello My Name is Muhammad Azher";
@@ -74,5 +76,16 @@
 }
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 70;
+}
+-(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self.mySearchBar setShowsCancelButton:NO animated:YES];
+    self.mySearchBar.text = @"";
+    [self.mySearchBar resignFirstResponder];
+}
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self.mySearchBar setShowsCancelButton:YES animated:YES];
+}
+-(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
+    return NO;
 }
 @end

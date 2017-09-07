@@ -12,5 +12,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 
 @end

@@ -104,12 +104,118 @@
         
         CreateCodeWithTypeVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Create"];
         
+        vc.typeOfCreation = [self getTypeFromIndexPath:indexPath];
         [self presentViewController:vc animated:YES completion:nil];
     }];
     
 }
 -(void)viewDidDisappear:(BOOL)animated{
     
-    
+}
+-(NSString *)getTypeFromIndexPath:(NSIndexPath *)indexPath{
+    if(indexPath.section == 0){
+        if(indexPath.row == 0){
+            return @"Web Address";
+        }
+        else if(indexPath.row == 1){
+            return @"Phone Number";
+        }
+        else if(indexPath.row == 2){
+            return @"Text";
+        }
+        else if(indexPath.row == 3){
+            return @"E-mail";
+        }
+        else if(indexPath.row == 4){
+            return @"Contact-Info";
+        }
+        else if(indexPath.row == 5){
+            return @"SMS";
+        }
+    }
+    else if(indexPath.section == 1){
+        if(indexPath.row == 0){
+            return @"Google";
+        }
+        else if(indexPath.row == 1){
+            return @"Bing";
+        }
+        else if(indexPath.row == 2){
+            return @"Baidu";
+        }
+        else if(indexPath.row == 3){
+            return @"Sogou";
+        }
+        else if(indexPath.row == 4){
+            return @"Yahoo";
+        }
+        else if(indexPath.row == 5){
+            return @"Yandex";
+        }
+        else if(indexPath.row == 6){
+            return @"Ask";
+        }
+        else if(indexPath.row == 7){
+            return @"AOL";
+        }
+        else if(indexPath.row == 8){
+            return @"DuckDuckGo";
+        }
+    }
+    else if(indexPath.section == 2){
+        if(indexPath.row == 0){
+            return @"Facebook";
+        }
+        else if(indexPath.row == 1){
+            return @"Twitter";
+        }
+        else if(indexPath.row == 2){
+            return @"Evernote";
+        }
+        else if(indexPath.row == 3){
+            return @"Google Plus";
+        }
+        else if(indexPath.row == 4){
+            return @"LinkedIn";
+        }
+        else if(indexPath.row == 5){
+            return @"Instagram";
+        }
+        else if(indexPath.row == 6){
+            return @"Tumblr";
+        }
+        else if(indexPath.row == 7){
+            return @"Youtube";
+        }
+        
+    }
+    else if(indexPath.section == 3){
+        if(indexPath.row == 0){
+            return @"iCloud";
+        }
+        else if(indexPath.row == 1){
+            return @"Google Drive";
+        }
+        else if(indexPath.row == 2){
+            return @"One Drive";
+        }
+        else if(indexPath.row == 3){
+            return @"Dropbox";
+        }
+        else if(indexPath.row == 4){
+            return @"MySpace";
+        }
+        else if(indexPath.row == 5){
+            return @"Flickr";
+        }
+        else if(indexPath.row == 6){
+            return @"Mediafire";
+        }
+        else if(indexPath.row == 7){
+            return @"Box";
+        }
+        
+    }
+    return nil;
 }
 @end
