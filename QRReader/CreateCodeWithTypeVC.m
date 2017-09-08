@@ -7,6 +7,8 @@
 //
 
 #import "CreateCodeWithTypeVC.h"
+#import "CreateQRCodeViewController.h"
+#import "HistoryData.h"
 
 @interface CreateCodeWithTypeVC ()
 @property (nonatomic,strong) NSArray *codeTypes;
@@ -70,7 +72,14 @@
 */
 
 - (IBAction)dismissScreen:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self dismissViewControllerAnimated:YES completion:^{
+//        NSDictionary* userInfo = @{@"total": @"Azher"};
+//        
+//        NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+//        [nc postNotificationName:@"NotificationMessageEvent" object:self userInfo:userInfo];
+//        [(CreateQRCodeViewController *)self.presentingViewController setChecking:@"Azher"];
+    }];
 }
 -(NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
     return [self.codeTypes count];
@@ -98,26 +107,27 @@
         CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
         [qrFilter setValue:stringData forKey:@"inputMessage"];
         
-//        NSLayoutConstraint *heightConstraint;
-//        for (NSLayoutConstraint *constraint in self.qrImageView.constraints) {
-//            if (constraint.secondAttribute == NSLayoutAttributeWidth) {
-//                heightConstraint = constraint;
-//                break;
-//            }
-//        }
-//        heightConstraint.constant = 100;
-        
-//        [self.qrImageView addConstraint:[NSLayoutConstraint constraintWithItem:self.qrImageView
-//                                                          attribute:NSLayoutAttributeWidth
-//                                                          relatedBy:NSLayoutRelationEqual
-//                                                             toItem:nil
-//                                                          attribute: NSLayoutAttributeNotAnAttribute
-//                                                         multiplier:1
-//                                                           constant:100]];
         UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 300, 100, 100)];
-//        self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+
         myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
         [self.view addSubview:myImageView];
+        [self dismissViewControllerAnimated:YES completion:^{
+            NSDate *todayDate = [NSDate date]; //Get todays date
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
+            [dateFormatter setDateFormat:@"dd-MM-yyyy"]; //Here we can set the format which we need
+            NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+            
+            HistoryData *tmpData = [HistoryData new];
+            tmpData.myImage = myImageView.image;
+            tmpData.resultTime = convertedDateString;
+            tmpData.resultType = self.typeOfCreation;
+            tmpData.resultText = self.textForCode.text;
+            
+            NSDictionary* userInfo = @{@"total": tmpData};
+            
+            NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+            [nc postNotificationName:@"NotificationMessageEvent" object:self userInfo:userInfo];
+        }];
     }
     else if([self.typeOfCode.text isEqualToString:@"Bar Code"]){
         
@@ -131,20 +141,29 @@
             CIFilter *qrFilter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
             [qrFilter setValue:stringData forKey:@"inputMessage"];
             
-//            NSLayoutConstraint *heightConstraint;
-//            for (NSLayoutConstraint *constraint in self.qrImageView.constraints) {
-//                if (constraint.secondAttribute == NSLayoutAttributeWidth) {
-//                    heightConstraint = constraint;
-//                    break;
-//                }
-//            }
-//            heightConstraint.constant = 300;
-//            self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
-            UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 500, 300, 100)];
+
+            UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2)-150, self.view.frame.size.height - 200, 300, 100)];
             //        self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
             myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
             [self.view addSubview:myImageView];
             // newString consists only of the digits 0 through 9
+            [self dismissViewControllerAnimated:YES completion:^{
+                NSDate *todayDate = [NSDate date]; //Get todays date
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
+                [dateFormatter setDateFormat:@"dd-MM-yyyy"]; //Here we can set the format which we need
+                NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+                
+                HistoryData *tmpData = [HistoryData new];
+                tmpData.myImage = myImageView.image;
+                tmpData.resultTime = convertedDateString;
+                tmpData.resultType = self.typeOfCreation;
+                tmpData.resultText = self.textForCode.text;
+                
+                NSDictionary* userInfo = @{@"total": tmpData};
+                
+                NSNotificationCenter* nc = [NSNotificationCenter defaultCenter];
+                [nc postNotificationName:@"NotificationMessageEvent" object:self userInfo:userInfo];
+            }];
         }
         else{
             NSLog(@"String is not numeric");

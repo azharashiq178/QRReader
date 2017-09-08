@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UITableView *historyTableView;
 - (IBAction)editAction:(id)sender;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 @end

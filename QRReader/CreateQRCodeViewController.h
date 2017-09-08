@@ -8,10 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CreateQRCodeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
+
+@interface CreateQRCodeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
+@property (nonatomic,strong) NSString *checking;
+@property (weak, nonatomic) IBOutlet UITableView *createdTableView;
+- (IBAction)editTableView:(id)sender;
 
 @end

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface CreatedTableViewCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *createdCodeImageView;
+@property (weak, nonatomic) IBOutlet UILabel *createdCodeTitle;
+@property (weak, nonatomic) IBOutlet UILabel *createdCodeText;
+@property (weak, nonatomic) IBOutlet UILabel *createdCodeDate;
 
 @end

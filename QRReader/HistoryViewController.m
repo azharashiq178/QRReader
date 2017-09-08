@@ -22,6 +22,7 @@
 @interface HistoryViewController ()
 @property (nonatomic,strong) NSMutableArray<HistoryData *> *resultArray;
 @property (nonatomic,strong) NSMutableArray *personPhoneNumbers;
+@property (nonatomic,strong) NSMutableArray *savedArray;
 @end
 
 @implementation HistoryViewController
@@ -29,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.resultArray = [[NSMutableArray<HistoryData *> alloc] init];
+    self.savedArray = [[NSMutableArray alloc] init];
     [self.searchBar setDelegate:self];
     [self.historyTableView setDelegate:self];
     [self.historyTableView setDataSource:self];
@@ -38,116 +40,23 @@
     if([(MyTabBarViewController *)self.tabBarController myResultString] != nil){
         [self performSegueWithIdentifier:@"showResult" sender:self];
     }
+    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"HistoryList"];
+    self.resultArray = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
+    if(self.resultArray == nil){
+        self.resultArray = [[NSMutableArray alloc] init];
+    }
     [self.historyTableView reloadData];
     if([self.resultArray count]==0){
         [self.historyTableView setHidden:YES];
+        [self.editButton setEnabled:NO];
         
     }
     else{
         [self.historyTableView setHidden:NO];
+        [self.editButton setEnabled:YES];
     }
 }
--(void)viewWillAppear:(BOOL)animated{
-    //    self.personPhoneNumbers = [[NSMutableArray alloc] init];
-    //    NSLog(@"My REsult is %@",[(MyTabBarViewController *)self.tabBarController myResultString]);
-    //    self.tmpTextField.text = [(MyTabBarViewController *)self.tabBarController myResultString];
-    //    NSString *vCardString = self.tmpTextField.text;
-    //    NSError *errorVCF;
-    //    NSArray  *allContacts = [CNContactVCardSerialization contactsWithData:[vCardString dataUsingEncoding:NSUTF8StringEncoding] error:&errorVCF];
-    //    if (!errorVCF)
-    //    {
-    //        NSMutableString *results = [[NSMutableString alloc] init];
-    //        NSLog(@"AllContacts: %@", allContacts);
-    //        for (CNContact *aContact in allContacts)
-    //        {
-    //            if([aContact.phoneNumbers count]!=0){
-    //                UITextView *tmpTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 100, 150, 100)];
-    //                tmpTextView.text = [NSString stringWithFormat:@"%@",[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
-    //                [tmpTextView setTintColor:[UIColor redColor]];
-    //                [tmpTextView setDataDetectorTypes:UIDataDetectorTypeAll];
-    //                [tmpTextView setEditable:NO];
-    //
-    ////                [tmpLabel setBackgroundColor:[UIColor blackColor]];
-    //                [self.view addSubview:tmpTextView];
-    //                UIButton *messageButton = [[UIButton alloc] initWithFrame:CGRectMake(200, 100, 50, 50)];
-    //                [messageButton.layer setCornerRadius:25];
-    //                [messageButton addTarget:self action:@selector(sendMessage:) forControlEvents:UIControlEventTouchDown];
-    ////                [messageButton setTitle:@"Message" forState:UIControlStateNormal];
-    //                [messageButton setImage:[UIImage imageNamed:@"message"] forState:UIControlStateNormal];
-    //                [messageButton setTintColor:[UIColor whiteColor]];
-    //                [messageButton setBackgroundColor:[UIColor clearColor]];
-    //                [messageButton.layer setBorderColor:[[UIColor blackColor] CGColor]];
-    //                [messageButton.layer setBorderWidth:1];
-    //                [self.view addSubview:messageButton];
-    //                for(int i = 0 ;i < [aContact.phoneNumbers count];i++){
-    //                    NSString *tmp = [[[aContact.phoneNumbers objectAtIndex:i] valueForKey:@"value"] valueForKey:@"digits"];
-    //                    [self.personPhoneNumbers addObject:tmp];
-    //                }
-    //            }
-    //            self.tmpTextField.text = [NSString stringWithFormat:@"%@ %@ %@",aContact.givenName,aContact.familyName,[[[aContact.phoneNumbers objectAtIndex:0] valueForKey:@"value"] valueForKey:@"digits"]];
-    //
-    //        }
-    //        if([allContacts count] == 0){
-    //            //For detecting URL
-    //            NSString * urlString = vCardString;
-    //            NSArray *urls = [urlString componentsMatchedByRegex:@"https://[^\\s]*"];
-    //            NSLog(@"urls: %@", urls);
-    //            ////
-    //
-    //
-    //            //For Detecting phone number
-    //            NSString *myString = vCardString;
-    //            NSString *myRegex = @"\\d{11}";
-    //            NSRange range = [myString rangeOfString:myRegex options:NSRegularExpressionSearch];
-    //
-    //            NSString *phoneNumber = nil;
-    //            if (range.location != NSNotFound) {
-    //                phoneNumber = [myString substringWithRange:range];
-    //                NSLog(@"%@", phoneNumber);
-    //            } else {
-    //                NSLog(@"No phone number found");
-    //            }
-    //            //////
-    //
-    //
-    //            ///For Detecting Email Adress
-    //            NSString *regexString = @"([A-Za-z0-9_\\-\\.\\+])+\\@([A-Za-z0-9_\\-\\.])+\\.([A-Za-z]+)";
-    //
-    //            // experimental search string containing emails
-    //            NSString *searchString = vCardString;
-    //
-    //            // track regex error
-    //            NSError *error = NULL;
-    //
-    //            // create regular expression
-    //            NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:regexString options:0 error:&error];
-    //
-    //            // make sure there is no error
-    //            if (!error) {
-    //
-    //                // get all matches for regex
-    //                NSArray *matches = [regex matchesInString:searchString options:0 range:NSMakeRange(0, searchString.length)];
-    //
-    //                // loop through regex matches
-    //                for (NSTextCheckingResult *match in matches) {
-    //
-    //                    // get the current text
-    //                    NSString *matchText = [searchString substringWithRange:match.range];
-    //
-    //                    NSLog(@"Extracted: %@", matchText);
-    //
-    //                }
-    //
-    //            }
-    //        }
-    //        else
-    //            NSLog(@"Final: %@", results);
-    //    }
-    //    else{
-    //        NSDataDetector* detector = [NSDataDetector dataDetectorWithTypes:NSTextCheckingTypeLink error:nil];
-    //        NSArray* matches = [detector matchesInString:vCardString options:0 range:NSMakeRange(0, [vCardString length])];
-    //    }
-}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -192,6 +101,8 @@
 }
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [self.searchBar setShowsCancelButton:YES animated:YES];
+    [self.searchBar setShowsCancelButton:YES animated:YES];
+    self.savedArray = self.resultArray;
 }
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     return NO;
@@ -236,6 +147,10 @@
             }
             
             [self.resultArray addObject:tmpData];
+            NSArray *tmpArray = (NSArray *)self.resultArray;
+            NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
+            [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"HistoryList"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else{
             destinationController.tmpResult = [[self.resultArray objectAtIndex:[[self.historyTableView indexPathForSelectedRow] row]] resultText];
@@ -374,5 +289,27 @@
 }
 -(IBAction)editTitle:(id)sender{
     NSLog(@"Editing Title");
+}
+
+-(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
+    
+    NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
+    for(HistoryData *tmpData in self.savedArray){
+        
+        if([tmpData.resultText containsString:searchText] || [tmpData.resultType containsString:searchText]){
+            [filteredArray addObject:tmpData];
+            
+        }
+    }
+    self.resultArray = filteredArray;
+    if([self.searchBar.text  isEqualToString: @""]){
+        self.resultArray = self.savedArray;
+    }
+    //    if([filteredArray count] == 0){
+    //        self.createdList = self.savedArray;
+    //    }
+    [self.historyTableView reloadData];
+    //    NSArray *results = [self.createdList valueForKey:@"resultText"];
+    //    NSArray *results1 = [results filteredArrayUsingPredicate:predicate];
 }
 @end

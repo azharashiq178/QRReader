@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CreateCodeWithTypeVC.h"
 
 @interface CreateTableViewController : UITableViewController
 

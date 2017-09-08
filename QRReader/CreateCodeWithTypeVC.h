@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
+
 @interface CreateCodeWithTypeVC : UIViewController <UIPickerViewDelegate,UIPickerViewDataSource,UITextFieldDelegate>
 - (IBAction)dismissScreen:(id)sender;
 @property (weak, nonatomic) IBOutlet UINavigationBar *myNavBar;
@@ -15,5 +17,6 @@
 @property (nonatomic,strong) NSString *typeOfCreation;
 @property (weak, nonatomic) IBOutlet UITextField *textForCode;
 @property (weak, nonatomic) IBOutlet UIImageView *qrImageView;
+
 - (IBAction)createCodeAction:(id)sender;
 @end

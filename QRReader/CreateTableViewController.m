@@ -19,7 +19,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -100,11 +99,15 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [self.revealViewController revealToggleAnimated:YES];
+    
     [NSTimer scheduledTimerWithTimeInterval:0.2 repeats:NO block:^(NSTimer * _Nonnull timer) {
         
         CreateCodeWithTypeVC *vc = [self.storyboard instantiateViewControllerWithIdentifier:@"Create"];
         
         vc.typeOfCreation = [self getTypeFromIndexPath:indexPath];
+        
+//        vc.sampleDelegateObject = self;
+        
         [self presentViewController:vc animated:YES completion:nil];
     }];
     
@@ -218,4 +221,5 @@
     }
     return nil;
 }
+
 @end
