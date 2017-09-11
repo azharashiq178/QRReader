@@ -770,7 +770,7 @@
                                         <rect key="frame" x="0.0" y="664" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HCP-5L-6DI" id="Bu6-5i-ef6">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vza-fB-g7v">
@@ -1604,7 +1604,7 @@
                                         <rect key="frame" x="0.0" y="640" width="324" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ybg-DR-BK5" id="upw-lI-dsW">
-                                            <rect key="frame" x="0.0" y="0.0" width="291" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="291" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0H-j0-NWe">
@@ -1644,7 +1644,7 @@
                                         <rect key="frame" x="0.0" y="684" width="324" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KhW-tf-4AW" id="nhh-mB-1cj">
-                                            <rect key="frame" x="0.0" y="0.0" width="291" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="291" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g2r-eq-Nd9">
@@ -2632,6 +2632,7 @@ EENyZWF0ZQ
                     </navigationItem>
                     <connections>
                         <outlet property="createdTableView" destination="QBw-hS-3Y8" id="WIm-DG-P1d"/>
+                        <outlet property="myEditButton" destination="0Kj-WS-WDU" id="2zI-w9-UxT"/>
                         <outlet property="mySearchBar" destination="7Fy-1B-aUf" id="gBn-bd-Rnc"/>
                         <outlet property="sidebarButton" destination="kx6-WL-2TD" id="075-VU-lTQ"/>
                     </connections>
@@ -2640,10 +2641,10 @@ EENyZWF0ZQ
             </objects>
             <point key="canvasLocation" x="2133.5999999999999" y="858.62068965517244"/>
         </scene>
-        <!--View Controller-->
+        <!--Show Created Code View Controller-->
         <scene sceneID="Q9V-IX-4W4">
             <objects>
-                <viewController id="WtH-38-8Xp" sceneMemberID="viewController">
+                <viewController id="WtH-38-8Xp" customClass="ShowCreatedCodeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="9n3-mL-ieG"/>
                         <viewControllerLayoutGuide type="bottom" id="zEh-ZV-qa6"/>

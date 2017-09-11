@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		00C4F6DF996BBA4B191BC342 /* Pods_QRReader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876703757E280E7B23884455 /* Pods_QRReader.framework */; };
+		38A2291E1F66B960003786F1 /* ShowCreatedCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38A2291D1F66B960003786F1 /* ShowCreatedCodeViewController.m */; };
 		38AB57811F5FCA0D005B78BB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57801F5FCA0D005B78BB /* SettingsViewController.m */; };
 		38AB57941F5FDF96005B78BB /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57931F5FDF96005B78BB /* SettingsTableViewController.m */; };
 		38AB57981F5FE0F8005B78BB /* GeneralSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 38AB57971F5FE0F8005B78BB /* GeneralSettingsViewController.m */; };
@@ -57,6 +58,8 @@
 
 /* Begin PBXFileReference section */
 		11A275F9D1C29C2602B0BD9E /* Pods_QRReaderTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QRReaderTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38A2291C1F66B960003786F1 /* ShowCreatedCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowCreatedCodeViewController.h; sourceTree = "<group>"; };
+		38A2291D1F66B960003786F1 /* ShowCreatedCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowCreatedCodeViewController.m; sourceTree = "<group>"; };
 		38AB577F1F5FCA0D005B78BB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		38AB57801F5FCA0D005B78BB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		38AB57921F5FDF96005B78BB /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
@@ -154,6 +157,15 @@
 				491DA88A30B1E7471BD8FC69 /* Pods_QRReaderUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		38A2291B1F66B91E003786F1 /* ShowCreatedCodeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				38A2291C1F66B960003786F1 /* ShowCreatedCodeViewController.h */,
+				38A2291D1F66B960003786F1 /* ShowCreatedCodeViewController.m */,
+			);
+			name = ShowCreatedCodeViewController;
 			sourceTree = "<group>";
 		};
 		38AB577E1F5FC9E1005B78BB /* SettingsViewController */ = {
@@ -338,6 +350,7 @@
 		7ED8E39F1F57C35300E1A249 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				38A2291B1F66B91E003786F1 /* ShowCreatedCodeViewController */,
 				38FB62341F6122380003305A /* CreateTableViewController */,
 				38FB62301F61205D0003305A /* CreateCodeWithTypeVC */,
 				38FB622C1F610EAD0003305A /* SWRevealViewController */,
@@ -724,6 +737,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				38AB57941F5FDF96005B78BB /* SettingsTableViewController.m in Sources */,
+				38A2291E1F66B960003786F1 /* ShowCreatedCodeViewController.m in Sources */,
 				38FB62371F6122600003305A /* CreateTableViewController.m in Sources */,
 				38FB62331F6120A30003305A /* CreateCodeWithTypeVC.m in Sources */,
 				7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */,

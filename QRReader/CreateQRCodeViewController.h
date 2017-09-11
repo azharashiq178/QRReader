@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UISearchBar *mySearchBar;
 @property (nonatomic,strong) NSString *checking;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *myEditButton;
 @property (weak, nonatomic) IBOutlet UITableView *createdTableView;
 - (IBAction)editTableView:(id)sender;
 

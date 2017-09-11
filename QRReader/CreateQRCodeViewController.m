@@ -12,11 +12,13 @@
 #import "CreatedTableViewCell.h"
 #import "CreateCodeWithTypeVC.h"
 #import "HistoryData.h"
+#import "ShowCreatedCodeViewController.h"
 @import IQKeyboardManager;
 
 @interface CreateQRCodeViewController ()
 @property (nonatomic,strong) NSMutableArray *createdList;
 @property (nonatomic,strong) NSMutableArray *savedArray;
+@property (nonatomic,strong) NSString *titleToPassNext;
 @end
 
 @implementation CreateQRCodeViewController
@@ -75,12 +77,19 @@
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([segue.identifier  isEqualToString: @"showDetail"]){
-        
+        ShowCreatedCodeViewController *controller = segue.destinationViewController;
+        [controller.navigationItem setTitle:self.titleToPassNext];
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
 
+//-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
+//    if ([tableView isEditing]) {
+//        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    }
+//    
+//}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     CreatedTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"showCreatedList"];
     if(cell == nil){
@@ -91,10 +100,13 @@
     cell.createdCodeDate.text = tmpData.resultTime;
     cell.createdCodeText.text = tmpData.resultText;
     cell.createdCodeTitle.text = tmpData.resultType;
+//    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    [cell setHighlighted:NO animated:YES];
     return cell;
 }
+//-(void)tableView:(UITableView *)tableView didHighlightRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//}
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -108,12 +120,30 @@
 //    [[self.createdTableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
 //    return indexPath;
 //}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
     if(![tableView isEditing]){
+        CreatedTableViewCell *cell = (CreatedTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        self.titleToPassNext = [NSString stringWithFormat:@"%@",[[cell createdCodeTitle] text]];
         [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
-    [[tableView cellForRowAtIndexPath:indexPath] setFocusStyle:UITableViewCellFocusStyleCustom];
+    else{
+        [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
+        //    [[tableView cellForRowAtIndexPath:indexPath] setShowsReorderControl:YES];
+        [[tableView cellForRowAtIndexPath:indexPath] setEditing:YES animated:YES];
+    }
+    
+//    [[tableView cellForRowAtIndexPath:indexPath] setFocusStyle:UITableViewCellFocusStyleCustom];
 //    [[self.createdTableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
+}
+-(NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
+//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+//    [[tableView cellForRowAtIndexPath:indexPath] setEditing:NO animated:YES];
+//    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
+//    [[tableView cellForRowAtIndexPath:indexPath] setEditing:YES animated:YES];
+    return indexPath;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     NSLog(@"Deselected");
@@ -122,15 +152,22 @@
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.mySearchBar setShowsCancelButton:NO animated:YES];
     self.mySearchBar.text = @"";
+    
     [self.mySearchBar resignFirstResponder];
+    [self.myEditButton setEnabled:YES];
     self.createdList = self.savedArray;
     [self.createdTableView reloadData];
 }
 
 -(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    [self.myEditButton setEnabled:NO];
+    if([self.createdTableView isEditing]){
+        [self editTableView:self];
+    }
     [self.mySearchBar setShowsCancelButton:YES animated:YES];
     self.savedArray = self.createdList;
 }
+
 -(void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText{
 
     NSMutableArray *filteredArray = [[NSMutableArray alloc] init];
@@ -177,16 +214,27 @@
 }
 
 - (IBAction)editTableView:(id)sender {
-    if([[(UIBarButtonItem *)sender title]  isEqual: @"Edit"]){
-        [(UIBarButtonItem *)sender setTitle:@"Done"];
+    if([[self.myEditButton title]  isEqual: @"Edit"]){
+        [self.myEditButton setTitle:@"Done"];
         [self.createdTableView setAllowsMultipleSelectionDuringEditing:true];
-        [self.createdTableView setAllowsMultipleSelection:true];
+//        [self.createdTableView setAllowsMultipleSelection:true];
 
         [self.createdTableView setEditing:YES animated:YES];
     }
     else{
-        [(UIBarButtonItem *)sender setTitle:@"Edit"];
+        [self.myEditButton setTitle:@"Edit"];
+//        [(UIBarButtonItem *)sender setTitle:@"Edit"];
+        if([self.createdTableView isEditing]){
+            NSArray *allSelectedIndex = [self.createdTableView indexPathsForSelectedRows];
+            for(int i = 0 ;i < [allSelectedIndex count] ;i++){
+                NSIndexPath *tmpIndexPath = [allSelectedIndex objectAtIndex:i];
+                [self.createdTableView deselectRowAtIndexPath:tmpIndexPath animated:YES];
+//                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelected:NO];
+                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
+            }
+        }
         [self.createdTableView setEditing:NO animated:YES];
+        
     }
 }
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
