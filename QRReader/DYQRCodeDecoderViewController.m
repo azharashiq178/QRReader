@@ -139,7 +139,8 @@ UIImagePickerControllerDelegate> {
     //    [button0 setBackgroundImage:[UIImage imageNamed:@"button0.png"] forState:UIControlStateNormal];
     [button0 addTarget:self action:@selector(turnTorchOnOrOff:) forControlEvents:UIControlEventTouchUpInside];
     //    [button0 setShowsTouchWhenHighlighted:YES];
-    [button0 setBackgroundColor:[UIColor blackColor]];
+    [button0 setBackgroundImage:[UIImage imageNamed:@"off1x"] forState:UIControlStateNormal];
+//    [button0 setBackgroundColor:[UIColor blackColor]];
     [buttonContainer addSubview:button0];
     
     
@@ -149,9 +150,14 @@ UIImagePickerControllerDelegate> {
     [button1.layer setCornerRadius:12.5];
     [button1 setTitle:@"Library" forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(pickImage) forControlEvents:UIControlEventTouchUpInside];
-    [button1 setBackgroundColor:[UIColor blackColor]];
-    [button1 setImage:[UIImage imageNamed:@"gallery"] forState:UIControlStateNormal];
+//    [button1 setBackgroundColor:[UIColor blackColor]];
+//    [button1 setImage:[UIImage imageNamed:@"library"] forState:UIControlStateNormal];
+
+//    button1.titleLabel.font = [UIFont systemFontOfSize:10];
+    [button1 setImage:[UIImage imageNamed:@"library"] forState:UIControlStateNormal];
     button1.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
+    button1.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [button1 setBackgroundImage:[UIImage imageNamed:@"off1x"] forState:UIControlStateNormal];
     [buttonContainer addSubview:button1];
     
     
@@ -219,7 +225,10 @@ UIImagePickerControllerDelegate> {
                                                            constant:0.0]];
     if (_needsScanAnnimation) {
         UIView * scanView = [[UIView alloc] init];
-        [scanView setBackgroundColor:[UIColor colorWithWhite:0 alpha:0.7]];
+        UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bgimage"]];
+        [scanView addSubview:bgImageView];
+        
+        [scanView setBackgroundColor:[UIColor blackColor]];
         [self.view addSubview:scanView];
         [scanView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
@@ -297,7 +306,7 @@ UIImagePickerControllerDelegate> {
         _lineImageView = [[UIImageView alloc] init];
         CGFloat lineHeight = frameWidth * _lineImage.size.height / _lineImage.size.width;
         _lineRect0 = CGRectMake(0, 0, frameWidth, lineHeight);
-        _lineRect1 = CGRectMake(0, frameWidth - lineHeight, frameWidth, lineHeight);
+        _lineRect1 = CGRectMake(0, frameWidth - 20, frameWidth, lineHeight);
         [_lineImageView setFrame:_lineRect0];
         [_lineImageView setImage:_lineImage];
         [imageView addSubview:_lineImageView];

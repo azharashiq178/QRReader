@@ -10,5 +10,6 @@
 #import <MessageUI/MessageUI.h>
 
 @interface SettingsTableViewController : UITableViewController<MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+@property (weak, nonatomic) IBOutlet UISwitch *linkSwitch;
 
 @end

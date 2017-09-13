@@ -17,7 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.linkSwitch.offImage = [UIImage imageNamed:@"on"];
+    [self.linkSwitch setOnImage:[UIImage imageNamed:@"on.png"]];
+//    self.linkSwitch.onImage = [UIImage imageNamed:@"check.png"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     

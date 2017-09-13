@@ -100,6 +100,12 @@
     cell.createdCodeDate.text = tmpData.resultTime;
     cell.createdCodeText.text = tmpData.resultText;
     cell.createdCodeTitle.text = tmpData.resultType;
+    if(indexPath.row % 2 != 0){
+        [cell setBackgroundColor:[UIColor colorWithRed:0.114 green:0.114 blue:0.114 alpha:1]];
+    }
+    else{
+        [cell setBackgroundColor:[UIColor colorWithRed:0.067 green:0.067 blue:0.067 alpha:1]];
+    }
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
@@ -120,7 +126,11 @@
 //    [[self.createdTableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
 //    return indexPath;
 //}
-
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *tmpView = [[UIView alloc] init];
+    [tmpView setBackgroundColor:[UIColor blackColor]];
+    return tmpView;
+}
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
     if(![tableView isEditing]){

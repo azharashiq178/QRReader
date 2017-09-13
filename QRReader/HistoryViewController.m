@@ -35,6 +35,9 @@
     [self.historyTableView setDelegate:self];
     [self.historyTableView setDataSource:self];
     // Do any additional setup after loading the view.
+//    [self.view bringSubviewToFront:self.myToolbar];
+    
+    
 }
 -(void)viewDidAppear:(BOOL)animated{
     if([(MyTabBarViewController *)self.tabBarController myResultString] != nil){
@@ -49,9 +52,11 @@
     if([self.resultArray count]==0){
         [self.historyTableView setHidden:YES];
         [self.editButton setEnabled:NO];
+        [self.noHistoryLabel setHidden:NO];
         
     }
     else{
+        [self.noHistoryLabel setHidden:YES];
         [self.historyTableView setHidden:NO];
         [self.editButton setEnabled:YES];
     }
@@ -166,6 +171,11 @@
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return [self.resultArray count];
 }
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *tmpView = [[UIView alloc] init];
+    [tmpView setBackgroundColor:[UIColor blackColor]];
+    return tmpView;
+}
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     HistoryTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"historyCell"];
     if(cell == nil){
@@ -174,7 +184,12 @@
     cell.result.text = [[self.resultArray objectAtIndex:indexPath.row] resultText];
     cell.timeAndDate.text = [[self.resultArray objectAtIndex:indexPath.row] resultTime];
     cell.typeOfResult.text = [[self.resultArray objectAtIndex:indexPath.row] resultType];
-    
+    if(indexPath.row % 2 != 0){
+        [cell setBackgroundColor:[UIColor colorWithRed:0.114 green:0.114 blue:0.114 alpha:1]];
+    }
+    else{
+        [cell setBackgroundColor:[UIColor colorWithRed:0.067 green:0.067 blue:0.067 alpha:1]];
+    }
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -259,11 +274,82 @@
         [(UIBarButtonItem *)sender setTitle:@"Done"];
         [self.historyTableView setAllowsMultipleSelectionDuringEditing:YES];
         
+        self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+        [self.myToolbar setHidden:YES];
+        [UIView animateWithDuration:0.1
+                              delay:0.1
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                         }
+                         completion:^(BOOL finished){
+                             
+                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                             [self.myToolbar setHidden:NO];
+                             
+                             self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y + 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+                             [self.myToolbar setHidden:NO];
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.1
+                                                 options: UIViewAnimationCurveEaseOut
+                                              animations:^{
+                                                  self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+                                              }
+                                              completion:^(BOOL finished){
+                                              }];
+                             [self.tabBarController.tabBar setHidden:YES];
+                         }];
+        
+//        [self.tabBarController.tabBar setHidden:YES];
+        
+        
+        
+        
         [self.historyTableView setEditing:YES animated:YES];
     }
     else{
         [(UIBarButtonItem *)sender setTitle:@"Edit"];
         [self.historyTableView setEditing:NO animated:YES];
+        
+        [self.myToolbar setHidden:NO];
+        [UIView animateWithDuration:0.1 delay:0.1 options:UIViewAnimationCurveEaseOut animations:^{
+            self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y + 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+        } completion:^(BOOL finished) {
+            [self.myToolbar setHidden:YES];
+            self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+            
+            self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+            [self.tabBarController.tabBar setHidden:NO];
+            [UIView animateWithDuration:0.1
+                                  delay:0.1
+                                options: UIViewAnimationCurveEaseOut
+                             animations:^{
+                                 self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                             }
+                             completion:^(BOOL finished){
+                             }];
+            
+        }];
+        
+        
+//        self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+//        [self.tabBarController.tabBar setHidden:NO];
+//        [UIView animateWithDuration:0.1
+//                              delay:0.1
+//                            options: UIViewAnimationCurveEaseOut
+//                         animations:^{
+//                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+//                         }
+//                         completion:^(BOOL finished){
+//                         }];
+//        
+//        [self.myToolbar setHidden:YES];
+        
+        
+        
+        
+        
+//        self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
     }
     
 }

@@ -16,5 +16,7 @@
 @property (weak, nonatomic) IBOutlet UITableView *historyTableView;
 - (IBAction)editAction:(id)sender;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) IBOutlet UILabel *noHistoryLabel;
+@property (weak, nonatomic) IBOutlet UIToolbar *myToolbar;
 
 @end
