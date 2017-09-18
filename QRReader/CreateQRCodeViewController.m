@@ -13,6 +13,7 @@
 #import "CreateCodeWithTypeVC.h"
 #import "HistoryData.h"
 #import "ShowCreatedCodeViewController.h"
+#import "SCSQLite.h"
 @import IQKeyboardManager;
 
 @interface CreateQRCodeViewController ()
@@ -55,11 +56,28 @@
 }
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"MY CHECKING IS %@",self.checking);
-    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"CreatedList"];
-    self.createdList = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
+//    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"CreatedList"];
+//    self.createdList = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
+    NSArray *tmp = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
     if(self.createdList == nil){
         self.createdList = [[NSMutableArray alloc] init];
     }
+
+    
+//////*********
+//    for(int i = 0 ;i < [tmp count] ;i++){
+//        HistoryData *tmpData = [HistoryData new];
+//        tmpData.resultType = [[tmp objectAtIndex:i] valueForKey:@"TypeOfCode"];
+//        tmpData.resultText = [[tmp objectAtIndex:i] valueForKey:@"DataOfCode"];
+//        tmpData.resultTime = [[tmp objectAtIndex:i] valueForKey:@"DateOfCode"];
+//        NSData *tmpData1 = [[tmp objectAtIndex:i] valueForKey:@"ImageOfCode"];
+//        tmpData.myImage = [UIImage imageWithData:[tmpData1 bytes]];
+//        
+////        tmpData.myImage = [[UIImage alloc] initWithData:[[NSData alloc] initWithBytes:CFBridgingRetain(tmpData1) length:tmpData1.length]];
+//        [self.createdList addObject:tmpData];
+//    }
+//*************
+//    self.createdList = [tmp mutableCopy];
     [self.createdTableView reloadData];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter]
@@ -216,15 +234,40 @@
     NSDictionary *dict = notification.userInfo;
     HistoryData *message = [dict valueForKey:@"total"];
     [self.createdList addObject:message];
-    NSArray *tmpArray = (NSArray *)self.createdList;
-    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
-    [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"CreatedList"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
+//    NSData *tmpData = UIImageJPEGRepresentation(message.myImage, 0.9);
+    UIImage *tmpImg = message.myImage;
+//    NSData *tmpData = UIImageJPEGRepresentation(tmpImg, 1);
+    NSData *tmpData = UIImagePNGRepresentation(tmpImg);
+    
+    
+//    UIImage *imagetoConvert = [self imageFromCIImage:(CIImage*)message.myImage];
+    
+    
+    
+//    NSData *dt = UIImagePNGRepresentation(imagetoConvert);
+    
+//    NSLog(@"%@",dt);
+    [SCSQLite executeSQL:@"INSERT INTO QRReader (TypeOfCode,DataOfCode,DateOfCode,ImageOfCode) VALUES ('%@','%@','%@','%@')",message.resultType,message.resultText,message.resultTime,tmpData];
+    NSArray *result = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
+//    NSArray *tmpArray = (NSArray *)self.createdList;
+//    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
+//    [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"CreatedList"];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     [self.createdTableView reloadData];
 }
 
+//- (UIImage *)imageFromCIImage:(CIImage *)ciImage {
+//    CIContext *ciContext = [CIContext contextWithOptions:nil];
+//    CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
+//    UIImage *image = [UIImage imageWithCGImage:cgImage];
+//    CGImageRelease(cgImage);
+//    return image;
+//}
 - (IBAction)editTableView:(id)sender {
     if([[self.myEditButton title]  isEqual: @"Edit"]){
+        
+        
+    
         [self.myEditButton setTitle:@"Done"];
         [self.createdTableView setAllowsMultipleSelectionDuringEditing:true];
 //        [self.createdTableView setAllowsMultipleSelection:true];

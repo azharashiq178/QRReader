@@ -6,6 +6,7 @@ target 'QRReader' do
    use_frameworks!
 pod 'RegexKitLite'
 pod 'IQKeyboardManager', '~> 4.0'
+pod 'SCSQLite'
 
   # Pods for QRReader
 #pod 'DYQRCodeDecoder'

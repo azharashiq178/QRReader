@@ -9,6 +9,7 @@
 #import "CreateCodeWithTypeVC.h"
 #import "CreateQRCodeViewController.h"
 #import "HistoryData.h"
+#import "SCSQLite.h"
 
 @interface CreateCodeWithTypeVC ()
 @property (nonatomic,strong) NSArray *codeTypes;
@@ -19,6 +20,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+//    [SCSQLite executeSQL:@"INSERT INTO QRReader (TypeOfCode) VALUES ('Azher')"];
+//    NSArray *result = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
     // Do any additional setup after loading the view.
     UIPickerView *myPickerView = [[UIPickerView alloc] init];
     self.codeTypes = [[NSArray alloc] initWithObjects:@"QRCode",@"Bar Code", nil];
@@ -48,14 +52,33 @@
             }
         }
         heightConstraint.constant = 300;
+        self.textForCode.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+        self.textForCode.placeholder = @"Enter your text here";
         self.textForCode.keyboardType = UIKeyboardTypeDefault;
+        [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"E-mail"]){
         self.textForCode.placeholder = @"E-mail";
         self.textForCode.keyboardType = UIKeyboardTypeEmailAddress;
+        [self setFieldsHidden:YES];
+        
+    }
+    else if ([self.typeOfCreation isEqualToString:@"Contact Info"]){
+        self.textForCode.placeholder = @"Contact Info";
+        self.textForCode.keyboardType = UIKeyboardTypeDefault;
+        [self setFieldsHidden:NO];
     }
 }
-
+-(void)setFieldsHidden:(BOOL)value{
+    [self.lastNameLabel setHidden:value];
+    [self.lastNameField setHidden:value];
+    [self.emailLabel setHidden:value];
+    [self.emailField setHidden:value];
+    [self.phoneField setHidden:value];
+    [self.phoneLabel setHidden:value];
+    [self.webLabel setHidden:value];
+    [self.webField setHidden:value];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -97,6 +120,13 @@
 -(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string{
     return NO;
 }
+- (UIImage *)imageFromCIImage:(CIImage *)ciImage {
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return image;
+}
 - (IBAction)createCodeAction:(id)sender {
     if([self.typeOfCode.text isEqualToString:@"QRCode"]){
         
@@ -109,7 +139,8 @@
         
         UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 300, 100, 100)];
 
-        myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+//        myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+        myImageView.image = [self imageFromCIImage:qrFilter.outputImage];
         [self.view addSubview:myImageView];
         [self dismissViewControllerAnimated:YES completion:^{
             NSDate *todayDate = [NSDate date]; //Get todays date

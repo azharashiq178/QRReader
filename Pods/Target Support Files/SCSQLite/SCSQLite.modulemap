@@ -1,0 +1,6 @@
+framework module SCSQLite {
+  umbrella header "SCSQLite-umbrella.h"
+
+  export *
+  module * { export * }
+}
