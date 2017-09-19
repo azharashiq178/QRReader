@@ -19,6 +19,11 @@
     [super viewDidLoad];
     self.linkSwitch.offImage = [UIImage imageNamed:@"on"];
     [self.linkSwitch setOnImage:[UIImage imageNamed:@"on.png"]];
+    [self.linkSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.laserSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.vibrateSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.beepSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
+    
 //    self.linkSwitch.onImage = [UIImage imageNamed:@"check.png"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -26,7 +31,40 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
+-(void)viewWillAppear:(BOOL)animated{
+    self.linkSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"link"];
+    self.laserSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"laser"];
+    self.vibrateSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Vibrate"];
+    self.beepSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Beep"];
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"Browser"]){
+        self.browserName.text = @"Chrome";
+    }
+    else{
+        self.browserName.text = @"Safari";
+    }
+}
+-(IBAction)didSwitchChanged:(UISwitch *)sender{
+    if(sender == self.linkSwitch){
+//        if([sender isOn]){
+            [[NSUserDefaults standardUserDefaults] setBool:[sender isOn] forKey:@"link"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+//        }
+//        NSLog(@"%hhd",sender.isOn);
+    }
+    else if (sender == self.laserSwitch){
+        [[NSUserDefaults standardUserDefaults] setBool:[sender isOn] forKey:@"laser"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else if (sender == self.vibrateSwitch){
+        [[NSUserDefaults standardUserDefaults] setBool:[sender isOn] forKey:@"Vibrate"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else if (sender == self.beepSwitch){
+        [[NSUserDefaults standardUserDefaults] setBool:[sender isOn] forKey:@"Beep"];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -152,6 +190,7 @@
         [self presentViewController:spvc animated:YES completion:nil];
     }
     else if(indexPath.row == 2 && indexPath.section == 2){
+        
 //        if ([[UIApplication sharedApplication] canOpenURL:
 //             [NSURL URLWithString:@"googlechrome://"]])
 //        {

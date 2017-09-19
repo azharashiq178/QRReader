@@ -17,6 +17,14 @@
 @property (nonatomic,strong) NSString *checking;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *myEditButton;
 @property (weak, nonatomic) IBOutlet UITableView *createdTableView;
+@property (weak, nonatomic) IBOutlet UIToolbar *myToolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectAllButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
+@property (weak, nonatomic) IBOutlet UILabel *noHistoryLabel;
+
+- (IBAction)selectAllAction:(UIBarButtonItem *)sender;
+- (IBAction)deleteAction:(UIBarButtonItem *)sender;
+
 - (IBAction)editTableView:(id)sender;
 
 @end

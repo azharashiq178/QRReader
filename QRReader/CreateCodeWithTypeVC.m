@@ -9,7 +9,7 @@
 #import "CreateCodeWithTypeVC.h"
 #import "CreateQRCodeViewController.h"
 #import "HistoryData.h"
-#import "SCSQLite.h"
+//#import "SCSQLite.h"
 
 @interface CreateCodeWithTypeVC ()
 @property (nonatomic,strong) NSArray *codeTypes;
@@ -175,7 +175,8 @@
 
             UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2)-150, self.view.frame.size.height - 200, 300, 100)];
             //        self.qrImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
-            myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+//            myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+            myImageView.image = [self imageFromCIImage:qrFilter.outputImage];
             [self.view addSubview:myImageView];
             // newString consists only of the digits 0 through 9
             [self dismissViewControllerAnimated:YES completion:^{

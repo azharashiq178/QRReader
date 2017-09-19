@@ -67,6 +67,8 @@
     }
     else if([self.typeOfGeneralSetting  isEqualToString: @"Browser"]){
         [self.navigationItem setTitle:@"Browser"];
+        self.dataArray = [[NSArray alloc] initWithObjects:@"Safari (Native)",@"Chrome", nil];
+        [self.settingsTableView reloadData];
         
     }
     else if([self.typeOfGeneralSetting  isEqualToString: @"Sound"]){
@@ -96,12 +98,27 @@
     if(cell == nil){
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    if(indexPath.row == 0){
-//        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
-//        [cell setSelected:YES animated:YES];
+    if([self.typeOfGeneralSetting  isEqualToString: @"Browser"]){
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"Browser"]){
+            if(indexPath.row == 1){
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            }
+        }
+        else{
+            if(indexPath.row == 0){
+                [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+                [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+            }
+        }
+    }
+    else if(indexPath.row == 0){
+        //        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        //        [cell setSelected:YES animated:YES];
         [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
         [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
     }
+    [cell setBackgroundColor:[UIColor grayColor]];
     cell.textLabel.text = [self.dataArray objectAtIndex:indexPath.row];
     return cell;
 }
@@ -113,6 +130,14 @@
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryCheckmark;
+    if([self.typeOfGeneralSetting  isEqualToString: @"Browser"]){
+        if(indexPath.row == 0)
+            [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Browser"];
+        else if (indexPath.row == 1){
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"Browser"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
 }
 -(NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;

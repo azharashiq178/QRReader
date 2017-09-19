@@ -18,6 +18,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.resultString.text = self.tmpResult;
+    [self.resultString setDelegate:self];
+    self.navigationItem.title = self.myTitle;
+    BOOL tmp = [[NSUserDefaults standardUserDefaults] boolForKey:@"link"];
+    if (tmp) {
+        [self.resultString setSelectable:YES];
+    }
+    else{
+        [self.resultString setSelectable:NO];
+    }
+
+    
 //    [self setNavigationBarButton];
     // Do any additional setup after loading the view, typically from a nib.
  
@@ -69,5 +80,49 @@
 -(IBAction)openLibrary:(id)sender{
     NSLog(@"Opening Library");
 
+}
+-(BOOL)textView:(UITextView *)textView shouldInteractWithURL:(NSURL *)URL inRange:(NSRange)characterRange interaction:(UITextItemInteraction)interaction{
+    NSLog(@"Interacting");
+    if([self.myTitle  isEqual: @"URL"]){
+        if([[NSUserDefaults standardUserDefaults] boolForKey:@"Browser"]){
+
+            if ([[UIApplication sharedApplication] canOpenURL:
+                 [NSURL URLWithString:@"googlechrome://"]])
+            {
+                NSLog(@"Yes app can open chrome url");
+                NSURL *inputURL = URL;
+                NSString *scheme = inputURL.scheme;
+                
+                // Replace the URL Scheme with the Chrome equivalent.
+                NSString *chromeScheme = nil;
+                if ([scheme isEqualToString:@"http"]) {
+                    chromeScheme = @"googlechrome";
+                } else if ([scheme isEqualToString:@"https"]) {
+                    chromeScheme = @"googlechromes";
+                }
+                
+                // Proceed only if a valid Google Chrome URI Scheme is available.
+                if (chromeScheme) {
+                    NSString *absoluteString = [inputURL absoluteString];
+                    NSRange rangeForScheme = [absoluteString rangeOfString:@":"];
+                    NSString *urlNoScheme =
+                    [absoluteString substringFromIndex:rangeForScheme.location];
+                    NSString *chromeURLString =
+                    [chromeScheme stringByAppendingString:urlNoScheme];
+                    NSURL *chromeURL = [NSURL URLWithString:chromeURLString];
+                    
+                    // Open the URL with Chrome.
+                    [[UIApplication sharedApplication] openURL:chromeURL];
+                }
+                
+            }
+            else{
+                NSLog(@"Noped app can't open chrom url");
+            }
+            return NO;
+        }
+    }
+    return YES;
+    
 }
 @end

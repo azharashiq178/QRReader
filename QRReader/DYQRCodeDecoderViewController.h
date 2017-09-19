@@ -20,6 +20,7 @@
 @property (nonatomic) BOOL needsScanAnnimation;
 //@property (weak, nonatomic) IBOutlet UITextView *myResult;
 @property (nonatomic,strong) NSString *myResult;
+@property (nonatomic,strong) NSString *myType;
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 

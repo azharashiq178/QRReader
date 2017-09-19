@@ -9,9 +9,10 @@
 #import <UIKit/UIKit.h>
 
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UITextView *resultString;
 @property (strong,nonatomic) NSString *tmpResult;
+@property (strong,nonatomic) NSString *myTitle;
 
 
 @end

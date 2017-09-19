@@ -88,6 +88,7 @@ UIImagePickerControllerDelegate> {
         _completion = completion;
         _frameImage = [UIImage imageNamed:@"img_animation_scan_pic" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil];
         _lineImage = [UIImage imageNamed:@"img_animation_scan_line" inBundle:[NSBundle bundleForClass:[DYQRCodeDecoderViewController class]] compatibleWithTraitCollection:nil];
+        
 //        _leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
 //                                                              style:UIBarButtonItemStylePlain
 //                                                             target:self
@@ -116,6 +117,13 @@ UIImagePickerControllerDelegate> {
             [_lineImageView setFrame:_lineRect0];
         }];
     }
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"laser"]){
+        [_lineImageView setHidden:NO];
+    }
+    else{
+      [_lineImageView setHidden:YES];
+    }
+//    [_lineImageView setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated{
@@ -339,6 +347,7 @@ UIImagePickerControllerDelegate> {
     }
     [self cancel];
 //    if(result != nil)
+    self.myType = @"QRCode";
         [self dealWithResult:result];
     
 }
@@ -353,12 +362,26 @@ UIImagePickerControllerDelegate> {
 }
 
 - (void)dealWithResult:(NSString *)result {
+//    AudioServicesPlaySystemSound (1108);
+//    AudioServicesPlaySystemSound (1052);
+//    AudioServicesPlaySystemSound (1106);
+//    AudioServicesPlaySystemSound (1057);
+//    AudioServicesPlaySystemSound (1100);
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"Beep"]){
+        AudioServicesPlaySystemSound (1113);
+    }
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"Vibrate"]){
+        AudioServicesPlayAlertSound(kSystemSoundID_Vibrate);
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate);
+    }
     if(result != nil){
         self.myResult = result;
         //    [self performSegueWithIdentifier:@"showResult" sender:self];
         self.myResult = result;
         NSLog(@"My Result is %@",result);
         [(MyTabBarViewController *)self.tabBarController setMyResultString:result];
+        [(MyTabBarViewController *)self.tabBarController setMyType:self.myType];
         
         [self.tabBarController setSelectedIndex:1];
     }
@@ -455,11 +478,13 @@ UIImagePickerControllerDelegate> {
                     if (_completion) {
                         _completion(NO, nil);
                     }
+                    self.myType = @"nil";
                     [self dealWithResult:nil];
                 } else {
                     if (_completion) {
                         _completion(YES, [metadataObj stringValue]);
                     }
+                    self.myType = @"QRCode";
                     [self dealWithResult:[metadataObj stringValue]];
                 }
             };
@@ -505,6 +530,7 @@ UIImagePickerControllerDelegate> {
                             [self.captureSession stopRunning];
 //                            self.scannedBarcode.text = capturedBarcode;
                             NSLog(@"Bar code is %@",capturedBarcode);
+                            self.myType = @"Bar Code";
                             [self dealWithResult:capturedBarcode];
                         });
                         return;

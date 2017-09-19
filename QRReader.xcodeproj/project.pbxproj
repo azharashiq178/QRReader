@@ -29,6 +29,7 @@
 		7E1864441F56B904001A11EE /* QRReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E1864431F56B904001A11EE /* QRReaderTests.m */; };
 		7E18644F1F56B904001A11EE /* QRReaderUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E18644E1F56B904001A11EE /* QRReaderUITests.m */; };
 		7E3D40661F56FA0000E6C478 /* DYQRCodeDecoderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */; };
+		7E6D0D6E1F6FCE95003181BE /* History.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E6D0D6D1F6FCE95003181BE /* History.m */; };
 		7E71DC2B1F5E71380089E934 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */; };
 		7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2E1F5E74B70089E934 /* HistoryData.m */; };
 		7EA51B0D1F6F94AA0056BCB3 /* QRReaderDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EA51B0C1F6F94AA0056BCB3 /* QRReaderDB.sqlite */; };
@@ -98,6 +99,8 @@
 		7E1864501F56B904001A11EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7E3D40621F56F9FF00E6C478 /* DYQRCodeDecoderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYQRCodeDecoderViewController.h; sourceTree = "<group>"; };
 		7E3D40631F56FA0000E6C478 /* DYQRCodeDecoderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYQRCodeDecoderViewController.m; sourceTree = "<group>"; };
+		7E6D0D6C1F6FCE95003181BE /* History.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = History.h; sourceTree = "<group>"; };
+		7E6D0D6D1F6FCE95003181BE /* History.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = History.m; sourceTree = "<group>"; };
 		7E71DC291F5E71380089E934 /* HistoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryTableViewCell.h; sourceTree = "<group>"; };
 		7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryTableViewCell.m; sourceTree = "<group>"; };
 		7E71DC2D1F5E74B70089E934 /* HistoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryData.h; sourceTree = "<group>"; };
@@ -244,6 +247,8 @@
 		7E18641A1F56B903001A11EE = {
 			isa = PBXGroup;
 			children = (
+				7E6D0D6C1F6FCE95003181BE /* History.h */,
+				7E6D0D6D1F6FCE95003181BE /* History.m */,
 				7E1864251F56B903001A11EE /* QRReader */,
 				7E1864421F56B904001A11EE /* QRReaderTests */,
 				7E18644D1F56B904001A11EE /* QRReaderUITests */,
@@ -537,7 +542,7 @@
 				TargetAttributes = {
 					7E1864221F56B903001A11EE = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = ZVPAK2K6QX;
+						DevelopmentTeam = 4Q7BMB5ZS8;
 						ProvisioningStyle = Automatic;
 					};
 					7E18643E1F56B904001A11EE = {
@@ -779,6 +784,7 @@
 				7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */,
 				38AB57811F5FCA0D005B78BB /* SettingsViewController.m in Sources */,
 				7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */,
+				7E6D0D6E1F6FCE95003181BE /* History.m in Sources */,
 				7E1864341F56B904001A11EE /* QRReader.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -931,9 +937,9 @@
 			baseConfigurationReference = 3FCA2F15FE48B7CAAC0C2DD9 /* Pods-QRReader.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZVPAK2K6QX;
+				DEVELOPMENT_TEAM = 4Q7BMB5ZS8;
 				INFOPLIST_FILE = QRReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OZITechnology.QRReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -945,9 +951,9 @@
 			baseConfigurationReference = 8C9790551FC1FD8921ED9C20 /* Pods-QRReader.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = ZVPAK2K6QX;
+				DEVELOPMENT_TEAM = 4Q7BMB5ZS8;
 				INFOPLIST_FILE = QRReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = OZITechnology.QRReader;
 				PRODUCT_NAME = "$(TARGET_NAME)";

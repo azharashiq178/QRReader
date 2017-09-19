@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="category">
+        <attribute name="myImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="resultText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="ScanHistory" representedClassName="ScanHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="myImage" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="resultText" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="resultType" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="History" positionX="-63" positionY="-18" width="128" height="30"/>
+        <element name="ScanHistory" positionX="-54" positionY="-18" width="128" height="105"/>
+    </elements>
 </model>

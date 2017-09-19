@@ -10,4 +10,5 @@
 
 @interface MyTabBarViewController : UITabBarController <UITabBarControllerDelegate>
 @property (nonatomic,retain) NSString *myResultString;
+@property (nonatomic,retain) NSString *myType;
 @end

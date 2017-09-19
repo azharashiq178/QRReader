@@ -18,5 +18,11 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UILabel *noHistoryLabel;
 @property (weak, nonatomic) IBOutlet UIToolbar *myToolbar;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *selectAllButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
+
+- (IBAction)selectAllAction:(UIBarButtonItem *)sender;
+- (IBAction)moveToAction:(UIBarButtonItem *)sender;
+- (IBAction)deleteAction:(UIBarButtonItem *)sender;
 
 @end

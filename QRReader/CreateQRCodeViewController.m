@@ -14,6 +14,7 @@
 #import "HistoryData.h"
 #import "ShowCreatedCodeViewController.h"
 #import "SCSQLite.h"
+#import "AppDelegate.h"
 @import IQKeyboardManager;
 
 @interface CreateQRCodeViewController ()
@@ -37,6 +38,9 @@
     }
     [self.mySearchBar setDelegate:self];
     
+    
+    
+    
 // *************************************** Creating QRCode ****************
 //    NSString *qrString = @"Hello My Name is Muhammad Azher";
 //    CNMutableContact *tmpContact = [CNMutableContact new];
@@ -58,11 +62,25 @@
     NSLog(@"MY CHECKING IS %@",self.checking);
 //    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"CreatedList"];
 //    self.createdList = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
-    NSArray *tmp = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
-    if(self.createdList == nil){
+//    NSArray *tmp = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
+//    if(self.createdList == nil){
         self.createdList = [[NSMutableArray alloc] init];
+//    }
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"History"];
+//    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for(int i = 0 ;i < [tmpArray count]; i++){
+        HistoryData *tmpHistory = [HistoryData new];
+        tmpHistory.resultText = [[tmpArray objectAtIndex:i] resultText];
+        tmpHistory.resultTime = [[tmpArray objectAtIndex:i] resultTime];
+        tmpHistory.resultType = [[tmpArray objectAtIndex:i] valueForKey:@"resultType"];
+        NSData *tmpBD = [[tmpArray objectAtIndex:i] valueForKey:@"myImage"];
+        tmpHistory.myImage = [UIImage imageWithData:tmpBD];
+        [self.createdList addObject:tmpHistory];
+//        tmpHistory.myImage = [UIImage imageWithData:[[tmpArray objectAtIndex:i] myImage]];
     }
-
     
 //////*********
 //    for(int i = 0 ;i < [tmp count] ;i++){
@@ -82,6 +100,20 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter]
      addObserver:self selector:@selector(triggerAction:) name:@"NotificationMessageEvent" object:nil];
+    if([self.createdList count]==0){
+        [self.createdTableView setHidden:YES];
+        [self.myEditButton setEnabled:NO];
+        [self.noHistoryLabel setHidden:NO];
+        [self.myEditButton setEnabled:NO];
+        
+    }
+    else{
+        [self.noHistoryLabel setHidden:YES];
+        [self.createdTableView setHidden:NO];
+        [self.myEditButton setEnabled:YES];
+        
+    }
+
     
 }
 - (void)didReceiveMemoryWarning {
@@ -115,6 +147,14 @@
     }
     HistoryData *tmpData = [self.createdList objectAtIndex:indexPath.row];
     cell.createdCodeImageView.image = tmpData.myImage;
+    if(tmpData.myImage == nil){
+        NSData *stringData = [tmpData.resultText dataUsingEncoding: NSISOLatin1StringEncoding];
+        CIFilter *qrFilter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+        [qrFilter setValue:stringData forKey:@"inputMessage"];
+        cell.createdCodeImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+        cell.createdCodeImageView.contentMode = UIViewContentModeScaleAspectFit;
+        
+    }
     cell.createdCodeDate.text = tmpData.resultTime;
     cell.createdCodeText.text = tmpData.resultText;
     cell.createdCodeTitle.text = tmpData.resultType;
@@ -124,6 +164,9 @@
     else{
         [cell setBackgroundColor:[UIColor colorWithRed:0.067 green:0.067 blue:0.067 alpha:1]];
     }
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor clearColor];
+    [cell setSelectedBackgroundView:bgColorView];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //    [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     return cell;
@@ -150,23 +193,27 @@
     return tmpView;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
+//    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
     if(![tableView isEditing]){
         CreatedTableViewCell *cell = (CreatedTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
         self.titleToPassNext = [NSString stringWithFormat:@"%@",[[cell createdCodeTitle] text]];
         [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
     else{
-        [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
-        //    [[tableView cellForRowAtIndexPath:indexPath] setShowsReorderControl:YES];
-        [[tableView cellForRowAtIndexPath:indexPath] setEditing:YES animated:YES];
+        [self.deleteButton setEnabled:YES];
+        if([[tableView indexPathsForSelectedRows] count] == [tableView numberOfRowsInSection:0]){
+            self.selectAllButton.title = @"Deselect All";
+        }
+//        [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
+//        //    [[tableView cellForRowAtIndexPath:indexPath] setShowsReorderControl:YES];
+//        [[tableView cellForRowAtIndexPath:indexPath] setEditing:YES animated:YES];
     }
     
 //    [[tableView cellForRowAtIndexPath:indexPath] setFocusStyle:UITableViewCellFocusStyleCustom];
 //    [[self.createdTableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
 }
 -(NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
+//    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 //    [[tableView cellForRowAtIndexPath:indexPath] setEditing:NO animated:YES];
 //    [[tableView cellForRowAtIndexPath:indexPath] setSelected:NO animated:YES];
@@ -174,7 +221,11 @@
     return indexPath;
 }
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"Deselected");
+    self.selectAllButton.title = @"Select All";
+    NSLog(@"Deselecting");
+    if([[tableView indexPathsForSelectedRows] count] == 0){
+        [self.deleteButton setEnabled:NO];
+    }
 //    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 -(void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
@@ -236,19 +287,27 @@
     [self.createdList addObject:message];
 //    NSData *tmpData = UIImageJPEGRepresentation(message.myImage, 0.9);
     UIImage *tmpImg = message.myImage;
-//    NSData *tmpData = UIImageJPEGRepresentation(tmpImg, 1);
-    NSData *tmpData = UIImagePNGRepresentation(tmpImg);
+
     
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSManagedObject *device = [NSEntityDescription insertNewObjectForEntityForName:@"History" inManagedObjectContext:context];
+    [device setValue:message.resultType forKey:@"resultType"];
+    [device setValue:message.resultTime forKey:@"resultTime"];
+    [device setValue:message.resultText forKey:@"resultText"];
+    [device setValue:UIImagePNGRepresentation(tmpImg) forKey:@"myImage"];
+    NSError *error = nil;
+    // Save the object to persistent store
+    if (![context save:&error]) {
+        NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+    }
+    else{
+        NSLog(@"Data Saved");
+        [self.createdTableView setHidden:NO];
+        [self.noHistoryLabel setHidden:YES];
+        [self.myEditButton setEnabled:YES];
+    }
     
-//    UIImage *imagetoConvert = [self imageFromCIImage:(CIImage*)message.myImage];
-    
-    
-    
-//    NSData *dt = UIImagePNGRepresentation(imagetoConvert);
-    
-//    NSLog(@"%@",dt);
-    [SCSQLite executeSQL:@"INSERT INTO QRReader (TypeOfCode,DataOfCode,DateOfCode,ImageOfCode) VALUES ('%@','%@','%@','%@')",message.resultType,message.resultText,message.resultTime,tmpData];
-    NSArray *result = [SCSQLite selectRowSQL:@"SELECT * FROM QRReader"];
 //    NSArray *tmpArray = (NSArray *)self.createdList;
 //    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
 //    [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"CreatedList"];
@@ -263,32 +322,140 @@
 //    CGImageRelease(cgImage);
 //    return image;
 //}
-- (IBAction)editTableView:(id)sender {
-    if([[self.myEditButton title]  isEqual: @"Edit"]){
-        
-        
-    
-        [self.myEditButton setTitle:@"Done"];
-        [self.createdTableView setAllowsMultipleSelectionDuringEditing:true];
-//        [self.createdTableView setAllowsMultipleSelection:true];
+- (IBAction)selectAllAction:(UIBarButtonItem *)sender {
+    if([sender.title  isEqual: @"Select All"]){
+        [self.deleteButton setEnabled:YES];
+        for(int i = 0 ;i < [self.createdTableView numberOfRowsInSection:0]; i++){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.createdTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        }
+        sender.title = @"Deselect All";
+    }
+    else{
+        [self.deleteButton setEnabled:NO];
+        for(int i = 0 ;i < [self.createdTableView numberOfRowsInSection:0]; i++){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.createdTableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+        sender.title = @"Select All";
+    }
+}
 
+- (IBAction)deleteAction:(UIBarButtonItem *)sender {
+    NSArray *indexesArray = [self.createdTableView indexPathsForSelectedRows];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"History"];
+    
+    //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for(int i = 0 ;i < [indexesArray count]; i++){
+        [context deleteObject:[tmpArray objectAtIndex:[[indexesArray objectAtIndex:i] row]]];
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+            return;
+        }
+        else{
+            NSLog(@"Deleted");
+            indexesArray = [self.createdTableView indexPathsForSelectedRows];
+            NSIndexPath *tmpIndexPath = [indexesArray objectAtIndex:i];
+            //            [self.historyTableView deleteRowsAtIndexPaths:@[tmpIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.createdList removeObjectAtIndex:tmpIndexPath.row];
+            [self.createdTableView reloadData];
+        }
+    }
+    if([self.createdList count] == 0){
+        [self.createdTableView setHidden:YES];
+        [self.noHistoryLabel setHidden:NO];
+        [self editTableView:self.myEditButton];
+        [self.myEditButton setEnabled:NO];
+    }
+}
+
+- (IBAction)editTableView:(id)sender {
+//    if([[self.myEditButton title]  isEqual: @"Edit"]){
+//        
+//        
+//    
+//        [self.myEditButton setTitle:@"Done"];
+//        [self.createdTableView setAllowsMultipleSelectionDuringEditing:true];
+////        [self.createdTableView setAllowsMultipleSelection:true];
+//
+//        [self.createdTableView setEditing:YES animated:YES];
+//    }
+//    else{
+//        [self.myEditButton setTitle:@"Edit"];
+////        [(UIBarButtonItem *)sender setTitle:@"Edit"];
+//        if([self.createdTableView isEditing]){
+//            NSArray *allSelectedIndex = [self.createdTableView indexPathsForSelectedRows];
+//            for(int i = 0 ;i < [allSelectedIndex count] ;i++){
+//                NSIndexPath *tmpIndexPath = [allSelectedIndex objectAtIndex:i];
+//                [self.createdTableView deselectRowAtIndexPath:tmpIndexPath animated:YES];
+////                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelected:NO];
+//                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
+//            }
+//        }
+//        [self.createdTableView setEditing:NO animated:YES];
+//        
+//    }
+    
+    if([[(UIBarButtonItem *)sender title] isEqualToString:@"Edit"]){
+        [(UIBarButtonItem *)sender setTitle:@"Done"];
+        [self.createdTableView setAllowsMultipleSelectionDuringEditing:YES];
+        
+        self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+        [self.myToolbar setHidden:YES];
+        [UIView animateWithDuration:0.1
+                              delay:0.1
+                            options: UIViewAnimationCurveEaseOut
+                         animations:^{
+                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                         }
+                         completion:^(BOOL finished){
+                             
+                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                             [self.myToolbar setHidden:NO];
+                             
+                             self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y + 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+                             [self.myToolbar setHidden:NO];
+                             [UIView animateWithDuration:0.1
+                                                   delay:0.1
+                                                 options: UIViewAnimationCurveEaseOut
+                                              animations:^{
+                                                  self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+                                              }
+                                              completion:^(BOOL finished){
+                                              }];
+                             [self.tabBarController.tabBar setHidden:YES];
+                         }];
         [self.createdTableView setEditing:YES animated:YES];
     }
     else{
-        [self.myEditButton setTitle:@"Edit"];
-//        [(UIBarButtonItem *)sender setTitle:@"Edit"];
-        if([self.createdTableView isEditing]){
-            NSArray *allSelectedIndex = [self.createdTableView indexPathsForSelectedRows];
-            for(int i = 0 ;i < [allSelectedIndex count] ;i++){
-                NSIndexPath *tmpIndexPath = [allSelectedIndex objectAtIndex:i];
-                [self.createdTableView deselectRowAtIndexPath:tmpIndexPath animated:YES];
-//                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelected:NO];
-                [[self.createdTableView cellForRowAtIndexPath:tmpIndexPath] setSelectionStyle:UITableViewCellSelectionStyleBlue];
-            }
-        }
+        [(UIBarButtonItem *)sender setTitle:@"Edit"];
         [self.createdTableView setEditing:NO animated:YES];
         
+        [self.myToolbar setHidden:NO];
+        [UIView animateWithDuration:0.1 delay:0.1 options:UIViewAnimationCurveEaseOut animations:^{
+            self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y + 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+        } completion:^(BOOL finished) {
+            [self.myToolbar setHidden:YES];
+            self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
+            
+            self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+            [self.tabBarController.tabBar setHidden:NO];
+            [UIView animateWithDuration:0.1
+                                  delay:0.1
+                                options: UIViewAnimationCurveEaseOut
+                             animations:^{
+                                 self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 49, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
+                             }
+                             completion:^(BOOL finished){
+                             }];
+            
+        }];
     }
+    
 }
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;

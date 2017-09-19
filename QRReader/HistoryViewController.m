@@ -16,7 +16,8 @@
 #import "ViewController.h"
 #import "HistoryTableViewCell.h"
 #import "HistoryData.h"
-
+#import "AppDelegate.h"
+@import CoreData;
 
 
 @interface HistoryViewController ()
@@ -43,22 +44,41 @@
     if([(MyTabBarViewController *)self.tabBarController myResultString] != nil){
         [self performSegueWithIdentifier:@"showResult" sender:self];
     }
-    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"HistoryList"];
-    self.resultArray = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
-    if(self.resultArray == nil){
+//    NSData *arrayData = [[NSUserDefaults standardUserDefaults] objectForKey:@"HistoryList"];
+//    self.resultArray = [[NSKeyedUnarchiver unarchiveObjectWithData:arrayData] mutableCopy];
+//    if(self.resultArray == nil){
         self.resultArray = [[NSMutableArray alloc] init];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
+    
+    //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for(int i = 0 ;i < [tmpArray count]; i++){
+        HistoryData *tmpHistory = [HistoryData new];
+        tmpHistory.resultText = [[tmpArray objectAtIndex:i] resultText];
+        tmpHistory.resultTime = [[tmpArray objectAtIndex:i] resultTime];
+        tmpHistory.resultType = [[tmpArray objectAtIndex:i] valueForKey:@"resultType"];
+        NSData *tmpBD = [[tmpArray objectAtIndex:i] valueForKey:@"myImage"];
+        tmpHistory.myImage = [UIImage imageWithData:tmpBD];
+        [self.resultArray addObject:tmpHistory];
+        //        tmpHistory.myImage = [UIImage imageWithData:[[tmpArray objectAtIndex:i] myImage]];
     }
+//    }
     [self.historyTableView reloadData];
     if([self.resultArray count]==0){
         [self.historyTableView setHidden:YES];
         [self.editButton setEnabled:NO];
         [self.noHistoryLabel setHidden:NO];
+        [self.editButton setEnabled:NO];
         
     }
     else{
         [self.noHistoryLabel setHidden:YES];
         [self.historyTableView setHidden:NO];
         [self.editButton setEnabled:YES];
+        
     }
 }
 
@@ -112,6 +132,13 @@
 -(BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
     return NO;
 }
+- (UIImage *)imageFromCIImage:(CIImage *)ciImage {
+    CIContext *ciContext = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [ciContext createCGImage:ciImage fromRect:[ciImage extent]];
+    UIImage *image = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    return image;
+}
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier  isEqual: @"showResult"]){
         
@@ -127,6 +154,22 @@
             [dateFormatter setDateFormat:@"dd/MM/yyyy"]; //Here we can set the format which we need
             NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
             tmpData.resultTime = convertedDateString;
+            
+            NSString *tmpStr = [NSString stringWithFormat:@"%@",tmpData.resultText];
+            //    NSData *stringData = [tmpStr dataUsingEncoding: NSUTF8StringEncoding];
+            NSData *stringData = [tmpStr dataUsingEncoding: NSISOLatin1StringEncoding];
+            CIFilter *qrFilter;
+            if([[(MyTabBarViewController *)self.tabBarController myType]  isEqual: @"QRCode"]){
+                NSLog(@"QRCode");
+                qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+            }
+            else if ([[(MyTabBarViewController *)self.tabBarController myType]  isEqual: @"Bar Code"]){
+                NSLog(@"Bar Code");
+                qrFilter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+            }
+            
+            [qrFilter setValue:stringData forKey:@"inputMessage"];
+            tmpData.myImage = [self imageFromCIImage:qrFilter.outputImage];
             
             NSError *errorVCF;
             
@@ -150,15 +193,30 @@
                 }
                 
             }
-            
-            [self.resultArray addObject:tmpData];
-            NSArray *tmpArray = (NSArray *)self.resultArray;
-            NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
-            [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"HistoryList"];
-            [[NSUserDefaults standardUserDefaults] synchronize];
+            AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+            NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+            NSManagedObject *device = [NSEntityDescription insertNewObjectForEntityForName:@"ScanHistory" inManagedObjectContext:context];
+            [device setValue:tmpData.resultType forKey:@"resultType"];
+            [device setValue:tmpData.resultTime forKey:@"resultTime"];
+            [device setValue:tmpData.resultText forKey:@"resultText"];
+            [device setValue:UIImagePNGRepresentation(tmpData.myImage) forKey:@"myImage"];
+            NSError *error = nil;
+            // Save the object to persistent store
+            if (![context save:&error]) {
+                NSLog(@"Can't Save! %@ %@", error, [error localizedDescription]);
+            }
+            else{
+                NSLog(@"Data Saved");
+            }
+//            [self.resultArray addObject:tmpData];
+//            NSArray *tmpArray = (NSArray *)self.resultArray;
+//            NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:tmpArray];
+//            [[NSUserDefaults standardUserDefaults] setObject:arrayData forKey:@"HistoryList"];
+//            [[NSUserDefaults standardUserDefaults] synchronize];
         }
         else{
             destinationController.tmpResult = [[self.resultArray objectAtIndex:[[self.historyTableView indexPathForSelectedRow] row]] resultText];
+            destinationController.myTitle = [[self.resultArray objectAtIndex:[[self.historyTableView indexPathForSelectedRow] row]] resultType];
         }
         
         [(MyTabBarViewController *)self.tabBarController setMyResultString:nil];
@@ -184,17 +242,51 @@
     cell.result.text = [[self.resultArray objectAtIndex:indexPath.row] resultText];
     cell.timeAndDate.text = [[self.resultArray objectAtIndex:indexPath.row] resultTime];
     cell.typeOfResult.text = [[self.resultArray objectAtIndex:indexPath.row] resultType];
+    cell.typeImageView.image = [[self.resultArray objectAtIndex:indexPath.row] myImage];
+    if(cell.typeImageView.image == nil){
+        NSLog(@"EMpty");
+        NSData *stringData = [[[self.resultArray objectAtIndex:indexPath.row] resultText] dataUsingEncoding: NSISOLatin1StringEncoding];
+        CIFilter *qrFilter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+        [qrFilter setValue:stringData forKey:@"inputMessage"];
+        cell.typeImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+        cell.typeImageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
     if(indexPath.row % 2 != 0){
         [cell setBackgroundColor:[UIColor colorWithRed:0.114 green:0.114 blue:0.114 alpha:1]];
     }
     else{
         [cell setBackgroundColor:[UIColor colorWithRed:0.067 green:0.067 blue:0.067 alpha:1]];
     }
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = [UIColor clearColor];
+    [cell setSelectedBackgroundView:bgColorView];
     return cell;
 }
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    [self performSegueWithIdentifier:@"showResult" sender:self];
+    [self.deleteButton setEnabled:YES];
+    if([[tableView indexPathsForSelectedRows] count] == [tableView numberOfRowsInSection:0]){
+        self.selectAllButton.title = @"Deselect All";
+    }
+    NSLog(@"HEre");
+}
+-(NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if(![tableView isEditing]){
+        [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        [self performSegueWithIdentifier:@"showResult" sender:self];
+        return nil;
+    }
+    return indexPath;
+}
+-(NSIndexPath *)tableView:(UITableView *)tableView willDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    return indexPath;
+}
+-(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.selectAllButton.title = @"Select All";
+    NSLog(@"Deselecting");
+    if([[tableView indexPathsForSelectedRows] count] == 0){
+        [self.deleteButton setEnabled:NO];
+    }
 }
 -(BOOL)isTextPhoneNumber:(NSString *)vCardString{
     //    For Detecting phone number
@@ -299,12 +391,6 @@
                                               }];
                              [self.tabBarController.tabBar setHidden:YES];
                          }];
-        
-//        [self.tabBarController.tabBar setHidden:YES];
-        
-        
-        
-        
         [self.historyTableView setEditing:YES animated:YES];
     }
     else{
@@ -330,26 +416,6 @@
                              }];
             
         }];
-        
-        
-//        self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y + 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
-//        [self.tabBarController.tabBar setHidden:NO];
-//        [UIView animateWithDuration:0.1
-//                              delay:0.1
-//                            options: UIViewAnimationCurveEaseOut
-//                         animations:^{
-//                             self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y - 44, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
-//                         }
-//                         completion:^(BOOL finished){
-//                         }];
-//        
-//        [self.myToolbar setHidden:YES];
-        
-        
-        
-        
-        
-//        self.myToolbar.frame = CGRectMake(0, self.myToolbar.frame.origin.y - 44, self.myToolbar.frame.size.width, self.myToolbar.frame.size.height);
     }
     
 }
@@ -397,5 +463,80 @@
     [self.historyTableView reloadData];
     //    NSArray *results = [self.createdList valueForKey:@"resultText"];
     //    NSArray *results1 = [results filteredArrayUsingPredicate:predicate];
+}
+- (IBAction)selectAllAction:(UIBarButtonItem *)sender {
+    if([sender.title  isEqual: @"Select All"]){
+        [self.deleteButton setEnabled:YES];
+        for(int i = 0 ;i < [self.historyTableView numberOfRowsInSection:0]; i++){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.historyTableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionNone];
+        }
+        sender.title = @"Deselect All";
+    }
+    else{
+        [self.deleteButton setEnabled:NO];
+        for(int i = 0 ;i < [self.historyTableView numberOfRowsInSection:0]; i++){
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+            [self.historyTableView deselectRowAtIndexPath:indexPath animated:YES];
+        }
+        sender.title = @"Select All";
+    }
+}
+
+- (IBAction)moveToAction:(UIBarButtonItem *)sender {
+}
+
+- (IBAction)deleteAction:(UIBarButtonItem *)sender {
+    NSLog(@"Deleted objects are %@",[self.historyTableView indexPathsForSelectedRows]);
+    NSArray *indexesArray = [self.historyTableView indexPathsForSelectedRows];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
+    
+    //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for(int i = 0 ;i < [indexesArray count]; i++){
+        [context deleteObject:[tmpArray objectAtIndex:[[indexesArray objectAtIndex:i] row]]];
+        NSError *error = nil;
+        if (![context save:&error]) {
+            NSLog(@"Can't Delete! %@ %@", error, [error localizedDescription]);
+            return;
+        }
+        else{
+            NSLog(@"Deleted");
+            indexesArray = [self.historyTableView indexPathsForSelectedRows];
+            NSIndexPath *tmpIndexPath = [indexesArray objectAtIndex:i];
+//            [self.historyTableView deleteRowsAtIndexPaths:@[tmpIndexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [self.resultArray removeObjectAtIndex:tmpIndexPath.row];
+//            if([self.resultArray count] == 0){
+//                [self.historyTableView setHidden:YES];
+//            }
+//            else{
+//                [self.historyTableView setHidden:NO];
+                [self.historyTableView reloadData];
+//            }
+            
+        }
+//        HistoryData *tmpData = [self.resultArray objectAtIndex:[[indexesArray objectAtIndex:i] row]];
+//        NSManagedObject *device = [NSEntityDescription insertNewObjectForEntityForName:@"ScanHistory" inManagedObjectContext:context];
+//        [device setValue:tmpData.resultType forKey:@"resultType"];
+//        [device setValue:tmpData.resultTime forKey:@"resultTime"];
+//        [device setValue:tmpData.resultText forKey:@"resultText"];
+//        [device setValue:UIImagePNGRepresentation(tmpData.myImage) forKey:@"myImage"];
+//        NSManagedObject *secondObject = [tmpArray objectAtIndex:[[indexesArray objectAtIndex:i] row]];
+//        if([[secondObject valueForKey:@"resultType"] isEqual:[device valueForKey:@"resultType"]] && [[secondObject valueForKey:@"resultTime"] isEqual:[device valueForKey:@"resultTime"]] && [[secondObject valueForKey:@"resultText"] isEqual:[device valueForKey:@"resultText"]] && [[secondObject valueForKey:@"myImage"] isEqual:[device valueForKey:@"myImage"]]){
+//            // Save the object to persistent store
+//            [context deleteObject:secondObject];
+//            [self.resultArray removeObjectAtIndex:[[indexesArray objectAtIndex:i] row]];
+//        }
+        
+    }
+    if([self.resultArray count] == 0){
+        [self.historyTableView setHidden:YES];
+        [self.noHistoryLabel setHidden:NO];
+        [self editAction:self.editButton];
+        [self.editButton setEnabled:NO];
+    }
+//    [self.historyTableView reloadData];
 }
 @end
