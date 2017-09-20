@@ -16,6 +16,30 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    BOOL tmp = [[NSUserDefaults standardUserDefaults] boolForKey:@"link"];
+    if (tmp) {
+        [self.createdData setSelectable:YES];
+    }
+    else{
+        [self.createdData setSelectable:NO];
+    }
+    self.createdData.text = self.createdDataString;
+//    self.qrCodeImage.image = self.myQrCodeImage;
+    NSData *stringData = [self.createdDataString dataUsingEncoding: NSISOLatin1StringEncoding];
+    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    [qrFilter setValue:stringData forKey:@"inputMessage"];
+    self.qrCodeImage.image = self.myQrCodeImage;
+    if(self.myQrCodeImage == nil){
+        NSData *stringData = [self.createdDataString dataUsingEncoding: NSISOLatin1StringEncoding];
+        CIFilter *qrFilter = [CIFilter filterWithName:@"CICode128BarcodeGenerator"];
+        [qrFilter setValue:stringData forKey:@"inputMessage"];
+        self.qrCodeImage.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+    }
+    
+    UIBarButtonItem *saveButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveAction:)];
+    self.navigationItem.rightBarButtonItem = saveButton;
+//    cell.createdCodeImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
+//    cell.createdCodeImageView.contentMode = UIViewContentModeScaleAspectFit;
     // Do any additional setup after loading the view.
 }
 
@@ -33,5 +57,13 @@
     // Pass the selected object to the new view controller.
 }
 */
-
+-(IBAction)saveAction:(id)sender{
+    UIImageWriteToSavedPhotosAlbum(self.myQrCodeImage, self, nil, nil);
+    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"Saved To Photos" message:@"Image Saved to Photos" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [controller dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [controller addAction:cancelAction];
+    [self presentViewController:controller animated:YES completion:nil];
+}
 @end

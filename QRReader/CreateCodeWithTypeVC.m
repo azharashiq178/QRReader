@@ -35,10 +35,14 @@
     if([self.typeOfCreation  isEqualToString: @"Web Address"]){
         self.textForCode.placeholder = @"https://";
         self.textForCode.keyboardType = UIKeyboardTypeURL;
+        self.codeTitleLabel.text = @"URL:";
+        [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"Phone Number"]){
         self.textForCode.placeholder = @"Phone Number";
         self.textForCode.keyboardType = UIKeyboardTypePhonePad;
+        self.codeTitleLabel.text = @"Phone Number:";
+        [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"Text"]){
 //        CGRect frame = self.textForCode.frame;
@@ -55,19 +59,75 @@
         self.textForCode.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
         self.textForCode.placeholder = @"Enter your text here";
         self.textForCode.keyboardType = UIKeyboardTypeDefault;
+        self.codeTitleLabel.text = @"Text:";
         [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"E-mail"]){
         self.textForCode.placeholder = @"E-mail";
         self.textForCode.keyboardType = UIKeyboardTypeEmailAddress;
+        self.codeTitleLabel.text = @"Email Address:";
         [self setFieldsHidden:YES];
         
     }
-    else if ([self.typeOfCreation isEqualToString:@"Contact Info"]){
+    else if ([self.typeOfCreation isEqualToString:@"Contact-Info"]){
         self.textForCode.placeholder = @"Contact Info";
         self.textForCode.keyboardType = UIKeyboardTypeDefault;
         [self setFieldsHidden:NO];
     }
+    else if ([self.typeOfCreation isEqualToString:@"SMS"]){
+        [self setFieldsHidden:YES];
+        [self.lastNameField setHidden:NO];
+        [self.lastNameLabel setHidden:NO];
+        self.textForCode.placeholder = @"Enter Number";
+        self.textForCode.keyboardType = UIKeyboardTypeNumberPad;
+        self.lastNameLabel.text = @"Body:";
+        self.lastNameField.placeholder = @"Type Your Message here";
+        self.codeTitleLabel.text = @"To:";
+        NSLayoutConstraint *heightConstraint;
+        for (NSLayoutConstraint *constraint in self.lastNameField.constraints) {
+            if (constraint.firstAttribute == NSLayoutAttributeHeight) {
+                heightConstraint = constraint;
+                break;
+            }
+        }
+        heightConstraint.constant = 300;
+        self.lastNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+//        self.lastNameField.inputView = [[UITextView alloc] init];
+        
+    }
+    else{
+        [self.codeTitleLabel setHidden:YES];
+        [self setFieldsHidden:YES];
+    }
+}
+- (NSString *)vCardRepresentation
+{
+    NSMutableArray *mutableArray = [[NSMutableArray alloc] init];
+    
+    [mutableArray addObject:@"BEGIN:VCARD"];
+    [mutableArray addObject:@"VERSION:3.0"];
+    
+    [mutableArray addObject:[NSString stringWithFormat:@"FN:%@", self.textForCode.text]];
+    
+//    [mutableArray addObject:[NSString stringWithFormat:@"ADR:;;%@",
+//                             [self addressWithSeparator:@";"]]];
+    
+    if (self.phoneField.text != nil)
+        [mutableArray addObject:[NSString stringWithFormat:@"TEL:%@", self.phoneField.text]];
+    
+//    [mutableArray addObject:[NSString stringWithFormat:@"GEO:%g;%g",
+//                             self.latitudeValue, self.longitudeValue]];
+    
+    [mutableArray addObject:[NSString stringWithFormat:@"URL:http://%@",
+                             self.webField.text]];
+    
+    [mutableArray addObject:@"END:VCARD"];
+    
+    NSString *string = [mutableArray componentsJoinedByString:@"\n"];
+    
+//    [mutableArray release];
+    
+    return string;
 }
 -(void)setFieldsHidden:(BOOL)value{
     [self.lastNameLabel setHidden:value];
@@ -152,7 +212,24 @@
             tmpData.myImage = myImageView.image;
             tmpData.resultTime = convertedDateString;
             tmpData.resultType = self.typeOfCreation;
+            
             tmpData.resultText = self.textForCode.text;
+            if([self.typeOfCreation  isEqual: @"Contact-Info"]){
+                
+                tmpData.resultText = [self vCardRepresentation];
+                NSLog(@"My VCard is %@",tmpData.resultText);
+            }
+            else if([self.typeOfCreation  isEqual: @"SMS"]){
+                
+                NSMutableArray *tmpArray = [[NSMutableArray alloc] init];
+                [tmpArray addObject:@"To:"];
+                [tmpArray addObject:self.textForCode.text];
+                [tmpArray addObject:@"Message body:"];
+                [tmpArray addObject:self.lastNameField.text];
+                tmpData.resultText = [tmpArray componentsJoinedByString:@"\n"];
+//                tmpData.resultText = [self vCardRepresentation];
+                NSLog(@"My VCard is %@",tmpData.resultText);
+            }
             
             NSDictionary* userInfo = @{@"total": tmpData};
             
@@ -198,7 +275,12 @@
             }];
         }
         else{
-            NSLog(@"String is not numeric");
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"No Numeric Values Found" message:@"Bar Code needs Numeric Values" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [alertController dismissViewControllerAnimated:YES completion:nil];
+            }];
+            [alertController addAction:cancelAction];
+            [self presentViewController:alertController animated:YES completion:nil];
         }
     }
 }

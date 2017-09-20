@@ -9,6 +9,7 @@
 #import "SettingsTableViewController.h"
 #import "GeneralSettingsViewController.h"
 #import <StoreKit/StoreKit.h>
+#import "AppDelegate.h"
 @interface SettingsTableViewController ()
 
 @end
@@ -233,5 +234,26 @@
 }
 -(void)messageComposeViewController:(MFMessageComposeViewController *)controller didFinishWithResult:(MessageComposeResult)result{
     [controller dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)deleteAction:(UISwitch *)sender {
+    if(!sender.isOn){
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
+        
+        //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        for(int i = 0 ;i < [tmpArray count] ;i++){
+            [context deleteObject:[tmpArray objectAtIndex:i]];
+        }
+        NSError *error = nil;
+        [context save:&error];
+        if(error != nil){
+            NSLog(@"Data Not Deleted");
+        }
+        else{
+            NSLog(@"Data Deleted");
+        }
+    }
 }
 @end

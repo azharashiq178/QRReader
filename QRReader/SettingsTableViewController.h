@@ -15,5 +15,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *laserSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *vibrateSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *beepSwitch;
+- (IBAction)deleteAction:(UISwitch *)sender;
 
 @end

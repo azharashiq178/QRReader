@@ -425,12 +425,13 @@
     return YES;
 }
 -(BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath{
-    if(indexPath.row == 0){
-        return NO;
-    }
+//    if(indexPath.row == 0){
+//        return NO;
+//    }
     UIButton *accessoryButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     accessoryButton.tag = indexPath.row;
     [accessoryButton addTarget:self action:@selector(editTitle:) forControlEvents:UIControlEventTouchDown];
+    accessoryButton.tag = indexPath.row;
     [accessoryButton setImage:[UIImage imageNamed:@"edit"] forState:UIControlStateNormal];
     [[tableView cellForRowAtIndexPath:indexPath] setEditingAccessoryView:accessoryButton];
     return YES;
@@ -439,7 +440,50 @@
 {
     
 }
--(IBAction)editTitle:(id)sender{
+-(IBAction)editTitle:(UIButton *)sender{
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Please Enter Type" message:@"Please Enter Type" preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"Please Enter type name";
+    }];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UITextField *textField = alertController.textFields.firstObject;
+        
+        HistoryData *tmpData = [self.resultArray objectAtIndex:sender.tag];
+        
+        tmpData.resultType = textField.text;
+        
+        [self.resultArray replaceObjectAtIndex:sender.tag withObject:tmpData];
+        
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+        
+        NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+        
+        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
+        
+        NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+        
+        [[tmpArray objectAtIndex:sender.tag] setValue:textField.text forKey:@"resultType"];
+        
+        NSError *error = nil;
+        
+        [context save:&error];
+        
+        if(error == nil){
+            NSLog(@"Data saved");
+        }
+        
+        [self.historyTableView reloadData];
+        
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        [alertController dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alertController addAction:okAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+    
     NSLog(@"Editing Title");
 }
 

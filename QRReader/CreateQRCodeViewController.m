@@ -21,6 +21,8 @@
 @property (nonatomic,strong) NSMutableArray *createdList;
 @property (nonatomic,strong) NSMutableArray *savedArray;
 @property (nonatomic,strong) NSString *titleToPassNext;
+@property (nonatomic,strong) NSString *dataToPassNext;
+@property (nonatomic,strong) UIImage *imageToPassNext;
 @end
 
 @implementation CreateQRCodeViewController
@@ -129,6 +131,10 @@
     if([segue.identifier  isEqualToString: @"showDetail"]){
         ShowCreatedCodeViewController *controller = segue.destinationViewController;
         [controller.navigationItem setTitle:self.titleToPassNext];
+        controller.createdDataString = self.dataToPassNext;
+        controller.myQrCodeImage = self.imageToPassNext;
+        
+        
     }
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
@@ -196,7 +202,10 @@
 //    [[tableView cellForRowAtIndexPath:indexPath] setSelectionStyle:UITableViewCellSelectionStyleNone];
     if(![tableView isEditing]){
         CreatedTableViewCell *cell = (CreatedTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+        self.dataToPassNext = [NSString stringWithFormat:@"%@",[[cell createdCodeText] text]];
         self.titleToPassNext = [NSString stringWithFormat:@"%@",[[cell createdCodeTitle] text]];
+//        self.imageToPassNext = [[cell createdCodeImageView] image];
+        self.imageToPassNext = [[self.createdList objectAtIndex:indexPath.row] myImage];
         [self performSegueWithIdentifier:@"showDetail" sender:self];
     }
     else{
