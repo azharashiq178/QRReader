@@ -63,6 +63,20 @@
     }
     else if([self.typeOfGeneralSetting  isEqualToString: @"Date"]){
         [self.navigationItem setTitle:@"Date Format"];
+        NSDate *todayDate = [NSDate date]; //Get todays date
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
+        [dateFormatter setDateFormat:@"dd/MM/YYYY"]; //Here we can set the format which we need
+        NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+        [dateFormatter setDateFormat:@"dd.MM.YYYY"];
+        NSString *convertedDateString1 = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+        [dateFormatter setDateFormat:@"dd-MM-YYYY"];
+        NSString *convertedDateString2 = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+        [dateFormatter setDateFormat:@"MM/dd/YYYY"];
+        NSString *convertedDateString3 = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+        [dateFormatter setDateFormat:@"MM.dd.YYYY"];
+        NSString *convertedDateString4 = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
+        self.dataArray = [[NSArray alloc] initWithObjects:convertedDateString,convertedDateString1,convertedDateString2,convertedDateString3,convertedDateString4, nil];
+        [self.settingsTableView reloadData];
         
     }
     else if([self.typeOfGeneralSetting  isEqualToString: @"Browser"]){
@@ -71,10 +85,12 @@
         [self.settingsTableView reloadData];
         
     }
+    
     else if([self.typeOfGeneralSetting  isEqualToString: @"Sound"]){
         [self.navigationItem setTitle:@"Sound"];
         
     }
+    
     
     // Do any additional setup after loading the view.
 }
@@ -112,6 +128,38 @@
             }
         }
     }
+    else if ([self.typeOfGeneralSetting isEqualToString:@"Date"]){
+        if([[[NSUserDefaults standardUserDefaults] stringForKey:@"Date"] isEqualToString:@"dd/MM/YYYY"] && indexPath.row == 0){
+            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+//            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else if([[[NSUserDefaults standardUserDefaults] stringForKey:@"Date"] isEqualToString:@"dd.MM.YYYY"] && indexPath.row == 1){
+            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else if([[[NSUserDefaults standardUserDefaults] stringForKey:@"Date"] isEqualToString:@"dd-MM-YYYY"] && indexPath.row == 2){
+            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else if([[[NSUserDefaults standardUserDefaults] stringForKey:@"Date"] isEqualToString:@"MM/dd/YYYY"] && indexPath.row == 3){
+            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:3 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+        else if([[[NSUserDefaults standardUserDefaults] stringForKey:@"Date"] isEqualToString:@"MM.dd.YYYY"] && indexPath.row == 4){
+            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:4 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+        }
+//        else if (indexPath.row == 0){
+//            [tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UITableViewScrollPositionNone];
+//            //            [[tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]] setAccessoryType:UITableViewCellAccessoryCheckmark];
+//            [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
+//        }
+    }
     else if(indexPath.row == 0){
         //        [cell setAccessoryType:UITableViewCellAccessoryCheckmark];
         //        [cell setSelected:YES animated:YES];
@@ -135,6 +183,24 @@
             [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"Browser"];
         else if (indexPath.row == 1){
             [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"Browser"];
+        }
+        [[NSUserDefaults standardUserDefaults] synchronize];
+    }
+    else if([self.typeOfGeneralSetting isEqualToString:@"Date"]){
+        if(indexPath.row == 0){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"dd/MM/YYYY"] forKey:@"Date"];
+        }
+        else if(indexPath.row == 1){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"dd.MM.YYYY"] forKey:@"Date"];
+        }
+        else if(indexPath.row == 2){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"dd-MM-YYYY"] forKey:@"Date"];
+        }
+        else if(indexPath.row == 3){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"MM/dd/YYYY"] forKey:@"Date"];
+        }
+        else if(indexPath.row == 4){
+            [[NSUserDefaults standardUserDefaults] setObject:[NSString stringWithFormat:@"MM.dd.YYYY"] forKey:@"Date"];
         }
         [[NSUserDefaults standardUserDefaults] synchronize];
     }

@@ -161,9 +161,9 @@
         cell.createdCodeImageView.contentMode = UIViewContentModeScaleAspectFit;
         
     }
-    cell.createdCodeDate.text = tmpData.resultTime;
-    cell.createdCodeText.text = tmpData.resultText;
-    cell.createdCodeTitle.text = tmpData.resultType;
+    cell.createdCodeDate.text = NSLocalizedString(tmpData.resultTime, nil);
+    cell.createdCodeText.text = NSLocalizedString(tmpData.resultText,nil);
+    cell.createdCodeTitle.text = NSLocalizedString(tmpData.resultType,nil);
     if(indexPath.row % 2 != 0){
         [cell setBackgroundColor:[UIColor colorWithRed:0.114 green:0.114 blue:0.114 alpha:1]];
     }
@@ -409,8 +409,8 @@
 //        
 //    }
     
-    if([[(UIBarButtonItem *)sender title] isEqualToString:@"Edit"]){
-        [(UIBarButtonItem *)sender setTitle:@"Done"];
+    if([[(UIBarButtonItem *)sender title] isEqualToString:NSLocalizedString(@"Edit", nil)]){
+        [(UIBarButtonItem *)sender setTitle:NSLocalizedString(@"Done", nil)];
         [self.createdTableView setAllowsMultipleSelectionDuringEditing:YES];
         
         self.tabBarController.tabBar.frame = CGRectMake(0, self.tabBarController.tabBar.frame.origin.y, self.tabBarController.tabBar.frame.size.width, self.tabBarController.tabBar.frame.size.height);
@@ -441,7 +441,7 @@
         [self.createdTableView setEditing:YES animated:YES];
     }
     else{
-        [(UIBarButtonItem *)sender setTitle:@"Edit"];
+        [(UIBarButtonItem *)sender setTitle:NSLocalizedString(@"Edit", nil)];
         [self.createdTableView setEditing:NO animated:YES];
         
         [self.myToolbar setHidden:NO];

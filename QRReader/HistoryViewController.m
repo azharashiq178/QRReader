@@ -151,7 +151,9 @@
             tmpData.resultText = destinationController.tmpResult;
             NSDate *todayDate = [NSDate date]; //Get todays date
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
-            [dateFormatter setDateFormat:@"dd/MM/yyyy"]; //Here we can set the format which we need
+//            [dateFormatter setDateFormat:@"dd/MM/yyyy"]; //Here we can set the format which we need
+            NSString *myFormatter = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+            [dateFormatter setDateFormat:myFormatter];
             NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
             tmpData.resultTime = convertedDateString;
             
@@ -438,6 +440,34 @@
 }
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath *)destinationIndexPath
 {
+    HistoryData *tmpData = [self.resultArray objectAtIndex:sourceIndexPath.row];
+    HistoryData *tmpData1 = [self.resultArray objectAtIndex:destinationIndexPath.row];
+    [self.resultArray replaceObjectAtIndex:sourceIndexPath.row withObject:tmpData1];
+    [self.resultArray replaceObjectAtIndex:destinationIndexPath.row withObject:tmpData];
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
+    
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    
+    NSManagedObject *myObj = [tmpArray objectAtIndex:sourceIndexPath.row];
+    NSManagedObject *myObj1 = [tmpArray objectAtIndex:destinationIndexPath.row];
+    [tmpArray replaceObjectAtIndex:sourceIndexPath.row withObject:myObj1];
+    [tmpArray replaceObjectAtIndex:destinationIndexPath.row withObject:myObj];
+//    [tmpArray replaceObjectAtIndex:sourceIndexPath.row withObject:tmpData1]
+    
+    NSError *error = nil;
+    
+    [context save:&error];
+    
+    if(error == nil){
+        NSLog(@"Data saved");
+    }
+    [tableView reloadData];
+    
     
 }
 -(IBAction)editTitle:(UIButton *)sender{

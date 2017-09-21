@@ -25,6 +25,9 @@
     [self.vibrateSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     [self.beepSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
     
+    
+    
+    
 //    self.linkSwitch.onImage = [UIImage imageNamed:@"check.png"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -43,6 +46,13 @@
     else{
         self.browserName.text = @"Safari";
     }
+    NSDate *todayDate = [NSDate date]; //Get todays date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
+    //            [dateFormatter setDateFormat:@"dd-MM-yyyy"]; //Here we can set the format which we need
+    NSString *myFormatter = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+    [dateFormatter setDateFormat:myFormatter];
+    NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];
+    self.dateLabel.text = convertedDateString;
 }
 -(IBAction)didSwitchChanged:(UISwitch *)sender{
     if(sender == self.linkSwitch){

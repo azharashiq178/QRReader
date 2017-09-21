@@ -98,6 +98,33 @@
     else{
         [self.codeTitleLabel setHidden:YES];
         [self setFieldsHidden:YES];
+        if([self.typeOfCreation isEqualToString:@"Facebook"] || [self.typeOfCreation isEqualToString:@"Twitter"] || [self.typeOfCreation isEqualToString:@"Evernote"] || [self.typeOfCreation isEqualToString:@"Google Plus"] || [self.typeOfCreation isEqualToString:@"LinkedIn"] || [self.typeOfCreation isEqualToString:@"Instagram"] || [self.typeOfCreation isEqualToString:@"Tumblr"] || [self.typeOfCreation isEqualToString:@"Youtube"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.%@.com/",self.typeOfCreation];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"iCloud"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.icloud.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"Google Drive"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.drive.google.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"One Drive"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.onedrive.live.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"Dropbox"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.dropbox.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"MySpace"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.myspace.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"Flickr"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.flickr.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"Mediafire"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.mediafire.com/"];
+        }
+        else if ([self.typeOfCreation isEqualToString:@"Box"]){
+            self.textForCode.text = [NSString stringWithFormat:@"https://www.box.com/"];
+        }
     }
 }
 - (NSString *)vCardRepresentation
@@ -205,7 +232,9 @@
         [self dismissViewControllerAnimated:YES completion:^{
             NSDate *todayDate = [NSDate date]; //Get todays date
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // here we create NSDateFormatter object for change the Format of date.
-            [dateFormatter setDateFormat:@"dd-MM-yyyy"]; //Here we can set the format which we need
+//            [dateFormatter setDateFormat:@"dd-MM-yyyy"]; //Here we can set the format which we need
+            NSString *myFormatter = [[NSUserDefaults standardUserDefaults] objectForKey:@"Date"];
+            [dateFormatter setDateFormat:myFormatter];
             NSString *convertedDateString = [dateFormatter stringFromDate:todayDate];// Here convert date in NSString
             
             HistoryData *tmpData = [HistoryData new];
@@ -260,7 +289,7 @@
                 NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
                 tmpData.resultText = [NSString stringWithFormat:@"https://duckduckgo.com/?q=%@&t=h_",finalString];
             }
-            else{
+            else if([self.typeOfCreation isEqualToString:@"Google"] || [self.typeOfCreation isEqualToString:@"Bing"]){
                 NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
                 tmpData.resultText = [NSString stringWithFormat:@"http://www.%@.com/search?q=%@",self.typeOfCreation,finalString];
             }

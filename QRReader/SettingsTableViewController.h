@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *vibrateSwitch;
 @property (weak, nonatomic) IBOutlet UISwitch *beepSwitch;
 - (IBAction)deleteAction:(UISwitch *)sender;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
 @end

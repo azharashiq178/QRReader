@@ -19,6 +19,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [SCSQLite initWithDatabase:@"QRReaderDB.sqlite"];
+//    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:@"ES", nil] forKey:@"AppleLanguages"]; //switching to polish locale
+//    [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;
 }
 

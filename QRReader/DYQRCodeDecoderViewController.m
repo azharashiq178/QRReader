@@ -106,10 +106,8 @@ UIImagePickerControllerDelegate> {
     [super viewDidLayoutSubviews];
     [self startReading];
 }
-
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    
     if (_needsScanAnnimation) {
         [UIView animateWithDuration:2 delay:0 options:UIViewAnimationOptionRepeat animations:^{
             [_lineImageView setFrame:_lineRect1];
@@ -140,7 +138,7 @@ UIImagePickerControllerDelegate> {
     //    buttonContainer.backgroundColor = [UIColor clearColor];
     UIButton *button0 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button0 setFrame:CGRectMake(40, 10, 100,25)];
-    [button0 setTitle:@"ON" forState:UIControlStateNormal];
+    [button0 setTitle:NSLocalizedString(@"ON", nil) forState:UIControlStateNormal];
     [button0.layer setCornerRadius:12.5];
     [button0 setImage:[UIImage imageNamed:@"flash"] forState:UIControlStateNormal];
     button0.imageEdgeInsets = UIEdgeInsetsMake(0, 0, 0, 10);
@@ -156,7 +154,7 @@ UIImagePickerControllerDelegate> {
     UIButton *button1 = [UIButton buttonWithType:UIButtonTypeCustom];
     [button1 setFrame:CGRectMake((buttonContainer.frame.size.width)-150, 10, 100, 25)];
     [button1.layer setCornerRadius:12.5];
-    [button1 setTitle:@"Library" forState:UIControlStateNormal];
+    [button1 setTitle:NSLocalizedString(@"Library", nil)  forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(pickImage) forControlEvents:UIControlEventTouchUpInside];
 //    [button1 setBackgroundColor:[UIColor blackColor]];
 //    [button1 setImage:[UIImage imageNamed:@"library"] forState:UIControlStateNormal];
@@ -550,14 +548,14 @@ UIImagePickerControllerDelegate> {
             [device setTorchMode:AVCaptureTorchModeOn];
             [device setFlashMode:AVCaptureFlashModeOn];
             
-            [sender setTitle:@"OFF" forState:UIControlStateNormal];
+            [sender setTitle:NSLocalizedString(@"OFF", nil) forState:UIControlStateNormal];
             //torchIsOn = YES;
         }
         else
         {
             [device setTorchMode:AVCaptureTorchModeOff];
             [device setFlashMode:AVCaptureFlashModeOff];
-            [sender setTitle:@"ON" forState:UIControlStateNormal];
+            [sender setTitle:NSLocalizedString(@"ON", nil) forState:UIControlStateNormal];
             // torchIsOn = NO;
         }
         [device unlockForConfiguration];

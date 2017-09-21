@@ -1,0 +1,285 @@
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "0Kj-WS-WDU"; */
+"0Kj-WS-WDU.title" = "Bearbeiten";
+
+/* Class = "UILabel"; text = "No History Found"; ObjectID = "0MF-y0-mSV"; */
+"0MF-y0-mSV.text" = "Keine Geschichte gefunden";
+
+/* Class = "UINavigationItem"; title = "Create"; ObjectID = "0ZG-Ok-EDe"; */
+"0ZG-Ok-EDe.title" = "Erstellen";
+
+/* Class = "UILabel"; text = "Free"; ObjectID = "0d5-M2-tsD"; */
+"0d5-M2-tsD.text" = "Frei";
+
+/* Class = "UILabel"; text = "Text"; ObjectID = "0pX-XJ-y2Y"; */
+"0pX-XJ-y2Y.text" = "Text";
+
+/* Class = "UILabel"; text = "Link Open"; ObjectID = "1lM-gv-hUU"; */
+"1lM-gv-hUU.text" = "Link öffnen";
+
+/* Class = "UILabel"; text = "No History Found"; ObjectID = "2hu-FU-ePd"; */
+"2hu-FU-ePd.text" = "Keine Geschichte gefunden";
+
+/* Class = "UILabel"; text = "Yandex"; ObjectID = "33f-SP-d6I"; */
+"33f-SP-d6I.text" = "Yandex";
+
+/* Class = "UILabel"; text = "Language"; ObjectID = "3Nc-XY-XRE"; */
+"3Nc-XY-XRE.text" = "Sprache";
+
+/* Class = "UIBarButtonItem"; title = "Edit"; ObjectID = "3hX-dC-imS"; */
+"3hX-dC-imS.title" = "Bearbeiten";
+
+/* Class = "UILabel"; text = "English"; ObjectID = "40c-NM-fv9"; */
+"40c-NM-fv9.text" = "Englisch";
+
+/* Class = "UITableViewSection"; headerTitle = "SOCIAL MEDIA URLS"; ObjectID = "4CK-U8-Uby"; */
+"4CK-U8-Uby.headerTitle" = "SOZIALE MEDIEN URLS";
+
+/* Class = "UILabel"; text = "google Drive"; ObjectID = "4yF-d8-8fN"; */
+"4yF-d8-8fN.text" = "google Drive";
+
+/* Class = "UILabel"; text = "Tell a friend"; ObjectID = "5Ys-GQ-z6A"; */
+"5Ys-GQ-z6A.text" = "Erzählen Sie einem Freund";
+
+/* Class = "UILabel"; text = "Repeated Scans"; ObjectID = "5ae-g5-3zS"; */
+"5ae-g5-3zS.text" = "Wiederholte Scans";
+
+/* Class = "UILabel"; text = "Bing"; ObjectID = "6C5-T4-WrJ"; */
+"6C5-T4-WrJ.text" = "Bing";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "7Fy-1B-aUf"; */
+"7Fy-1B-aUf.placeholder" = "Suche";
+
+/* Class = "UILabel"; text = "06/09/2017"; ObjectID = "7wF-bO-gQd"; */
+"7wF-bO-gQd.text" = "06/09/2017";
+
+/* Class = "UILabel"; text = "Remove Ads"; ObjectID = "8xW-Zp-KV8"; */
+"8xW-Zp-KV8.text" = "Anzeigen entfernen";
+
+/* Class = "UILabel"; text = "Review On App Store"; ObjectID = "9e7-rb-K9H"; */
+"9e7-rb-K9H.text" = "Überprüfung auf App Store";
+
+/* Class = "UILabel"; text = "Support"; ObjectID = "9r8-Ba-UOT"; */
+"9r8-Ba-UOT.text" = "Unterstützung";
+
+/* Class = "UILabel"; text = "Restore Purchase"; ObjectID = "AHi-5O-tDF"; */
+"AHi-5O-tDF.text" = "Wiederherstellung des Kaufs";
+
+/* Class = "UILabel"; text = "Google"; ObjectID = "Aap-4X-UJP"; */
+"Aap-4X-UJP.text" = "Google";
+
+/* Class = "UILabel"; text = "Box"; ObjectID = "Du7-5Q-79v"; */
+"Du7-5Q-79v.text" = "Box";
+
+/* Class = "UIBarButtonItem"; title = "Create"; ObjectID = "E5d-uz-Iav"; */
+"E5d-uz-Iav.title" = "Erstellen";
+
+/* Class = "UITableViewSection"; headerTitle = "EXCLUSIVE TYPES"; ObjectID = "EDU-WL-i0T"; */
+"EDU-WL-i0T.headerTitle" = "EXKLUSIVE TYPEN";
+
+/* Class = "UILabel"; text = "Facebook"; ObjectID = "Hpp-da-SAP"; */
+"Hpp-da-SAP.text" = "Facebook";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "Hr9-Dp-d2k"; */
+"Hr9-Dp-d2k.placeholder" = "Suche";
+
+/* Class = "UILabel"; text = "Date Format"; ObjectID = "JML-av-azU"; */
+"JML-av-azU.text" = "Datumsformat";
+
+/* Class = "UILabel"; text = "Flickr"; ObjectID = "JoC-63-nGJ"; */
+"JoC-63-nGJ.text" = "Flickr";
+
+/* Class = "UITabBarItem"; title = "Scan"; ObjectID = "KVz-Hf-xFv"; */
+"KVz-Hf-xFv.title" = "Scan";
+
+/* Class = "UINavigationItem"; title = "Settings"; ObjectID = "Kc1-hA-HCq"; */
+"Kc1-hA-HCq.title" = "Einstellungen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Kne-CW-9yK"; */
+"Kne-CW-9yK.text" = "Label";
+
+/* Class = "UITableViewSection"; headerTitle = "HISTORY SETTINGS"; ObjectID = "MLz-Eo-PdL"; */
+"MLz-Eo-PdL.headerTitle" = "GESCHICHTE EINSTELLUNGEN";
+
+/* Class = "UILabel"; text = "MySpace"; ObjectID = "Mil-v9-vsm"; */
+"Mil-v9-vsm.text" = "MySpace";
+
+/* Class = "UILabel"; text = "E-mail"; ObjectID = "NIE-mL-6YJ"; */
+"NIE-mL-6YJ.text" = "E-mail";
+
+/* Class = "UILabel"; text = "Vibrate"; ObjectID = "O4t-iI-HA8"; */
+"O4t-iI-HA8.text" = "Vibrieren";
+
+/* Class = "UIBarButtonItem"; title = "Delete"; ObjectID = "OSf-4r-Gxl"; */
+"OSf-4r-Gxl.title" = "Löschen";
+
+/* Class = "UINavigationItem"; title = "URL"; ObjectID = "Ot1-U5-81b"; */
+"Ot1-U5-81b.title" = "URL";
+
+/* Class = "UILabel"; text = "Mediafire"; ObjectID = "PRu-a0-7Xw"; */
+"PRu-a0-7Xw.text" = "Mediafire";
+
+/* Class = "UITableViewSection"; headerTitle = "SEARCH ENGINES"; ObjectID = "Q9B-sc-h1J"; */
+"Q9B-sc-h1J.headerTitle" = "SUCHMASCHINEN";
+
+/* Class = "UILabel"; text = "$1.99"; ObjectID = "TBo-QX-Rju"; */
+"TBo-QX-Rju.text" = "$1.99";
+
+/* Class = "UILabel"; text = "Instagram"; ObjectID = "TPu-YY-hIf"; */
+"TPu-YY-hIf.text" = "Instagram";
+
+/* Class = "UILabel"; text = "Twitter"; ObjectID = "TQ6-1y-kZ6"; */
+"TQ6-1y-kZ6.text" = "Twitter";
+
+/* Class = "UIBarButtonItem"; title = "Move To"; ObjectID = "TrW-87-xMz"; */
+"TrW-87-xMz.title" = "Ziehen nach";
+
+/* Class = "UILabel"; text = "Native"; ObjectID = "UqC-kY-BfX"; */
+"UqC-kY-BfX.text" = "Gebürtig";
+
+/* Class = "UITableViewSection"; headerTitle = "UPGRADE"; ObjectID = "VSU-KU-HoF"; */
+"VSU-KU-HoF.headerTitle" = "AKTUALISIERUNG";
+
+/* Class = "UILabel"; text = "Tumblr"; ObjectID = "Vqf-1i-TzA"; */
+"Vqf-1i-TzA.text" = "Tumblr";
+
+/* Class = "UILabel"; text = "iCloud"; ObjectID = "VzM-v2-Td2"; */
+"VzM-v2-Td2.text" = "iCloud";
+
+/* Class = "UILabel"; text = "AOL"; ObjectID = "WDb-bp-MuJ"; */
+"WDb-bp-MuJ.text" = "AOL";
+
+/* Class = "UILabel"; text = "Sound"; ObjectID = "WMb-3G-IS4"; */
+"WMb-3G-IS4.text" = "Klingen";
+
+/* Class = "UILabel"; text = "SMS"; ObjectID = "WQX-d0-MMT"; */
+"WQX-d0-MMT.text" = "SMS";
+
+/* Class = "UILabel"; text = "Phone:"; ObjectID = "WSb-m9-0nZ"; */
+"WSb-m9-0nZ.text" = "Telefon:";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Wug-JV-O4Q"; */
+"Wug-JV-O4Q.text" = "Label";
+
+/* Class = "UILabel"; text = "Google Plus"; ObjectID = "XY2-Rj-tw7"; */
+"XY2-Rj-tw7.text" = "Google Plus";
+
+/* Class = "UILabel"; text = "Baidu"; ObjectID = "Y3Q-CB-h0R"; */
+"Y3Q-CB-h0R.text" = "Baidu";
+
+/* Class = "UITableViewSection"; headerTitle = "GENERAL SETTINGS"; ObjectID = "Z31-ht-bi0"; */
+"Z31-ht-bi0.headerTitle" = "ALLGEMEINE EINSTELLUNGEN";
+
+/* Class = "UILabel"; text = "Beep"; ObjectID = "aid-pQ-33V"; */
+"aid-pQ-33V.text" = "Piep";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "bUw-A5-lBa"; */
+"bUw-A5-lBa.title" = "Alles auswählen";
+
+/* Class = "UITabBarItem"; title = "Create"; ObjectID = "beC-pr-gDG"; */
+"beC-pr-gDG.title" = "Erstellen";
+
+/* Class = "UILabel"; text = "Email:"; ObjectID = "bum-oN-uf1"; */
+"bum-oN-uf1.text" = "Email:";
+
+/* Class = "UILabel"; text = "Evernote"; ObjectID = "cSV-55-y4e"; */
+"cSV-55-y4e.text" = "Evernote";
+
+/* Class = "UILabel"; text = "Save History"; ObjectID = "cio-zU-fPd"; */
+"cio-zU-fPd.text" = "Geschichte speichern";
+
+/* Class = "UINavigationItem"; title = "History"; ObjectID = "cnx-45-I7L"; */
+"cnx-45-I7L.title" = "Geschichte";
+
+/* Class = "UIBarButtonItem"; title = "Select All"; ObjectID = "dEP-pf-gAC"; */
+"dEP-pf-gAC.title" = "Alles auswählen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "dfW-wE-7vO"; */
+"dfW-wE-7vO.text" = "Label";
+
+/* Class = "UILabel"; text = "First Name:"; ObjectID = "eCK-si-04v"; */
+"eCK-si-04v.text" = "Vorname:";
+
+/* Class = "UILabel"; text = "Phone Number"; ObjectID = "eKT-fc-o3c"; */
+"eKT-fc-o3c.text" = "Telefonnummer";
+
+/* Class = "UILabel"; text = "Last Name:"; ObjectID = "fJV-hi-aSn"; */
+"fJV-hi-aSn.text" = "Familienname, Nachname:";
+
+/* Class = "UITabBarItem"; title = "History"; ObjectID = "gVg-l2-ixx"; */
+"gVg-l2-ixx.title" = "Geschichte";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hHP-4I-qxW"; */
+"hHP-4I-qxW.text" = "Label";
+
+/* Class = "UILabel"; text = "Our More Apps"; ObjectID = "i2o-T5-3a1"; */
+"i2o-T5-3a1.text" = "Unsere mehr Apps";
+
+/* Class = "UILabel"; text = "One Drive"; ObjectID = "jFd-5H-BVw"; */
+"jFd-5H-BVw.text" = "One Drive";
+
+/* Class = "UILabel"; text = "Laser Animation"; ObjectID = "jql-Ld-hkd"; */
+"jql-Ld-hkd.text" = "Laser Animation";
+
+/* Class = "UILabel"; text = "LinkedIn"; ObjectID = "kyb-w8-Zyo"; */
+"kyb-w8-Zyo.text" = "LinkedIn";
+
+/* Class = "UILabel"; text = "Ask"; ObjectID = "l6X-5U-8WJ"; */
+"l6X-5U-8WJ.text" = "Ask";
+
+/* Class = "UIBarButtonItem"; title = "Delete"; ObjectID = "lai-6Q-2eK"; */
+"lai-6Q-2eK.title" = "Löschen";
+
+/* Class = "UILabel"; text = "Yahoo"; ObjectID = "oRM-IB-8Rx"; */
+"oRM-IB-8Rx.text" = "Yahoo";
+
+/* Class = "UILabel"; text = "Contact Info"; ObjectID = "of0-9R-z5z"; */
+"of0-9R-z5z.text" = "Kontaktinformation";
+
+/* Class = "UILabel"; text = "Browser"; ObjectID = "olY-7Q-lmp"; */
+"olY-7Q-lmp.text" = "Browser";
+
+/* Class = "UITabBarItem"; title = "Settings"; ObjectID = "qMv-JF-YY3"; */
+"qMv-JF-YY3.title" = "Einstellungen";
+
+/* Class = "UILabel"; text = "31/08/2017"; ObjectID = "rC8-fQ-gL4"; */
+"rC8-fQ-gL4.text" = "31/08/2017";
+
+/* Class = "UITableViewSection"; headerTitle = "SCAN SETTINGS"; ObjectID = "s33-iP-5R1"; */
+"s33-iP-5R1.headerTitle" = "SCAN-EINSTELLUNGEN";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "skd-Qw-gCT"; */
+"skd-Qw-gCT.text" = "Label";
+
+/* Class = "UILabel"; text = "Web Address"; ObjectID = "u7E-Jd-okg"; */
+"u7E-Jd-okg.text" = "Webadresse";
+
+/* Class = "UITableViewSection"; headerTitle = "CLOUD STORAGE"; ObjectID = "vPi-Ce-ZJr"; */
+"vPi-Ce-ZJr.headerTitle" = "CLOUD LAGERUNG";
+
+/* Class = "UILabel"; text = "Youtube"; ObjectID = "vkE-xc-6dM"; */
+"vkE-xc-6dM.text" = "Youtube";
+
+/* Class = "UILabel"; text = "Sogou"; ObjectID = "vrg-Hh-rIg"; */
+"vrg-Hh-rIg.text" = "Sogou";
+
+/* Class = "UITableViewSection"; headerTitle = "HELP & FEEDBACK"; ObjectID = "w6T-mI-UbL"; */
+"w6T-mI-UbL.headerTitle" = "HILFE & FEEDBACK";
+
+/* Class = "UILabel"; text = "Dropbox"; ObjectID = "wqM-1n-trH"; */
+"wqM-1n-trH.text" = "Dropbox";
+
+/* Class = "UILabel"; text = "beep-07"; ObjectID = "wuK-e6-AWq"; */
+"wuK-e6-AWq.text" = "Piep-07";
+
+/* Class = "UITextField"; placeholder = "Click To Select Type of Code"; ObjectID = "xQZ-T5-97d"; */
+"xQZ-T5-97d.placeholder" = "Klicken Sie auf, um Art des Codes auszuwählen";
+
+/* Class = "UILabel"; text = "Web URL:"; ObjectID = "ykP-ag-QlN"; */
+"ykP-ag-QlN.text" = "Web-URL:";
+
+/* Class = "UIBarButtonItem"; title = "Cancel"; ObjectID = "za3-WQ-ehb"; */
+"za3-WQ-ehb.title" = "Stornieren";
+
+/* Class = "UILabel"; text = "DuckDuckGo"; ObjectID = "zeb-zr-Q3r"; */
+"zeb-zr-Q3r.text" = "DuckDuckGo";

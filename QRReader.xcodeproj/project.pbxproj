@@ -33,6 +33,7 @@
 		7E71DC2B1F5E71380089E934 /* HistoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2A1F5E71380089E934 /* HistoryTableViewCell.m */; };
 		7E71DC2F1F5E74B70089E934 /* HistoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7E71DC2E1F5E74B70089E934 /* HistoryData.m */; };
 		7EA51B0D1F6F94AA0056BCB3 /* QRReaderDB.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 7EA51B0C1F6F94AA0056BCB3 /* QRReaderDB.sqlite */; };
+		7ED437741F7396B80064BB33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7ED437761F7396B80064BB33 /* Localizable.strings */; };
 		7ED8E3A91F57C45400E1A249 /* CreateQRCodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */; };
 		7ED8E3AD1F57CF1700E1A249 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AC1F57CF1700E1A249 /* HistoryViewController.m */; };
 		7ED8E3B01F57D15800E1A249 /* MyTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7ED8E3AF1F57D15800E1A249 /* MyTabBarViewController.m */; };
@@ -106,6 +107,17 @@
 		7E71DC2D1F5E74B70089E934 /* HistoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryData.h; sourceTree = "<group>"; };
 		7E71DC2E1F5E74B70089E934 /* HistoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryData.m; sourceTree = "<group>"; };
 		7EA51B0C1F6F94AA0056BCB3 /* QRReaderDB.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = QRReaderDB.sqlite; sourceTree = "<group>"; };
+		7ED4376C1F73912E0064BB33 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7ED4376D1F73912E0064BB33 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Main.strings; sourceTree = "<group>"; };
+		7ED4376E1F7391430064BB33 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7ED4376F1F7391430064BB33 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Main.strings; sourceTree = "<group>"; };
+		7ED437701F7391530064BB33 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7ED437711F7391530064BB33 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		7ED437751F7396B80064BB33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED437771F7396BD0064BB33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED437781F7396BE0064BB33 /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED437791F7396BF0064BB33 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7ED4377A1F7396C00064BB33 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		7ED8E3A71F57C45400E1A249 /* CreateQRCodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateQRCodeViewController.h; sourceTree = "<group>"; };
 		7ED8E3A81F57C45400E1A249 /* CreateQRCodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateQRCodeViewController.m; sourceTree = "<group>"; };
 		7ED8E3AB1F57CF1700E1A249 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -280,6 +292,7 @@
 				7E18643A1F56B904001A11EE /* Info.plist */,
 				7E1864321F56B904001A11EE /* QRReader.xcdatamodeld */,
 				7E1864261F56B903001A11EE /* Supporting Files */,
+				7ED437761F7396B80064BB33 /* Localizable.strings */,
 			);
 			path = QRReader;
 			sourceTree = "<group>";
@@ -566,6 +579,9 @@
 			knownRegions = (
 				en,
 				Base,
+				nl,
+				de,
+				es,
 			);
 			mainGroup = 7E18641A1F56B903001A11EE;
 			productRefGroup = 7E1864241F56B903001A11EE /* Products */;
@@ -584,6 +600,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED437741F7396B80064BB33 /* Localizable.strings in Resources */,
 				7E1864391F56B904001A11EE /* LaunchScreen.storyboard in Resources */,
 				7EA51B0D1F6F94AA0056BCB3 /* QRReaderDB.sqlite in Resources */,
 				7E1864361F56B904001A11EE /* Assets.xcassets in Resources */,
@@ -825,6 +842,9 @@
 			isa = PBXVariantGroup;
 			children = (
 				7E1864301F56B903001A11EE /* Base */,
+				7ED4376D1F73912E0064BB33 /* nl */,
+				7ED4376F1F7391430064BB33 /* de */,
+				7ED437711F7391530064BB33 /* es */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -833,8 +853,23 @@
 			isa = PBXVariantGroup;
 			children = (
 				7E1864381F56B904001A11EE /* Base */,
+				7ED4376C1F73912E0064BB33 /* nl */,
+				7ED4376E1F7391430064BB33 /* de */,
+				7ED437701F7391530064BB33 /* es */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		7ED437761F7396B80064BB33 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7ED437751F7396B80064BB33 /* Base */,
+				7ED437771F7396BD0064BB33 /* en */,
+				7ED437781F7396BE0064BB33 /* nl */,
+				7ED437791F7396BF0064BB33 /* de */,
+				7ED4377A1F7396C00064BB33 /* es */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -844,6 +879,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -893,6 +929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
