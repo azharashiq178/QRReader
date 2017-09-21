@@ -230,6 +230,40 @@
 //                tmpData.resultText = [self vCardRepresentation];
                 NSLog(@"My VCard is %@",tmpData.resultText);
             }
+            else if ([self.typeOfCreation isEqualToString:@"Baidu"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"http://www.baidu.com/s?ie=utf-8&f=8&rsv_bp=0&rsv_idx=1&tn=baidu&wd=%@&rsv_pq=8828100f000021ca&rsv_t=30148ZnJOP%2Fp5vSWMqe79fqkwMd1FmKVPfaRO3uKdwuuApkR%2BL%2FnDKhDRZ0&rqlang=cn&rsv_enter=1&rsv_sug3=8&rsv_sug2=0&inputT=1187&rsv_sug4=1187",finalString];
+            }
+            else if ([self.typeOfCreation isEqualToString:@"Sogou"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"https://www.sogou.com/web?query=%@",finalString];
+            }
+            else if ([self.typeOfCreation isEqualToString:@"Yandex"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"https://www.yandex.com/search/?msid=1505971872.15408.22878.3513&text=%@&lr=10616",finalString];
+            }
+            else if ([self.typeOfCreation isEqualToString:@"Ask"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"https://uk.ask.com/web?q=%@&qsrc=0&o=0&l=dir&qo=homepageSearchBox",finalString];
+            }
+            else if ([self.typeOfCreation isEqualToString:@"AOL"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"https://search.aol.com/aol/search?s_chn=prt_bon&q=%@&s_it=comsearch",finalString];
+            }
+            else if ([self.typeOfCreation isEqualToString:@"DuckDuckGo"]){
+                
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"https://duckduckgo.com/?q=%@&t=h_",finalString];
+            }
+            else{
+                NSString *finalString = [self.textForCode.text stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+                tmpData.resultText = [NSString stringWithFormat:@"http://www.%@.com/search?q=%@",self.typeOfCreation,finalString];
+            }
             
             NSDictionary* userInfo = @{@"total": tmpData};
             
