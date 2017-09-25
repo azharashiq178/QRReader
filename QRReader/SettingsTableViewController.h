@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 
-@interface SettingsTableViewController : UITableViewController<MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate>
+@interface SettingsTableViewController : UITableViewController<MFMailComposeViewControllerDelegate,MFMessageComposeViewControllerDelegate,UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UISwitch *linkSwitch;
 @property (weak, nonatomic) IBOutlet UILabel *browserName;
 @property (weak, nonatomic) IBOutlet UISwitch *laserSwitch;
@@ -17,5 +17,6 @@
 @property (weak, nonatomic) IBOutlet UISwitch *beepSwitch;
 - (IBAction)deleteAction:(UISwitch *)sender;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UISwitch *historySwitch;
 
 @end

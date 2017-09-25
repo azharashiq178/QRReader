@@ -24,12 +24,29 @@
 @property (nonatomic,strong) NSMutableArray<HistoryData *> *resultArray;
 @property (nonatomic,strong) NSMutableArray *personPhoneNumbers;
 @property (nonatomic,strong) NSMutableArray *savedArray;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation HistoryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.interstitial = [self createAndLoadInterstitial];
+    self.myBanner.delegate = self;
+    self.myBanner.adUnitID = @"ca-app-pub-6412217023250030/8601370095";
+    self.myBanner.rootViewController = self;
+    //    [self.myBanner setAutoloadEnabled:YES];
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made. GADBannerView automatically returns test ads when running on a
+    // simulator.
+    //    request.testDevices = @[
+    //                            @"2077ef9a63d2b398840261c8221a0c9a"  // Eric's iPod Touch
+    //                            ];
+    //        request.testDevices = @[ @"b5492ec64ecbad0f31be3bf73c85cf59" ];
+    //    request.testDevices = @[ @"63a67b748f428013d8b58124d3f19e8f" ];
+    [self.myBanner loadRequest:request];
+    
     self.resultArray = [[NSMutableArray<HistoryData *> alloc] init];
     self.savedArray = [[NSMutableArray alloc] init];
     [self.searchBar setDelegate:self];
@@ -504,7 +521,13 @@
         
         [self.historyTableView reloadData];
         
-        [alertController dismissViewControllerAnimated:YES completion:nil];
+//        [alertController dismissViewControllerAnimated:YES completion:nil];
+        [alertController dismissViewControllerAnimated:YES completion:^{
+            
+        }];
+        if([self.interstitial isReady]){
+            [self.interstitial presentFromRootViewController:self];
+        }
     }];
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
         [alertController dismissViewControllerAnimated:YES completion:nil];
@@ -580,30 +603,12 @@
             NSLog(@"Deleted");
             indexesArray = [self.historyTableView indexPathsForSelectedRows];
             NSIndexPath *tmpIndexPath = [indexesArray objectAtIndex:i];
-//            [self.historyTableView deleteRowsAtIndexPaths:@[tmpIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             [self.resultArray removeObjectAtIndex:tmpIndexPath.row];
-//            if([self.resultArray count] == 0){
-//                [self.historyTableView setHidden:YES];
-//            }
-//            else{
-//                [self.historyTableView setHidden:NO];
-                [self.historyTableView reloadData];
-//            }
-            
+            [self.historyTableView reloadData];
+            if([self.interstitial isReady]){
+                [self.interstitial presentFromRootViewController:self];
+            }
         }
-//        HistoryData *tmpData = [self.resultArray objectAtIndex:[[indexesArray objectAtIndex:i] row]];
-//        NSManagedObject *device = [NSEntityDescription insertNewObjectForEntityForName:@"ScanHistory" inManagedObjectContext:context];
-//        [device setValue:tmpData.resultType forKey:@"resultType"];
-//        [device setValue:tmpData.resultTime forKey:@"resultTime"];
-//        [device setValue:tmpData.resultText forKey:@"resultText"];
-//        [device setValue:UIImagePNGRepresentation(tmpData.myImage) forKey:@"myImage"];
-//        NSManagedObject *secondObject = [tmpArray objectAtIndex:[[indexesArray objectAtIndex:i] row]];
-//        if([[secondObject valueForKey:@"resultType"] isEqual:[device valueForKey:@"resultType"]] && [[secondObject valueForKey:@"resultTime"] isEqual:[device valueForKey:@"resultTime"]] && [[secondObject valueForKey:@"resultText"] isEqual:[device valueForKey:@"resultText"]] && [[secondObject valueForKey:@"myImage"] isEqual:[device valueForKey:@"myImage"]]){
-//            // Save the object to persistent store
-//            [context deleteObject:secondObject];
-//            [self.resultArray removeObjectAtIndex:[[indexesArray objectAtIndex:i] row]];
-//        }
-        
     }
     if([self.resultArray count] == 0){
         [self.historyTableView setHidden:YES];
@@ -611,6 +616,88 @@
         [self editAction:self.editButton];
         [self.editButton setEnabled:NO];
     }
-//    [self.historyTableView reloadData];
+}
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    
+    for (NSLayoutConstraint *constraint in self.myBanner.constraints) {
+        if([constraint.identifier isEqualToString:@"my"]){
+            constraint.constant = 50;
+        }
+    }
+    [self.myBanner layoutIfNeeded];
+    NSLog(@"adViewDidReceiveAd");
+}
+
+/// Tells the delegate an ad request failed.
+- (void)adView:(GADBannerView *)adView
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    for (NSLayoutConstraint *constraint in self.myBanner.constraints) {
+        if([constraint.identifier isEqualToString:@"my"]){
+            constraint.constant = 1;
+        }
+    }
+    [self.myBanner layoutIfNeeded];
+    NSLog(@"adView:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that a full screen view will be presented in response
+/// to the user clicking on an ad.
+- (void)adViewWillPresentScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillPresentScreen");
+}
+
+/// Tells the delegate that the full screen view will be dismissed.
+- (void)adViewWillDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillDismissScreen");
+}
+
+/// Tells the delegate that the full screen view has been dismissed.
+- (void)adViewDidDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewDidDismissScreen");
+}
+
+/// Tells the delegate that a user click will open another app (such as
+/// the App Store), backgrounding the current app.
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView {
+    NSLog(@"adViewWillLeaveApplication");
+}
+
+
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6412217023250030/5400491687"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    //    self.interstitial = [self createAndLoadInterstitial];
+}
+/// Tells the delegate an ad request succeeded.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+    
+}
+
+/// Tells the delegate an ad request failed.
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that an interstitial will be presented.
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillPresentScreen");
+}
+
+/// Tells the delegate the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    self.interstitial = [self createAndLoadInterstitial];
+    NSLog(@"interstitialWillDismissScreen");
+}
+/// Tells the delegate that a user click will open another app
+/// (such as the App Store), backgrounding the current app.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillLeaveApplication");
 }
 @end

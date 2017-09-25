@@ -23,12 +23,29 @@
 @property (nonatomic,strong) NSString *titleToPassNext;
 @property (nonatomic,strong) NSString *dataToPassNext;
 @property (nonatomic,strong) UIImage *imageToPassNext;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation CreateQRCodeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.interstitial = [self createAndLoadInterstitial];
+    self.myBanner.delegate = self;
+    self.myBanner.adUnitID = @"ca-app-pub-6412217023250030/8601370095";
+    self.myBanner.rootViewController = self;
+    //    [self.myBanner setAutoloadEnabled:YES];
+    GADRequest *request = [GADRequest request];
+    // Requests test ads on devices you specify. Your test device ID is printed to the console when
+    // an ad request is made. GADBannerView automatically returns test ads when running on a
+    // simulator.
+    //    request.testDevices = @[
+    //                            @"2077ef9a63d2b398840261c8221a0c9a"  // Eric's iPod Touch
+    //                            ];
+    //        request.testDevices = @[ @"b5492ec64ecbad0f31be3bf73c85cf59" ];
+    //    request.testDevices = @[ @"63a67b748f428013d8b58124d3f19e8f" ];
+    [self.myBanner loadRequest:request];
+    
     self.createdList = [[NSMutableArray alloc] init];
     self.savedArray = [[NSMutableArray alloc] init];
     SWRevealViewController *revealViewController = self.revealViewController;
@@ -291,6 +308,7 @@
 #pragma mark - Notification
 -(void) triggerAction:(NSNotification *) notification
 {
+    self.interstitial = [self createAndLoadInterstitial];
     NSDictionary *dict = notification.userInfo;
     HistoryData *message = [dict valueForKey:@"total"];
     [self.createdList addObject:message];
@@ -372,6 +390,9 @@
             //            [self.historyTableView deleteRowsAtIndexPaths:@[tmpIndexPath] withRowAnimation:UITableViewRowAnimationNone];
             [self.createdList removeObjectAtIndex:tmpIndexPath.row];
             [self.createdTableView reloadData];
+            if([self.interstitial isReady]){
+                [self.interstitial presentFromRootViewController:self];
+            }
         }
     }
     if([self.createdList count] == 0){
@@ -469,5 +490,87 @@
 -(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath{
     return YES;
 }
+- (void)adViewDidReceiveAd:(GADBannerView *)adView {
+    
+    for (NSLayoutConstraint *constraint in self.myBanner.constraints) {
+        if([constraint.identifier isEqualToString:@"my"]){
+            constraint.constant = 50;
+        }
+    }
+    [self.myBanner layoutIfNeeded];
+    NSLog(@"adViewDidReceiveAd");
+}
 
+/// Tells the delegate an ad request failed.
+- (void)adView:(GADBannerView *)adView
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    for (NSLayoutConstraint *constraint in self.myBanner.constraints) {
+        if([constraint.identifier isEqualToString:@"my"]){
+            constraint.constant = 1;
+        }
+    }
+    [self.myBanner layoutIfNeeded];
+    NSLog(@"adView:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that a full screen view will be presented in response
+/// to the user clicking on an ad.
+- (void)adViewWillPresentScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillPresentScreen");
+}
+
+/// Tells the delegate that the full screen view will be dismissed.
+- (void)adViewWillDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewWillDismissScreen");
+}
+
+/// Tells the delegate that the full screen view has been dismissed.
+- (void)adViewDidDismissScreen:(GADBannerView *)adView {
+    NSLog(@"adViewDidDismissScreen");
+}
+
+/// Tells the delegate that a user click will open another app (such as
+/// the App Store), backgrounding the current app.
+- (void)adViewWillLeaveApplication:(GADBannerView *)adView {
+    NSLog(@"adViewWillLeaveApplication");
+}
+
+
+
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6412217023250030/5400491687"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    //    self.interstitial = [self createAndLoadInterstitial];
+}
+/// Tells the delegate an ad request succeeded.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+    [self.interstitial presentFromRootViewController:self];
+}
+
+/// Tells the delegate an ad request failed.
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that an interstitial will be presented.
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillPresentScreen");
+}
+
+/// Tells the delegate the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillDismissScreen");
+}
+/// Tells the delegate that a user click will open another app
+/// (such as the App Store), backgrounding the current app.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillLeaveApplication");
+}
 @end

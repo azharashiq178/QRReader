@@ -10,14 +10,16 @@
 #import "GeneralSettingsViewController.h"
 #import <StoreKit/StoreKit.h>
 #import "AppDelegate.h"
+@import GoogleMobileAds;
 @interface SettingsTableViewController ()
-
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation SettingsTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    self.interstitial = [self createAndLoadInterstitial];
     self.linkSwitch.offImage = [UIImage imageNamed:@"on"];
     [self.linkSwitch setOnImage:[UIImage imageNamed:@"on.png"]];
     [self.linkSwitch addTarget:self action:@selector(didSwitchChanged:) forControlEvents:UIControlEventValueChanged];
@@ -40,6 +42,7 @@
     self.laserSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"laser"];
     self.vibrateSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Vibrate"];
     self.beepSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"Beep"];
+    self.historySwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:@"delete"];
     if([[NSUserDefaults standardUserDefaults] boolForKey:@"Browser"]){
         self.browserName.text = @"Chrome";
     }
@@ -174,28 +177,28 @@
             [self presentViewController:messageController animated:YES completion:nil];
         }
     }
+//    else if(indexPath.row == 1 && indexPath.section == 4){
+//        if ([MFMailComposeViewController canSendMail]) {
+//            //Your code will go here
+//            MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
+//            mailVC.mailComposeDelegate = self;
+//            [mailVC setSubject:@"Error reporting"];
+//            [mailVC setToRecipients:@[@"azharashiq178@gmail.com"]];
+//            [mailVC setMessageBody:@"Testing" isHTML:NO];
+//            [self presentViewController:mailVC animated:YES completion:nil];
+//        } else {
+//            //This device cannot send email
+//        }
+//    }
     else if(indexPath.row == 1 && indexPath.section == 4){
-        if ([MFMailComposeViewController canSendMail]) {
-            //Your code will go here
-            MFMailComposeViewController *mailVC = [[MFMailComposeViewController alloc] init];
-            mailVC.mailComposeDelegate = self;
-            [mailVC setSubject:@"Error reporting"];
-            [mailVC setToRecipients:@[@"azharashiq178@gmail.com"]];
-            [mailVC setMessageBody:@"Testing" isHTML:NO];
-            [self presentViewController:mailVC animated:YES completion:nil];
-        } else {
-            //This device cannot send email
-        }
-    }
-    else if(indexPath.row == 2 && indexPath.section == 4){
         if([SKStoreReviewController class]){
             [SKStoreReviewController requestReview];
             
         }
     }
-    else if(indexPath.row == 3 && indexPath.section == 4){
+    else if(indexPath.row == 2 && indexPath.section == 4){
         SKStoreProductViewController* spvc = [[SKStoreProductViewController alloc] init];
-        [spvc loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @284417353}
+        [spvc loadProductWithParameters:@{SKStoreProductParameterITunesItemIdentifier : @1258137713}
                         completionBlock:nil];
         spvc.delegate = self;
         [self presentViewController:spvc animated:YES completion:nil];
@@ -216,6 +219,10 @@
 -(void)productViewControllerDidFinish:(SKStoreProductViewController *)viewController
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    self.interstitial = [self createAndLoadInterstitial];
+//    if([self.interstitial isReady]){
+//        [self.interstitial presentFromRootViewController:self];
+//    }
 }
 - (void)mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -246,24 +253,87 @@
     [controller dismissViewControllerAnimated:YES completion:nil];
 }
 - (IBAction)deleteAction:(UISwitch *)sender {
+    [[NSUserDefaults standardUserDefaults] setBool:sender.isOn forKey:@"delete"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
     if(!sender.isOn){
-        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
-        NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
-        NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"ScanHistory"];
-        
-        //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
-        NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
-        for(int i = 0 ;i < [tmpArray count] ;i++){
-            [context deleteObject:[tmpArray objectAtIndex:i]];
-        }
-        NSError *error = nil;
-        [context save:&error];
-        if(error != nil){
-            NSLog(@"Data Not Deleted");
-        }
-        else{
-            NSLog(@"Data Deleted");
-        }
+        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"Confirmation" message:@"Are you sure to delete History?" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+            [sender setOn:true];
+            [[NSUserDefaults standardUserDefaults] setBool:true forKey:@"delete"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+        UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [self deleteFromCoreDataWithEntityNamed:@"ScanHistory"];
+            [self deleteFromCoreDataWithEntityNamed:@"History"];
+            [[NSUserDefaults standardUserDefaults] setBool:false forKey:@"delete"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            UIAlertController *okController = [UIAlertController alertControllerWithTitle:@"Deleted" message:@"Data Deleted From App History" preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *cancelAction1 = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                [okController dismissViewControllerAnimated:YES completion:nil];
+                self.interstitial = [self createAndLoadInterstitial];
+            }];
+            [okController addAction:cancelAction1];
+            [self presentViewController:okController animated:YES completion:nil];
+        }];
+        [alertController addAction:okAction];
+        [alertController addAction:cancelAction];
+        [self presentViewController:alertController animated:YES completion:nil];
     }
+}
+-(void)deleteFromCoreDataWithEntityNamed:(NSString *)entity{
+    
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    NSManagedObjectContext *context = [[delegate persistentContainer] viewContext];
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:entity];
+    
+    //    self.createdList = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    NSMutableArray *tmpArray = [[context executeFetchRequest:fetchRequest error:nil] mutableCopy];
+    for(int i = 0 ;i < [tmpArray count] ;i++){
+        [context deleteObject:[tmpArray objectAtIndex:i]];
+    }
+    NSError *error = nil;
+    [context save:&error];
+    if(error != nil){
+        NSLog(@"Data Not Deleted");
+    }
+    else{
+        NSLog(@"Data Deleted");
+    }
+}
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6412217023250030/5400491687"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    //    self.interstitial = [self createAndLoadInterstitial];
+}
+/// Tells the delegate an ad request succeeded.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+    [self.interstitial presentFromRootViewController:self];
+}
+
+/// Tells the delegate an ad request failed.
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that an interstitial will be presented.
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillPresentScreen");
+}
+
+/// Tells the delegate the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillDismissScreen");
+}
+/// Tells the delegate that a user click will open another app
+/// (such as the App Store), backgrounding the current app.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillLeaveApplication");
 }
 @end

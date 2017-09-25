@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "SCSQLite.h"
+@import GoogleMobileAds;
 
 @interface AppDelegate ()
 
@@ -19,6 +20,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     [SCSQLite initWithDatabase:@"QRReaderDB.sqlite"];
+    [GADMobileAds configureWithApplicationID:@"ca-app-pub-6412217023250030/8601370095"];
 //    [[NSUserDefaults standardUserDefaults] setObject:[NSArray arrayWithObjects:@"ES", nil] forKey:@"AppleLanguages"]; //switching to polish locale
 //    [[NSUserDefaults standardUserDefaults] synchronize];
     return YES;

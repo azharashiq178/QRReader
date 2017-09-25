@@ -7,6 +7,7 @@ target 'QRReader' do
 pod 'RegexKitLite'
 pod 'IQKeyboardManager', '~> 4.0'
 pod 'SCSQLite'
+pod 'Google-Mobile-Ads-SDK’
 
   # Pods for QRReader
 #pod 'DYQRCodeDecoder'

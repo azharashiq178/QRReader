@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+@import GoogleMobileAds;
 
 
 @interface DYQRCodeDecoderViewController : UIViewController <UITabBarControllerDelegate>
@@ -21,6 +22,7 @@
 //@property (weak, nonatomic) IBOutlet UITextView *myResult;
 @property (nonatomic,strong) NSString *myResult;
 @property (nonatomic,strong) NSString *myType;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
 
 - (id)initWithCompletion:(void(^)(BOOL succeeded, NSString * result))completion;
 

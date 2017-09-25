@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <MessageUI/MessageUI.h>
 #import <Messages/Messages.h>
+@import GoogleMobileAds;
 
 @interface HistoryViewController : UIViewController <MFMessageComposeViewControllerDelegate,UISearchBarDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITextView *tmpTextField;
@@ -24,5 +25,6 @@
 - (IBAction)selectAllAction:(UIBarButtonItem *)sender;
 - (IBAction)moveToAction:(UIBarButtonItem *)sender;
 - (IBAction)deleteAction:(UIBarButtonItem *)sender;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
 
 @end

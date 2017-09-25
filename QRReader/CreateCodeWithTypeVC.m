@@ -32,6 +32,9 @@
     self.typeOfCode.delegate = self;
     
     self.myNavBar.topItem.title = self.typeOfCreation;
+    [self prepareForWriting];
+}
+-(void)prepareForWriting{
     if([self.typeOfCreation  isEqualToString: @"Web Address"]){
         self.textForCode.placeholder = @"https://";
         self.textForCode.keyboardType = UIKeyboardTypeURL;
@@ -45,9 +48,9 @@
         [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"Text"]){
-//        CGRect frame = self.textForCode.frame;
-//        frame.size.height = 300;
-//        [self.textForCode setFrame:frame];
+        //        CGRect frame = self.textForCode.frame;
+        //        frame.size.height = 300;
+        //        [self.textForCode setFrame:frame];
         NSLayoutConstraint *heightConstraint;
         for (NSLayoutConstraint *constraint in self.textForCode.constraints) {
             if (constraint.firstAttribute == NSLayoutAttributeHeight) {
@@ -92,12 +95,14 @@
         }
         heightConstraint.constant = 300;
         self.lastNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-//        self.lastNameField.inputView = [[UITextView alloc] init];
+        self.textForCode.keyboardType = UIKeyboardTypeDefault;
+        //        self.lastNameField.inputView = [[UITextView alloc] init];
         
     }
     else{
         [self.codeTitleLabel setHidden:YES];
         [self setFieldsHidden:YES];
+        self.textForCode.keyboardType = UIKeyboardTypeURL;
         if([self.typeOfCreation isEqualToString:@"Facebook"] || [self.typeOfCreation isEqualToString:@"Twitter"] || [self.typeOfCreation isEqualToString:@"Evernote"] || [self.typeOfCreation isEqualToString:@"Google Plus"] || [self.typeOfCreation isEqualToString:@"LinkedIn"] || [self.typeOfCreation isEqualToString:@"Instagram"] || [self.typeOfCreation isEqualToString:@"Tumblr"] || [self.typeOfCreation isEqualToString:@"Youtube"]){
             self.textForCode.text = [NSString stringWithFormat:@"https://www.%@.com/",self.typeOfCreation];
         }
@@ -125,7 +130,13 @@
         else if ([self.typeOfCreation isEqualToString:@"Box"]){
             self.textForCode.text = [NSString stringWithFormat:@"https://www.box.com/"];
         }
+        else{
+            
+            self.textForCode.placeholder = [NSString stringWithFormat:@"Enter %@",self.typeOfCreation];
+            self.textForCode.keyboardType = UIKeyboardTypeURL;
+        }
     }
+    
 }
 - (NSString *)vCardRepresentation
 {
@@ -199,6 +210,14 @@
     return [self.codeTypes objectAtIndex:row];
 }
 -(void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    if(row == 1){
+        self.textForCode.text = @"";
+        self.textForCode.placeholder = @"Enter Bar Code";
+        self.textForCode.keyboardType = UIKeyboardTypePhonePad;
+    }
+    else if (row == 0){
+        [self prepareForWriting];
+    }
     self.typeOfCode.text = [self.codeTypes objectAtIndex:row];
 }
 -(void)textFieldDidBeginEditing:(UITextField *)textField{
@@ -301,7 +320,6 @@
         }];
     }
     else if([self.typeOfCode.text isEqualToString:@"Bar Code"]){
-        
         NSCharacterSet* notDigits = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
         if ([self.textForCode.text rangeOfCharacterFromSet:notDigits].location == NSNotFound)
         {

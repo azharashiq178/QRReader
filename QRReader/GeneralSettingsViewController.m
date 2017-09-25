@@ -7,16 +7,18 @@
 //
 
 #import "GeneralSettingsViewController.h"
+@import GoogleMobileAds;
 
 @interface GeneralSettingsViewController ()
 @property (nonatomic,strong) NSArray *dataArray;
+@property(nonatomic, strong) GADInterstitial *interstitial;
 @end
 
 @implementation GeneralSettingsViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.interstitial = [self createAndLoadInterstitial];
     
 //*********************** Open URL in Google chrome ******************
 //
@@ -212,5 +214,41 @@
 -(void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView cellForRowAtIndexPath:indexPath].accessoryType = UITableViewCellAccessoryNone;
+}
+- (GADInterstitial *)createAndLoadInterstitial {
+    GADInterstitial *interstitial =
+    [[GADInterstitial alloc] initWithAdUnitID:@"ca-app-pub-6412217023250030/5400491687"];
+    interstitial.delegate = self;
+    [interstitial loadRequest:[GADRequest request]];
+    return interstitial;
+}
+- (void)interstitialDidDismissScreen:(GADInterstitial *)interstitial {
+    //    self.interstitial = [self createAndLoadInterstitial];
+}
+/// Tells the delegate an ad request succeeded.
+- (void)interstitialDidReceiveAd:(GADInterstitial *)ad {
+    NSLog(@"interstitialDidReceiveAd");
+    [self.interstitial presentFromRootViewController:self];
+}
+
+/// Tells the delegate an ad request failed.
+- (void)interstitial:(GADInterstitial *)ad
+didFailToReceiveAdWithError:(GADRequestError *)error {
+    NSLog(@"interstitial:didFailToReceiveAdWithError: %@", [error localizedDescription]);
+}
+
+/// Tells the delegate that an interstitial will be presented.
+- (void)interstitialWillPresentScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillPresentScreen");
+}
+
+/// Tells the delegate the interstitial is to be animated off the screen.
+- (void)interstitialWillDismissScreen:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillDismissScreen");
+}
+/// Tells the delegate that a user click will open another app
+/// (such as the App Store), backgrounding the current app.
+- (void)interstitialWillLeaveApplication:(GADInterstitial *)ad {
+    NSLog(@"interstitialWillLeaveApplication");
 }
 @end

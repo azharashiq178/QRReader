@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+@import GoogleMobileAds;
 
 
 @interface CreateQRCodeViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
@@ -21,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *selectAllButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *deleteButton;
 @property (weak, nonatomic) IBOutlet UILabel *noHistoryLabel;
+@property (weak, nonatomic) IBOutlet GADBannerView *myBanner;
 
 - (IBAction)selectAllAction:(UIBarButtonItem *)sender;
 - (IBAction)deleteAction:(UIBarButtonItem *)sender;
