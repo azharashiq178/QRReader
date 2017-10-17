@@ -166,7 +166,7 @@
     NSLog(@"You selected row %d in section %d",indexPath.row,indexPath.section);
     if(indexPath.row == 0 && indexPath.section == 4){
         if([MFMessageComposeViewController canSendText]) {
-            NSString *message = [NSString stringWithFormat:@"Hey..!!! Check out this cool app on App Store. Link is ==> https://itunes.apple.com/gb/app/compass-free/id284735786?mt=8"];
+            NSString *message = [NSString stringWithFormat:@"Hey..!!! Check out Bar Code Scanner: QR Reade cool app on App Store."];
             
             MFMessageComposeViewController *messageController = [[MFMessageComposeViewController alloc] init];
             messageController.messageComposeDelegate = self;
