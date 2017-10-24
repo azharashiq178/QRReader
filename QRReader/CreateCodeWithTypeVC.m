@@ -42,6 +42,7 @@
         [self setFieldsHidden:YES];
     }
     else if([self.typeOfCreation  isEqualToString: @"Phone Number"]){
+        [self.textForCode setFont:[UIFont systemFontOfSize:11]];
         self.textForCode.placeholder = @"Phone Number";
         self.textForCode.keyboardType = UIKeyboardTypePhonePad;
         self.codeTitleLabel.text = @"Phone Number:";
@@ -73,6 +74,7 @@
         
     }
     else if ([self.typeOfCreation isEqualToString:@"Contact-Info"]){
+        [self.textForCode setFont:[UIFont systemFontOfSize:12]];
         self.textForCode.placeholder = @"Contact Info";
         self.textForCode.keyboardType = UIKeyboardTypeDefault;
         [self setFieldsHidden:NO];
@@ -95,7 +97,7 @@
         }
         heightConstraint.constant = 300;
         self.lastNameField.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-        self.textForCode.keyboardType = UIKeyboardTypeDefault;
+        [self.textForCode setFont:[UIFont systemFontOfSize:12]];
         //        self.lastNameField.inputView = [[UITextView alloc] init];
         
     }
