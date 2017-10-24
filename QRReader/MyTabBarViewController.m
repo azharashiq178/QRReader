@@ -18,6 +18,7 @@
     [super viewDidLoad];
     [self setDelegate:self];
     NSLog(@"Hello from my tabbarcontroller");
+    [self setSelectedIndex:1];
     // Do any additional setup after loading the view.
 }
 

@@ -166,7 +166,6 @@ UIImagePickerControllerDelegate> {
     [button1 setBackgroundImage:[UIImage imageNamed:@"off1x"] forState:UIControlStateNormal];
     [buttonContainer addSubview:button1];
     
-    
     self.navigationItem.titleView = buttonContainer;
     self.navigationController.navigationBar.topItem.titleView = buttonContainer;
 }
@@ -250,6 +249,7 @@ UIImagePickerControllerDelegate> {
         [scanView addSubview:bgImageView];
         
         [scanView setBackgroundColor:[UIColor blackColor]];
+        [scanView setAlpha:0.8];
         [self.view addSubview:scanView];
         [scanView setTranslatesAutoresizingMaskIntoConstraints:NO];
         
@@ -406,7 +406,7 @@ UIImagePickerControllerDelegate> {
         [(MyTabBarViewController *)self.tabBarController setMyResultString:result];
         [(MyTabBarViewController *)self.tabBarController setMyType:self.myType];
         
-        [self.tabBarController setSelectedIndex:1];
+        [self.tabBarController setSelectedIndex:2];
     }
     else{
         NSLog(@"Not Found");

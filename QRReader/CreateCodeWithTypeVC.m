@@ -243,10 +243,15 @@
         CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
         [qrFilter setValue:stringData forKey:@"inputMessage"];
         
+        
+        CGFloat scaleX = 10;
+        CGFloat scaleY = 10;
+        CIImage *transformedImage = [qrFilter.outputImage imageByApplyingTransform:CGAffineTransformMakeScale(scaleX, scaleY)];
+        
         UIImageView *myImageView = [[UIImageView alloc] initWithFrame:CGRectMake(100, 300, 100, 100)];
 
 //        myImageView.image = [UIImage imageWithCIImage:qrFilter.outputImage];
-        myImageView.image = [self imageFromCIImage:qrFilter.outputImage];
+        myImageView.image = [self imageFromCIImage:transformedImage];
         [self.view addSubview:myImageView];
         [self dismissViewControllerAnimated:YES completion:^{
             NSDate *todayDate = [NSDate date]; //Get todays date
